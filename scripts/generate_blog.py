@@ -465,7 +465,10 @@ Return ONLY the raw HTML. No markdown fences, no explanation, no preamble.
         system=SYSTEM_PROMPT,
         messages=[{"role": "user", "content": user_prompt}],
     )
-    return message.content[0].text.strip()
+    for block in message.content:
+        if hasattr(block, "text"):
+            return block.text.strip()
+    raise ValueError("No text block found in API response")
 
 
 # ---------------------------------------------------------------------------
