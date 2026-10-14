@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+Disallow: /success.html
+Disallow: /cdn-cgi/
+
+Sitemap: https://lptuning.com.au/sitemap.xml
