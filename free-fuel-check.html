@@ -1,0 +1,1388 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Fuel Savings Check | LP Tuning Queensland</title>
+    <meta name="description" content="Find out how much diesel your machine burns unnecessarily. Get a free fuel savings estimate from LP Tuning — ECU tuning for trucks, tractors, excavators, and heavy machinery in Queensland.">
+    <meta name="robots" content="noindex, follow">
+    <link rel="canonical" href="https://lptuning.com.au/free-fuel-check.html">
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" href="favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@600;700&display=swap" rel="stylesheet"></noscript>
+
+    <!-- ============================================================
+         GOOGLE ANALYTICS 4 + GOOGLE ADS TRACKING
+         GA4 ID:           G-0SJDKXG8H3
+         Google Ads Tag:   AW-18471067077
+         Conversion Label: AW-18471067077/T55fCNzejoMdEMW72OdE  (Submit lead form)
+         One gtag.js load handles both GA4 analytics AND Google Ads conversions.
+         ============================================================ -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0SJDKXG8H3"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-0SJDKXG8H3');   // GA4 — all page behaviour & audience building
+      gtag('config', 'AW-18471067077');  // Google Ads — conversion tracking
+    </script>
+
+    <!-- Meta Pixel -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1671277017538329');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1671277017538329&ev=PageView&noscript=1"/></noscript>
+
+    <style>
+        :root {
+            --black: #0a0a0a;
+            --black-light: #111111;
+            --gray-900: #1a1a1a;
+            --gray-800: #222222;
+            --gray-700: #2d2d2d;
+            --gray-600: #3a3a3a;
+            --gray-500: #808080;
+            --gray-400: #909090;
+            --gray-300: #999999;
+            --gray-200: #bbbbbb;
+            --gray-100: #dddddd;
+            --white: #f5f5f5;
+            --pure-white: #ffffff;
+            --green-primary: #4CAF50;
+            --green-dark: #388E3C;
+            --green-light: #66BB6A;
+            --gold: #FFD54F;
+            --font-heading: 'Oswald', sans-serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; font-size: 16px; -webkit-font-smoothing: antialiased; }
+        body { font-family: var(--font-body); background-color: var(--black); color: var(--gray-200); line-height: 1.6; }
+        a { text-decoration: none; color: var(--green-primary); }
+        a:hover { color: var(--green-light); }
+        h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 700; line-height: 1.2; color: var(--white); text-transform: uppercase; letter-spacing: 0.02em; }
+        p { margin-bottom: 0.75rem; }
+
+        /* ---- HEADER ---- */
+        .lp-header {
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(10,10,10,0.97);
+            border-bottom: 1px solid rgba(76,175,80,0.2);
+            padding: 0.9rem 1.5rem;
+            display: flex; align-items: center; justify-content: space-between;
+            backdrop-filter: blur(8px);
+        }
+        .lp-logo {display:flex;align-items:center;gap:0.75rem}
+        .lp-logo img{height:52px;width:auto;max-width:280px;object-fit:contain;border-radius:0}
+        .lp-call {
+            display: flex; align-items: center; gap: 0.5rem;
+            background: var(--green-primary); color: #000;
+            font-family: var(--font-heading); font-size: 0.95rem; font-weight: 600;
+            letter-spacing: 0.05em;
+            padding: 0.5rem 1rem; border-radius: 4px;
+            transition: background 0.2s;
+        }
+        .lp-call:hover { background: var(--green-light); color: #000; }
+        .lp-call svg { width: 16px; height: 16px; }
+
+        /* ---- HERO ---- */
+        .hero {
+            /* TEMP stock photos until the real on-site photos are ready */
+            background: linear-gradient(180deg, rgba(10,10,10,0.72) 0%, rgba(10,10,10,0.88) 70%, #0a0a0a 100%), url('trucks-fleet.webp') center/cover no-repeat;
+            border-bottom: 1px solid rgba(76,175,80,0.12);
+            padding: 3.5rem 1.5rem 2.5rem;
+            text-align: center;
+        }
+        .hero.m-ag { background-image: linear-gradient(180deg, rgba(10,10,10,0.72) 0%, rgba(10,10,10,0.88) 70%, #0a0a0a 100%), url('john-deere-8310r.webp'); }
+        .hero.m-earthmoving { background-image: linear-gradient(180deg, rgba(10,10,10,0.72) 0%, rgba(10,10,10,0.88) 70%, #0a0a0a 100%), url('catterpillar-excavator.webp'); }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(76,175,80,0.12);
+            border: 1px solid rgba(76,175,80,0.3);
+            color: var(--green-primary);
+            font-family: var(--font-heading); font-size: 0.75rem;
+            letter-spacing: 0.2em; text-transform: uppercase;
+            padding: 0.35rem 1rem; border-radius: 20px;
+            margin-bottom: 1.25rem;
+        }
+        .hero h1 {
+            font-size: clamp(1.8rem, 5vw, 3.2rem);
+            max-width: 780px; margin: 0 auto 1.25rem;
+            color: var(--white);
+        }
+        .hero h1 em { color: var(--gold); font-style: normal; }
+        .hero-sub {
+            font-size: 1.05rem; color: var(--gray-300);
+            max-width: 560px; margin: 0 auto 2rem;
+        }
+        .hero-actions {
+            display: flex; flex-wrap: wrap; gap: 0.75rem;
+            justify-content: center; margin-bottom: 2rem;
+        }
+        .btn-primary {
+            background: var(--green-primary); color: #000;
+            font-family: var(--font-heading); font-size: 1rem; font-weight: 700;
+            letter-spacing: 0.05em; text-transform: uppercase;
+            padding: 0.9rem 1.8rem; border-radius: 4px;
+            transition: background 0.2s, transform 0.15s;
+            border: none; cursor: pointer;
+        }
+        .btn-primary:hover { background: var(--green-light); transform: translateY(-1px); color: #000; }
+        .btn-secondary {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.25);
+            color: var(--white);
+            font-family: var(--font-heading); font-size: 1rem; font-weight: 600;
+            letter-spacing: 0.05em; text-transform: uppercase;
+            padding: 0.9rem 1.8rem; border-radius: 4px;
+            transition: border-color 0.2s, color 0.2s;
+        }
+        .btn-secondary:hover { border-color: var(--green-primary); color: var(--green-primary); }
+        .hero-trust {
+            display: flex; flex-wrap: wrap; gap: 1rem;
+            justify-content: center;
+        }
+        .hero-trust-item {
+            display: flex; align-items: center; gap: 0.4rem;
+            font-size: 0.85rem; color: var(--gray-400);
+        }
+        .hero-trust-item svg { color: var(--green-primary); width: 15px; height: 15px; }
+
+        /* ---- MACHINE SELECTOR ---- */
+        .section { padding: 3rem 1.5rem; }
+        .section-inner { max-width: 900px; margin: 0 auto; }
+        .section-label {
+            font-family: var(--font-heading); font-size: 0.75rem; font-weight: 600;
+            letter-spacing: 0.2em; text-transform: uppercase;
+            color: var(--green-primary); display: block; margin-bottom: 0.5rem;
+        }
+        .section-title { font-size: clamp(1.4rem, 3.5vw, 2rem); margin-bottom: 0.5rem; }
+        .section-desc { color: var(--gray-400); margin-bottom: 2rem; }
+
+        .machine-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+        }
+        .machine-card {
+            background: var(--gray-900);
+            border: 2px solid var(--gray-700);
+            border-radius: 8px; padding: 1.5rem 1rem;
+            text-align: center; cursor: pointer;
+            transition: border-color 0.2s, background 0.2s, transform 0.15s;
+        }
+        .machine-card:hover { border-color: rgba(76,175,80,0.5); transform: translateY(-2px); }
+        .machine-card.active {
+            border-color: var(--green-primary);
+            background: rgba(76,175,80,0.08);
+        }
+        .machine-card .icon {
+            font-size: 2.2rem; margin-bottom: 0.75rem; display: block;
+        }
+        .machine-card h3 {
+            font-size: 0.85rem; letter-spacing: 0.08em;
+            color: var(--white); margin-bottom: 0.25rem;
+        }
+        .machine-card p {
+            font-size: 0.75rem; color: var(--gray-500); margin: 0;
+        }
+
+        /* ---- SAVINGS ESTIMATOR ---- */
+        .estimator-wrap {
+            background: linear-gradient(135deg, #0d1f0d, #111);
+            border: 1px solid rgba(76,175,80,0.2);
+            border-radius: 12px; padding: 2rem;
+            margin-top: 2rem;
+        }
+        .estimator-wrap h3 {
+            font-size: 1.1rem; margin-bottom: 1.25rem;
+            color: var(--green-primary);
+        }
+        .estimator-row {
+            display: flex; flex-wrap: wrap; gap: 1rem;
+            align-items: flex-end; margin-bottom: 1.5rem;
+        }
+        .estimator-field { flex: 1; min-width: 160px; }
+        .estimator-field label {
+            display: block; font-size: 0.8rem; color: var(--gray-400);
+            margin-bottom: 0.4rem; font-weight: 500;
+        }
+        .estimator-field input, .estimator-field select {
+            width: 100%;
+            background: var(--gray-800); border: 1px solid var(--gray-600);
+            color: var(--white); padding: 0.6rem 0.85rem;
+            border-radius: 4px; font-family: var(--font-body); font-size: 0.95rem;
+        }
+        .estimator-result {
+            background: rgba(76,175,80,0.1);
+            border: 1px solid rgba(76,175,80,0.3);
+            border-radius: 8px; padding: 1.25rem 1.5rem;
+            display: flex; align-items: center; justify-content: space-between;
+            flex-wrap: wrap; gap: 0.5rem;
+        }
+        .estimator-result-label {
+            font-size: 0.85rem; color: var(--gray-300);
+        }
+        .estimator-result-label strong {
+            display: block; color: var(--white); font-size: 0.95rem; margin-bottom: 0.2rem;
+        }
+        .savings-amount {
+            font-family: var(--font-heading); font-size: 2rem; font-weight: 700;
+            color: var(--gold); letter-spacing: 0.02em;
+        }
+        .savings-note {
+            font-size: 0.72rem; color: var(--gray-300); margin-top: 0.5rem;
+        }
+
+        /* ---- FORM SECTION ---- */
+        .form-section {
+            background: var(--gray-900);
+            border-top: 1px solid var(--gray-800);
+            border-bottom: 1px solid var(--gray-800);
+        }
+        .form-wrap {
+            max-width: 680px; margin: 0 auto; padding: 3rem 1.5rem;
+        }
+        .form-header { margin-bottom: 2rem; text-align: center; }
+        .form-header h2 { font-size: clamp(1.5rem, 3vw, 2rem); margin-bottom: 0.75rem; }
+        .form-header p { color: var(--gray-400); font-size: 0.95rem; }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        .field-group { display: flex; flex-direction: column; gap: 0.35rem; }
+        .field-group.full { grid-column: 1 / -1; }
+        .field-group label {
+            font-size: 0.82rem; color: var(--gray-300); font-weight: 500;
+        }
+        .field-group label span { color: var(--green-primary); }
+        .field-group input,
+        .field-group select,
+        .field-group textarea {
+            background: var(--gray-800);
+            border: 1px solid var(--gray-600);
+            color: var(--white);
+            padding: 0.75rem 1rem;
+            border-radius: 4px;
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            transition: border-color 0.2s;
+            -webkit-appearance: none;
+        }
+        .field-group input:focus,
+        .field-group select:focus {
+            outline: none;
+            border-color: var(--green-primary);
+        }
+        .field-group select option { background: var(--gray-800); }
+        .field-group input::placeholder { color: var(--gray-600); }
+
+        .submit-btn {
+            width: 100%;
+            background: var(--green-primary); color: #000;
+            border: none; cursor: pointer;
+            font-family: var(--font-heading); font-size: 1.1rem; font-weight: 700;
+            letter-spacing: 0.08em; text-transform: uppercase;
+            padding: 1.1rem;
+            border-radius: 4px;
+            transition: background 0.2s, transform 0.15s;
+            margin-top: 1.25rem;
+        }
+        .submit-btn:hover { background: var(--green-light); transform: translateY(-1px); }
+        .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+        .form-note {
+            text-align: center; margin-top: 1rem;
+            font-size: 0.8rem; color: var(--gray-500);
+        }
+        .form-disclaimer {
+            text-align: center; margin-top: 0.75rem;
+            font-size: 0.78rem; color: var(--gray-600);
+            padding: 0.75rem;
+            border: 1px solid var(--gray-800);
+            border-radius: 4px;
+        }
+
+        /* Form success state */
+        .form-success {
+            display: none;
+            text-align: center;
+            padding: 3rem 1.5rem;
+        }
+        .form-success .tick {
+            width: 64px; height: 64px;
+            background: rgba(76,175,80,0.15);
+            border: 2px solid var(--green-primary);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 1.5rem;
+        }
+        .form-success .tick svg { color: var(--green-primary); width: 32px; height: 32px; }
+        .form-success h3 { font-size: 1.6rem; margin-bottom: 0.75rem; }
+        .form-success p { color: var(--gray-400); max-width: 420px; margin: 0 auto 1.5rem; }
+
+        /* ---- PROOF SECTION ---- */
+        .proof-section { background: var(--black); }
+        .proof-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .proof-card {
+            background: var(--gray-900);
+            border: 1px solid var(--gray-700);
+            border-radius: 10px;
+            padding: 1.75rem;
+        }
+        .proof-card .tag {
+            display: inline-block;
+            background: rgba(76,175,80,0.12);
+            color: var(--green-primary);
+            font-size: 0.72rem; font-family: var(--font-heading);
+            letter-spacing: 0.12em; text-transform: uppercase;
+            padding: 0.25rem 0.6rem; border-radius: 3px;
+            margin-bottom: 1rem;
+        }
+        .proof-card h3 {
+            font-size: 1rem; margin-bottom: 0.5rem; color: var(--white);
+        }
+        .proof-card .big-number {
+            font-family: var(--font-heading); font-size: 2.2rem; font-weight: 700;
+            color: var(--gold); margin-bottom: 0.5rem; display: block;
+        }
+        .proof-card p { font-size: 0.88rem; color: var(--gray-400); margin: 0; }
+        .proof-card .fine { font-size: 0.72rem; color: var(--gray-400); margin-top: 0.75rem; }
+
+        /* Fleet stats */
+        .fleet-gains {
+            display: flex; gap: 1rem; margin: 1rem 0; flex-wrap: wrap;
+        }
+        .gain-chip {
+            background: rgba(255,213,79,0.1);
+            border: 1px solid rgba(255,213,79,0.25);
+            border-radius: 6px; padding: 0.6rem 0.85rem;
+            text-align: center; flex: 1; min-width: 70px;
+        }
+        .gain-chip .num {
+            font-family: var(--font-heading); font-size: 1.4rem; color: var(--gold);
+            display: block;
+        }
+        .gain-chip .lbl { font-size: 0.7rem; color: var(--gray-500); }
+
+        /* ---- HOW IT WORKS ---- */
+        .how-section { background: linear-gradient(180deg, #0d1a0d 0%, #0a0a0a 100%); }
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .step {
+            text-align: center; padding: 1.5rem;
+        }
+        .step-num {
+            width: 44px; height: 44px;
+            background: rgba(76,175,80,0.15);
+            border: 2px solid var(--green-primary);
+            border-radius: 50%;
+            font-family: var(--font-heading); font-size: 1.1rem; font-weight: 700;
+            color: var(--green-primary);
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 1rem;
+        }
+        .step h4 { font-size: 0.9rem; margin-bottom: 0.5rem; }
+        .step p { font-size: 0.85rem; color: var(--gray-400); margin: 0; }
+
+        /* ---- TRUST SECTION ---- */
+        .trust-section { background: var(--gray-900); }
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.25rem;
+            margin-top: 2rem;
+        }
+        .trust-item {
+            display: flex; gap: 1rem; align-items: flex-start;
+        }
+        .trust-icon {
+            width: 42px; height: 42px; flex-shrink: 0;
+            background: rgba(76,175,80,0.12);
+            border: 1px solid rgba(76,175,80,0.25);
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--green-primary);
+        }
+        .trust-icon svg { width: 20px; height: 20px; }
+        .trust-item h4 { font-size: 0.85rem; margin-bottom: 0.25rem; color: var(--white); }
+        .trust-item p { font-size: 0.82rem; color: var(--gray-400); margin: 0; }
+
+        .compliance-note {
+            background: rgba(76,175,80,0.06);
+            border-left: 3px solid var(--green-primary);
+            border-radius: 0 6px 6px 0;
+            padding: 1rem 1.25rem;
+            margin-top: 2rem;
+            font-size: 0.88rem; color: var(--gray-300);
+        }
+
+
+        /* ---- REVIEWS ---- */
+        .rv-section { background: var(--black); }
+        .rv-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:1rem; margin-top:1.5rem; }
+        .rv-card { background:var(--gray-900, #141414); border:1px solid rgba(255,255,255,0.08); border-radius:10px; padding:1.25rem; display:flex; flex-direction:column; gap:0.75rem; }
+        .rv-stars { color:#FFD54F; letter-spacing:0.1em; font-size:1rem; }
+        .rv-text { font-size:0.9rem; color:var(--gray-200); margin:0; line-height:1.6; }
+        .rv-who { margin-top:auto; font-size:0.8rem; color:var(--gray-400); display:flex; flex-direction:column; }
+        .rv-who strong { color:var(--white); font-size:0.88rem; }
+        /* ---- FAQ ---- */
+        .faq-section { background: var(--black); }
+        .faq-list {
+            max-width: 740px; margin: 2rem auto 0;
+            display: flex; flex-direction: column; gap: 0;
+        }
+        .faq-item {
+            border-bottom: 1px solid var(--gray-800);
+        }
+        .faq-question {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1.2rem 0; cursor: pointer;
+            font-family: var(--font-heading); font-size: 0.95rem;
+            color: var(--white); text-transform: uppercase; letter-spacing: 0.04em;
+            user-select: none;
+        }
+        .faq-question .faq-icon {
+            width: 22px; height: 22px; flex-shrink: 0;
+            color: var(--green-primary); transition: transform 0.25s;
+        }
+        .faq-item.open .faq-icon { transform: rotate(45deg); }
+        .faq-answer {
+            display: none; padding-bottom: 1.25rem;
+            font-size: 0.9rem; color: var(--gray-300); line-height: 1.7;
+        }
+        .faq-item.open .faq-answer { display: block; }
+
+        /* ---- BOTTOM CTA ---- */
+        .bottom-cta {
+            background: linear-gradient(135deg, #0d1f0d, #0a1a0a);
+            border-top: 1px solid rgba(76,175,80,0.15);
+            text-align: center;
+            padding: 3.5rem 1.5rem;
+        }
+        .bottom-cta h2 { font-size: clamp(1.4rem, 3vw, 2rem); margin-bottom: 0.75rem; }
+        .bottom-cta p { color: var(--gray-400); margin-bottom: 2rem; }
+        .cta-options {
+            display: flex; flex-wrap: wrap; gap: 1rem;
+            justify-content: center;
+        }
+        .btn-call-lg {
+            display: flex; align-items: center; gap: 0.6rem;
+            background: var(--green-primary); color: #000;
+            font-family: var(--font-heading); font-size: 1.1rem; font-weight: 700;
+            letter-spacing: 0.05em; text-transform: uppercase;
+            padding: 0.95rem 2rem; border-radius: 4px;
+            transition: background 0.2s;
+        }
+        .btn-call-lg:hover { background: var(--green-light); color: #000; }
+        .btn-call-lg svg { width: 20px; height: 20px; }
+
+        /* ---- NOT FOR CARS ---- */
+        .not-cars {
+            background: var(--black-light);
+            border-top: 1px solid var(--gray-800);
+            text-align: center;
+            padding: 1.25rem 1.5rem;
+            font-size: 0.82rem; color: var(--gray-600);
+        }
+
+        /* ---- FOOTER ---- */
+        footer {
+            background: var(--black);
+            border-top: 1px solid var(--gray-800);
+            text-align: center;
+            padding: 1.75rem 1.5rem;
+            color: var(--gray-600); font-size: 0.8rem;
+        }
+        footer a { color: var(--gray-500); }
+        footer a:hover { color: var(--green-primary); }
+
+        /* ---- WHATSAPP ---- */
+        .wa-btn {
+            position: fixed; bottom: 1.5rem; left: 1.5rem;
+            width: 52px; height: 52px;
+            background: #25D366; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+            z-index: 900; transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .wa-btn:hover { transform: scale(1.1); box-shadow: 0 6px 28px rgba(37,211,102,0.6); }
+
+        /* ---- MOBILE ---- */
+        @media (max-width: 600px) {
+            .form-grid { grid-template-columns: 1fr; }
+            .field-group.full { grid-column: 1; }
+            .lp-call .call-text { display: none; }
+            .hero { padding: 2.5rem 1.25rem 2rem; }
+        }
+
+        /* Scroll-target offset */
+        #form { scroll-margin-top: 70px; }
+    </style>
+    <!-- Microsoft Clarity -->
+    <script type="text/javascript">
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "yuevotbnii");
+    </script>
+
+    <!-- Sticky Mobile CTA Bar -->
+    <style>
+        .lp-mobile-bar{display:none;position:fixed;bottom:0;left:0;right:0;z-index:300;padding:0.65rem 0.85rem calc(0.65rem + env(safe-area-inset-bottom));background:rgba(10,10,10,0.97);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid rgba(76,175,80,0.22);gap:0.6rem;align-items:center}
+        .lp-mobile-bar a{flex:1;display:flex;align-items:center;justify-content:center;gap:0.4rem;font-size:0.8rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:0.75rem 0.5rem;border-radius:5px;text-decoration:none;white-space:nowrap}
+        .lp-mobile-bar .mb-call{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.14);color:#f5f5f5;font-family:'Oswald','Inter',sans-serif}
+        .lp-mobile-bar .mb-quote{background:#4CAF50;border:1px solid #4CAF50;color:#0a0a0a;font-family:'Oswald','Inter',sans-serif}
+        .lp-mobile-bar svg{flex-shrink:0}
+        @media(max-width:767px){.lp-mobile-bar{display:flex}body{padding-bottom:62px}a[href*="wa.me"][style*="position:fixed"]{bottom:calc(62px + 1rem) !important}}
+    </style>
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!--  HEADER                                                       -->
+<!-- ============================================================ -->
+<header class="lp-header">
+    <a href="index.html" class="lp-logo" aria-label="LP Tuning Home">
+        <img src="logo-nav-transparent.webp" alt="LP Tuning Logo">
+    </a>
+    <a href="tel:0491097706" class="lp-call" aria-label="Call LP Tuning">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.69 12 19.79 19.79 0 011.63 3.47 2 2 0 013.6 1.27h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 8.91a16 16 0 006.08 6.08l.95-.95a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        <span class="call-text">0491 097 706</span>
+    </a>
+</header>
+
+
+<!-- ============================================================ -->
+<!--  HERO                                                         -->
+<!-- ============================================================ -->
+<section class="hero">
+    <span class="hero-badge">Queensland Only &middot; Free &middot; No Obligation</span>
+    <!-- PHOTO SLOT (hero): add a real photo of Luuk tuning a truck/tractor on site here once the new photos are ready -->
+    <h1 id="hero-h1">How much diesel is your machine burning<br><em>that it doesn't need to?</em></h1>
+    <p class="hero-sub">Get a free fuel savings estimate tailored to your machine. We'll tell you the numbers upfront, no cost, no commitment.</p>
+    <div class="hero-actions">
+        <a href="#form" class="btn-primary">Get My Free Savings Check</a>
+        <a href="tel:0491097706" class="btn-secondary">Call 0491 097 706</a>
+    </div>
+    <div class="hero-trust">
+        <span class="hero-trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+            Rated 5.0 from 30 Google reviews
+        </span>
+        <span class="hero-trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+            Mobile service — we come to you
+        </span>
+        <span class="hero-trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+            Software warranty included
+        </span>
+    </div>
+    <p style="margin-top:1.25rem;font-size:0.8rem;color:var(--gray-400);max-width:560px;margin-left:auto;margin-right:auto;">Up to 15% fuel savings on trucks, up to 18% on tractors and ag machinery, up to 30% more power. Results vary by make, model and condition.</p>
+</section>
+
+
+<!-- ============================================================ -->
+<!--  MACHINE SELECTOR + ESTIMATOR                                 -->
+<!-- ============================================================ -->
+<section class="section">
+    <div class="section-inner">
+        <span class="section-label">Step 1 — Select your machine</span>
+        <h2 class="section-title">What are you running?</h2>
+        <p class="section-desc">Pick the machine type closest to yours. This sets up your fuel savings estimate below.</p>
+
+        <div class="machine-grid" role="group" aria-label="Machine type selector">
+            <div class="machine-card active" data-type="truck" data-lhr="40" tabindex="0" role="button" aria-pressed="true">
+                <span class="icon" aria-hidden="true">🚛</span>
+                <h3>Truck / Prime Mover</h3>
+                <p>Semi, rigid, B-double, tanker</p>
+            </div>
+            <div class="machine-card" data-type="ag" data-lhr="18" tabindex="0" role="button" aria-pressed="false">
+                <span class="icon" aria-hidden="true">🚜</span>
+                <h3>Tractor / Header</h3>
+                <p>Broad-acre, row-crop, harvester</p>
+            </div>
+            <div class="machine-card" data-type="earthmoving" data-lhr="15" tabindex="0" role="button" aria-pressed="false">
+                <span class="icon" aria-hidden="true">🏗️</span>
+                <h3>Excavator / Loader / Dozer</h3>
+                <p>Earthmoving, mining, civil</p>
+            </div>
+            <div class="machine-card" data-type="other" data-lhr="22" tabindex="0" role="button" aria-pressed="false">
+                <span class="icon" aria-hidden="true">⚙️</span>
+                <h3>Other Heavy Machinery</h3>
+                <p>Generator, pump, crane, etc.</p>
+            </div>
+        </div>
+
+        <!-- Savings Estimator -->
+        <div class="estimator-wrap">
+            <h3>Your Estimated Annual Fuel Saving</h3>
+            <div class="estimator-row">
+                <div class="estimator-field">
+                    <label for="est-hours" id="est-hours-label">Annual km</label>
+                    <input type="number" id="est-hours" value="150000" min="100" max="2000000" inputmode="numeric">
+                </div>
+                <div class="estimator-field">
+                    <label for="est-lhr" id="est-lhr-label">Fuel consumption (L/100km)</label>
+                    <input type="number" id="est-lhr" value="35" min="1" max="200" inputmode="numeric">
+                </div>
+                <div class="estimator-field">
+                    <label for="est-price">Diesel price ($/L)</label>
+                    <input type="number" id="est-price" value="2.10" min="1.00" max="5.00" step="0.05" inputmode="decimal">
+                </div>
+            </div>
+            <div class="estimator-result" aria-live="polite">
+                <div class="estimator-result-label">
+                    <strong>Estimated saving</strong>
+                    Based on a conservative 8% saving. Many trucks see up to 15%, tractors and ag machinery up to 18%.
+                </div>
+                <div>
+                    <div class="savings-amount" id="savings-output">$8,820</div>
+                    <div class="savings-note">per year &mdash; indicative only</div>
+                </div>
+            </div>
+            <p class="savings-note" style="margin-top:0.75rem;">Trucks: km/yr &divide; 100 &times; L/100km &times; 8% &times; $/L. Machinery/tractors: L/hr &times; annual hrs &times; 8% &times; $/L. Actual savings depend on the machine, load, conditions, and driver behaviour. Ask us for an estimate specific to your machine.</p>
+        </div>
+    </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!--  FORM                                                         -->
+<!-- ============================================================ -->
+<section class="form-section" id="form">
+    <div class="form-wrap">
+        <div class="form-header">
+            <span class="section-label">Step 2 &mdash; Send your details</span>
+            <h2>Get Your Free Fuel Savings Check</h2>
+            <p>We'll look at your machine and come back with a personalised estimate. No cost, no obligation.</p>
+        </div>
+
+        <!-- 30-day trial nudge -->
+        <div style="background:rgba(76,175,80,0.08);border:1px solid rgba(76,175,80,0.25);border-radius:10px;padding:0.9rem 1.1rem;margin-bottom:1.5rem;display:flex;align-items:flex-start;gap:0.85rem;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--green-primary)" stroke-width="2" style="flex-shrink:0;margin-top:2px"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <p style="margin:0;font-size:0.875rem;color:var(--gray-300);line-height:1.6;"><strong style="color:var(--white);">30-day free trial included.</strong> If you go ahead with a tune, you have a full 30 days to run the machine and see the results. If you're not happy, we'll reverse it — no charge.</p>
+        </div>
+
+        <form id="leadForm" novalidate>
+            <div class="form-grid">
+
+                <div class="field-group full">
+                    <label for="f-machine">Machine type <span aria-hidden="true">*</span></label>
+                    <select id="f-machine" name="machine_type" required>
+                        <option value="">-- Select machine type --</option>
+                        <option value="truck">Truck / Prime Mover (semi, rigid, B-double, tanker)</option>
+                        <option value="ag">Tractor / Header (broad-acre, row-crop, harvester)</option>
+                        <option value="earthmoving">Excavator / Loader / Dozer</option>
+                        <option value="other">Other heavy machinery (generator, pump, crane, etc.)</option>
+                    </select>
+                </div>
+
+                <div class="field-group full">
+                    <label for="f-makemodel">Machine make and model <span aria-hidden="true">*</span></label>
+                    <input type="text" id="f-makemodel" name="make_model" placeholder="e.g. Kenworth T909, John Deere 8370R" required>
+                </div>
+
+                <div class="field-group">
+                    <label for="f-hours">Annual hours or km <span style="color:var(--gray-500);font-weight:400">(optional)</span></label>
+                    <input type="text" id="f-hours" name="annual_hours_km" placeholder="e.g. 2,000 hrs or 150,000 km">
+                </div>
+
+                <div class="field-group">
+                    <label for="f-town">Town / Region <span aria-hidden="true">*</span></label>
+                    <input type="text" id="f-town" name="town" placeholder="e.g. Toowoomba, Emerald" required>
+                </div>
+
+                <div class="field-group">
+                    <label for="f-name">Your name <span aria-hidden="true">*</span></label>
+                    <input type="text" id="f-name" name="name" placeholder="First and last name" required autocomplete="name">
+                </div>
+
+                <div class="field-group">
+                    <label for="f-phone">Phone number <span aria-hidden="true">*</span></label>
+                    <input type="tel" id="f-phone" name="phone" placeholder="e.g. 0412 345 678" required autocomplete="tel">
+                </div>
+
+                <div class="field-group full">
+                    <label for="f-email">Email address <span style="color:var(--gray-500);font-weight:400">(optional)</span></label>
+                    <input type="email" id="f-email" name="email" placeholder="you@example.com" autocomplete="email">
+                </div>
+
+            </div>
+
+            <!-- Hidden tracking fields (populated by JS) -->
+            <input type="hidden" id="f-gclid" name="gclid" value="">
+            <input type="hidden" id="f-gbraid" name="gbraid" value="">
+            <input type="hidden" id="f-wbraid" name="wbraid" value="">
+            <input type="hidden" id="f-utm-campaign" name="utm_campaign" value="">
+            <input type="hidden" id="f-utm-source" name="utm_source" value="">
+            <input type="hidden" id="f-utm-medium" name="utm_medium" value="">
+            <input type="hidden" id="f-utm-term" name="utm_term" value="">
+            <input type="hidden" id="f-utm-content" name="utm_content" value="">
+
+            <button type="submit" class="submit-btn" id="submitBtn">
+                Send My Details &mdash; Get Free Estimate
+            </button>
+
+            <p class="form-note">
+                Takes 60 seconds. We'll call you back the same business day. No spam, no hard sell.
+            </p>
+            <p class="form-disclaimer">
+                This check is for heavy diesel machinery. Got a ute or 4WD? Call us on 0491 097 706.
+            </p>
+            <p style="font-size:0.72rem;color:var(--gray-400);margin-top:0.75rem;text-align:center;">By submitting this form you agree to be contacted about your enquiry. We do not share your details with third parties. <a href="privacy-policy.html" style="color:var(--gray-400);text-decoration:underline;">Privacy Policy</a></p>
+
+            <div id="formError" style="display:none;margin-top:1rem;padding:0.85rem 1rem;background:rgba(239,83,80,0.12);border:1px solid #ef5350;border-radius:8px;color:#ef5350;font-size:0.9rem;text-align:center;">
+                Something went wrong submitting your details. Please call us directly on <a href="tel:0491097706" style="color:#ef5350;font-weight:600;">0491 097 706</a>.
+            </div>
+        </form>
+
+        <!-- Success state (shown after form submits) -->
+        <div class="form-success" id="formSuccess">
+            <div class="tick">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+            </div>
+            <h3>Details received</h3>
+            <p>We'll review your machine details and come back with a personalised fuel savings estimate. Expect a call from us the same business day.</p>
+            <p style="font-size:0.85rem;color:var(--gray-400);margin-top:0.5rem;">Can't wait? Call us now and we can run the numbers on the spot.</p>
+            <a href="tel:0491097706" class="btn-primary" style="display:inline-block;text-decoration:none;margin-top:1rem;">
+                Call 0491 097 706
+            </a>
+        </div>
+    </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!--  GOOGLE REVIEWS                                               -->
+<!-- ============================================================ -->
+<section class="section rv-section">
+    <div class="section-inner">
+        <span class="section-label">What customers say</span>
+        <h2 class="section-title">Rated 5.0 by Queensland operators</h2>
+        <p class="section-desc"><a href="https://www.google.com/maps/place/LP+Tuning/@-27.4695224,153.0060275,17z/data=!4m6!3m5!1s0x8494dee06ec24a97:0x6101f76271f3e2b0!8m2!3d-27.4695224!4d153.0060275!16s%2Fg%2F11z645xz62" target="_blank" rel="noopener" style="color:var(--gold);">5.0 &#9733; from 30 Google reviews &#8599;</a></p>
+        <!-- PHOTO SLOT (reviews): optional customer/machine photos go here once ready -->
+        <div class="rv-grid">
+            <div class="rv-card">
+                <div class="rv-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <p class="rv-text">"Responsive service, good attention to detail and solid knowledge of heavy diesel engines. Our Kenworth road train runs noticeably better loaded and fuel use is down."</p>
+                <div class="rv-who"><strong>Andrew H</strong><span>Kenworth road train &middot; Google review</span></div>
+            </div>
+            <div class="rv-card">
+                <div class="rv-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <p class="rv-text">"Really knows his stuff. Had our Cat 320 excavator tuned and the difference in throttle response and fuel use was very noticeable. Easy to deal with and would definitely recommend."</p>
+                <div class="rv-who"><strong>David Lolok Jr</strong><span>Cat 320 excavator &middot; Google review</span></div>
+            </div>
+            <div class="rv-card">
+                <div class="rv-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <p class="rv-text">"Great guys, efficient and affordable. Had three Isuzu trucks done. Comes to you, gets it sorted, no drama."</p>
+                <div class="rv-who"><strong>Jake Hardy</strong><span>3 x Isuzu trucks &middot; Google review</span></div>
+            </div>
+            <div class="rv-card">
+                <div class="rv-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <p class="rv-text">"Great service. Our New Holland harvester has noticeably more pulling power through heavy crop. Super happy with the unlocked performance."</p>
+                <div class="rv-who"><strong>Jorja Owen</strong><span>New Holland harvester &middot; Google review</span></div>
+            </div>
+            <div class="rv-card">
+                <div class="rv-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <p class="rv-text">"We run a beef cattle farm. Luuk is our trusted partner when it comes to our fleet. Would highly recommend."</p>
+                <div class="rv-who"><strong>James</strong><span>Beef cattle farm fleet &middot; Google review</span></div>
+            </div>
+            <div class="rv-card">
+                <div class="rv-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <p class="rv-text">"Absolute legends. Had our D6 dozer tuned on-site and the results were exactly what they promised. Great product, great team."</p>
+                <div class="rv-who"><strong>Joshua Keppo</strong><span>D6 dozer &middot; Google review</span></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!--  PROOF / CASE STUDIES                                         -->
+<!-- ============================================================ -->
+<section class="section proof-section">
+    <div class="section-inner">
+        <span class="section-label">Real results</span>
+        <h2 class="section-title">What operators are seeing</h2>
+        <p class="section-desc" style="max-width:560px;">These are actual outcomes from Australian operators. Savings vary by machine, conditions, and operation.</p>
+
+        <div class="proof-grid">
+
+            <div class="proof-card">
+                <span class="tag">Fuel saving</span>
+                <h3>Isuzu N-Series Truck</h3>
+                <span class="big-number">$6,000</span>
+                <p>Measured annual fuel saving recorded by the owner at current diesel prices, following ECU optimisation.</p>
+                <p class="fine">Customer-calculated based on their own fuel records. Results depend on load, routes, and driving conditions.</p>
+            </div>
+
+            <div class="proof-card">
+                <span class="tag">Power gain</span>
+                <h3>Kenworth T909 Fleet &mdash; North QLD</h3>
+                <p style="color:var(--gray-300);font-size:0.88rem;margin-bottom:0.75rem;">Three T909s from a North Queensland fleet. Power gains after ECU optimisation:</p>
+                <div class="fleet-gains">
+                    <div class="gain-chip">
+                        <span class="num">+48</span>
+                        <span class="lbl">HP</span>
+                    </div>
+                    <div class="gain-chip">
+                        <span class="num">+52</span>
+                        <span class="lbl">HP</span>
+                    </div>
+                    <div class="gain-chip">
+                        <span class="num">+49</span>
+                        <span class="lbl">HP</span>
+                    </div>
+                </div>
+                <p class="fine">Indicative gains based on comparable machine data. Not individual dyno results for these machines. Actual gains vary by machine condition, load, and specification. Emissions systems untouched, fully road compliant.</p>
+            </div>
+
+            <div class="proof-card">
+                <span class="tag">How the math works</span>
+                <h3>The 8% Rule</h3>
+                <p style="color:var(--gray-300);font-size:0.88rem;margin-bottom:0.75rem;">The conservative baseline we use for estimates:</p>
+                <p style="font-size:0.85rem;color:var(--gray-300);font-family:monospace;background:var(--gray-800);padding:0.6rem 0.75rem;border-radius:4px;margin-bottom:0.5rem;line-height:1.7;">
+                    Trucks: km/yr &divide; 100 &times; L/100km &times; 8% &times; $/L<br>
+                    Machinery: L/hr &times; annual hrs &times; 8% &times; $/L
+                </p>
+                <p style="font-size:0.85rem;color:var(--gray-400);">Truck example: 150,000 km &times; 35 L/100km &divide; 100 &times; 8% &times; $2.10 = <strong style="color:var(--gold)">$8,820/yr</strong></p>
+                <p class="fine">We show the formula openly so you can run your own numbers. Actual savings depend on machine, load, routes and driver behaviour.</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!--  HOW IT WORKS                                                 -->
+<!-- ============================================================ -->
+<section class="section how-section">
+    <div class="section-inner">
+        <span class="section-label">What happens next</span>
+        <h2 class="section-title">Simple process, no surprises</h2>
+
+        <div class="steps">
+            <div class="step">
+                <div class="step-num" aria-hidden="true">1</div>
+                <h4>Submit your details</h4>
+                <p>Fill in the form above. Takes two minutes.</p>
+            </div>
+            <div class="step">
+                <div class="step-num" aria-hidden="true">2</div>
+                <h4>We call you</h4>
+                <p>We'll confirm your machine details and run the numbers for your specific situation.</p>
+            </div>
+            <div class="step">
+                <div class="step-num" aria-hidden="true">3</div>
+                <h4>Book a time</h4>
+                <p>If the numbers make sense, we come to your machine. No depot visits required.</p>
+            </div>
+            <div class="step">
+                <div class="step-num" aria-hidden="true">4</div>
+                <h4>Tuned on site</h4>
+                <p>We tune it at your shed, yard or worksite. Software warranty included.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!--  TRUST SIGNALS                                                 -->
+<!-- ============================================================ -->
+<section class="section trust-section">
+    <div class="section-inner">
+        <span class="section-label">Why LP Tuning</span>
+        <h2 class="section-title">What we stand behind</h2>
+
+        <div class="trust-grid">
+            <div class="trust-item">
+                <div class="trust-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </div>
+                <div>
+                    <h4>Rated 5.0 on Google</h4>
+                    <p>30 reviews from farmers, fleets and earthmoving contractors across Queensland.</p>
+                </div>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+                </div>
+                <div>
+                    <h4>Software Warranty</h4>
+                    <p>Your tune is backed by a warranty on the ECU software and our calibration work.</p>
+                </div>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+                </div>
+                <div>
+                    <h4>Mobile Service</h4>
+                    <p>We come to your machine, your shed, or your worksite. Queensland-wide.</p>
+                </div>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+                </div>
+                <div>
+                    <h4>Specialists Only</h4>
+                    <p>Trucks, ag and earthmoving are our specialty. Got a ute or 4WD? We look after those too.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="compliance-note">
+            <strong style="color:var(--white)">For trucks and on-road vehicles:</strong> Our ECU optimisation is done within the manufacturer's defined engine parameters. Emissions systems (DPF, EGR, SCR) are untouched. Your truck remains fully road legal and compliant with Australian standards.
+        </div>
+    </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!--  FAQ                                                          -->
+<!-- ============================================================ -->
+<section class="section faq-section">
+    <div class="section-inner">
+        <span class="section-label">Common questions</span>
+        <h2 class="section-title" style="text-align:center;">FAQ</h2>
+
+        <div class="faq-list">
+
+            <div class="faq-item">
+                <div class="faq-question" tabindex="0" aria-expanded="false">
+                    How long does the tune take?
+                    <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+                </div>
+                <div class="faq-answer">
+                    Most machines are done in two to four hours on-site. We read the existing ECU file, calibrate the new map to your specific machine and operating conditions, flash the ECU, and do a final check before we leave. Downtime is minimal.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" tabindex="0" aria-expanded="false">
+                    Will it affect my manufacturer warranty?
+                    <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+                </div>
+                <div class="faq-answer">
+                    ECU remapping does sit outside standard manufacturer warranty terms, as it is a modification to the factory software. However, most heavy machinery in Australia is past the manufacturer warranty period by the time owners consider a tune. If your machine is still under warranty, we recommend discussing this with your dealer first. We can revert to stock at any time if a warranty claim arises.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" tabindex="0" aria-expanded="false">
+                    Is it legal for on-road trucks?
+                    <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+                </div>
+                <div class="faq-answer">
+                    Yes. For all on-road heavy vehicles, we work within the engine's defined parameters and do not interfere with any emissions control systems (DPF, EGR, SCR/AdBlue). The vehicle remains road-legal and emissions compliant under Australian standards. We do not offer emissions system removal for on-road vehicles.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" tabindex="0" aria-expanded="false">
+                    Can I get a tune on a car or ute?
+                    <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+                </div>
+                <div class="faq-answer">
+                    This check is for heavy diesel machinery only &mdash; trucks, tractors, excavators, loaders, dozers, and similar. Got a ute or 4WD? Give us a call on 0491 097 706 and we'll help point you in the right direction.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" tabindex="0" aria-expanded="false">
+                    What does the service cost?
+                    <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+                </div>
+                <div class="faq-answer">
+                    Pricing depends on the machine, the service required, and your specific setup. We give you a firm quote before any work begins &mdash; no surprises and nothing to pay until you're happy to proceed. Submit the form above or call us on 0491 097 706 to get your personalised estimate first.
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!--  BOTTOM CTA                                                   -->
+<!-- ============================================================ -->
+<section class="bottom-cta">
+    <h2>Ready to find out your number?</h2>
+    <p>Fill in the form above or give us a call. We're straight with the numbers &mdash; if a tune won't pay off for your machine, we'll tell you.</p>
+    <div class="cta-options">
+        <a href="#form" class="btn-primary">Get My Free Check</a>
+        <a href="tel:0491097706" class="btn-call-lg">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.69 12 19.79 19.79 0 011.63 3.47 2 2 0 013.6 1.27h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 8.91a16 16 0 006.08 6.08l.95-.95a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            Call 0491 097 706
+        </a>
+    </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!--  NOT-FOR-CARS DISCLAIMER                                       -->
+<!-- ============================================================ -->
+<div class="not-cars">
+    LP Tuning provides ECU optimisation for heavy diesel machinery only &mdash; trucks, tractors, excavators, loaders, dozers, and similar equipment. This check is for heavy diesel machinery. Got a ute or 4WD? Call us on 0491 097 706. Queensland only.
+</div>
+
+
+<!-- ============================================================ -->
+<!--  FOOTER                                                       -->
+<!-- ============================================================ -->
+<footer>
+    <p>&copy; 2026 LP Tuning &mdash; ABN 28 704 248 020. Queensland, Australia.</p>
+    <p style="margin-top:0.5rem;">
+        <a href="index.html">Home</a> &nbsp;&middot;&nbsp;
+        <a href="privacy-policy.html">Privacy Policy</a>
+    </p>
+</footer>
+
+
+<!-- WhatsApp -->
+<a href="https://wa.me/61491097706?text=Hi%20LP%20Tuning%2C%20I%27d%20like%20a%20free%20fuel%20savings%20check%20for%20my%20machine." target="_blank" rel="noopener" class="wa-btn" aria-label="Chat with us on WhatsApp">
+    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+
+<script>
+// ================================================================
+//  MACHINE CARD SELECTION
+// ================================================================
+const cards = document.querySelectorAll('.machine-card');
+const lhrInput = document.getElementById('est-lhr');
+const machineSelect = document.getElementById('f-machine');
+
+cards.forEach(card => {
+    const activate = () => {
+        cards.forEach(c => { c.classList.remove('active'); c.setAttribute('aria-pressed','false'); });
+        card.classList.add('active');
+        card.setAttribute('aria-pressed','true');
+
+        const isTruck = card.dataset.type === 'truck';
+        document.getElementById('est-hours-label').textContent = isTruck ? 'Annual km' : 'Annual hours';
+        document.getElementById('est-lhr-label').textContent = isTruck ? 'Fuel consumption (L/100km)' : 'Estimated fuel burn (L/hr)';
+        document.getElementById('est-hours').value = isTruck ? '150000' : '2000';
+        lhrInput.value = isTruck ? '35' : card.dataset.lhr;
+
+        // Sync to form select
+        const type = card.dataset.type;
+        for (const opt of machineSelect.options) {
+            if (opt.value === type) { machineSelect.value = type; break; }
+        }
+        updateSavings();
+    };
+    card.addEventListener('click', activate);
+    card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activate(); } });
+});
+
+// Sync form select back to cards
+machineSelect.addEventListener('change', () => {
+    const val = machineSelect.value;
+    cards.forEach(c => {
+        if (c.dataset.type === val) {
+            c.click();
+        }
+    });
+});
+
+// ================================================================
+//  SAVINGS ESTIMATOR
+// ================================================================
+function updateSavings() {
+    const isTruck = document.querySelector('.machine-card.active')?.dataset.type === 'truck';
+    const price = parseFloat(document.getElementById('est-price').value) || 0;
+    let saving;
+    if (isTruck) {
+        const km   = parseFloat(document.getElementById('est-hours').value) || 0;
+        const l100 = parseFloat(lhrInput.value) || 0;
+        saving = (km / 100) * l100 * 0.08 * price;
+    } else {
+        const hours = parseFloat(document.getElementById('est-hours').value) || 0;
+        const lhr   = parseFloat(lhrInput.value) || 0;
+        saving = hours * lhr * 0.08 * price;
+    }
+    document.getElementById('savings-output').textContent = '$' + Math.round(saving).toLocaleString('en-AU');
+}
+
+document.getElementById('est-hours').addEventListener('input', updateSavings);
+lhrInput.addEventListener('input', updateSavings);
+document.getElementById('est-price').addEventListener('input', updateSavings);
+
+// ================================================================
+//  FORM SUBMISSION
+// ================================================================
+
+// ============================================================
+//  HIGHLEVEL WEBHOOK URL
+//  Replace the URL below with your HighLevel webhook URL.
+//  In HighLevel: Automation > Webhooks > New Webhook
+//  Copy the webhook URL and paste it below.
+// ============================================================
+const HIGHLEVEL_WEBHOOK = 'https://services.leadconnectorhq.com/hooks/iax5sdjvxbNJgybLlIKw/webhook-trigger/c21dda51-a0f2-4d3d-a9cf-05b2996961a5';
+
+// ============================================================
+//  UTM / GCLID CAPTURE
+// ============================================================
+(function() {
+    // Stores click ids + UTMs for 90 days so a lead still gets credited
+    // if the visitor browses other pages or comes back later.
+    const params = new URLSearchParams(window.location.search);
+    const fields = ['gclid','gbraid','wbraid','utm_campaign','utm_source','utm_medium','utm_term','utm_content'];
+    const KEY = 'lpt_attrib', MAX_AGE = 90*24*60*60*1000;
+    let stored = {};
+    try { stored = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch(e) {}
+    if (stored.ts && Date.now() - stored.ts > MAX_AGE) stored = {};
+    let fresh = false;
+    fields.forEach(k => { const v = params.get(k); if (v) { if (!fresh) { stored = {}; fresh = true; } stored[k] = v; } });
+    if (fresh) { stored.ts = Date.now(); try { localStorage.setItem(KEY, JSON.stringify(stored)); } catch(e) {} }
+    fields.forEach(k => {
+        const el = document.getElementById('f-' + k.replace('_','-'));
+        if (el && stored[k]) el.value = stored[k];
+    });
+})();
+
+// ============================================================
+//  PHONE TAP TRACKING (GA4 event "phone_click")
+// ============================================================
+document.querySelectorAll('a[href^="tel:"]').forEach(a => {
+    a.addEventListener('click', () => {
+        if (typeof gtag !== 'undefined') gtag('event', 'phone_click', { link_url: a.href, page: 'free-fuel-check' });
+        if (typeof fbq !== 'undefined') fbq('track', 'Contact');
+    });
+});
+
+// ============================================================
+//  URL MACHINE PRE-SELECTION  (?machine=truck|ag|earthmoving|other)
+// ============================================================
+(function() {
+    const machine = new URLSearchParams(window.location.search).get('machine');
+    if (machine) {
+        const card = document.querySelector(`.machine-card[data-type="${machine}"]`);
+        if (card) {
+            document.querySelectorAll('.machine-card').forEach(c => {
+                c.classList.remove('active');
+                c.setAttribute('aria-pressed','false');
+            });
+            card.classList.add('active');
+            card.setAttribute('aria-pressed','true');
+            card.click();
+            const sel = document.getElementById('f-machine');
+            if (sel) sel.value = machine;
+        }
+        const h1 = document.getElementById('hero-h1');
+        const H1 = {
+            truck: 'How much diesel is your truck burning<br><em>that it doesn\'t need to?</em>',
+            ag: 'How much diesel is your tractor burning<br><em>that it doesn\'t need to?</em>',
+            earthmoving: 'How much diesel is your excavator or loader burning<br><em>that it doesn\'t need to?</em>'
+        };
+        if (h1 && H1[machine]) h1.innerHTML = H1[machine];
+        const hero = document.querySelector('.hero');
+        if (hero && (machine === 'ag' || machine === 'earthmoving')) hero.classList.add('m-' + machine);
+    }
+})();
+
+const form = document.getElementById('leadForm');
+const submitBtn = document.getElementById('submitBtn');
+const formSuccess = document.getElementById('formSuccess');
+const formError = document.getElementById('formError');
+
+form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    // Basic validation
+    const required = form.querySelectorAll('[required]');
+    let valid = true;
+    let firstInvalid = null;
+    required.forEach(field => {
+        const isEmail = field.type === 'email';
+        const empty = !field.value.trim();
+        const badEmail = isEmail && field.value.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(field.value.trim());
+        if (empty || badEmail) {
+            field.style.borderColor = '#ef5350';
+            field.setAttribute('aria-invalid', 'true');
+            if (!firstInvalid) firstInvalid = field;
+            valid = false;
+        } else {
+            field.style.borderColor = '';
+            field.removeAttribute('aria-invalid');
+        }
+    });
+    if (!valid) {
+        if (firstInvalid) firstInvalid.focus();
+        return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+
+    const payload = {
+        machine_type:    form.machine_type.value,
+        make_model:      form.make_model.value,
+        annual_hours_km: form.annual_hours_km.value,
+        town:            form.town.value,
+        name:            form.name.value,
+        phone:           form.phone.value,
+        email:           form.email.value,
+        gclid:           document.getElementById('f-gclid').value,
+        gbraid:          document.getElementById('f-gbraid').value,
+        wbraid:          document.getElementById('f-wbraid').value,
+        utm_campaign:    document.getElementById('f-utm-campaign').value,
+        utm_source:      document.getElementById('f-utm-source').value,
+        utm_medium:      document.getElementById('f-utm-medium').value,
+        utm_term:        document.getElementById('f-utm-term').value,
+        utm_content:     document.getElementById('f-utm-content').value,
+        source:          'Free Fuel Savings Check',
+        page:            window.location.href,
+        timestamp:       new Date().toISOString()
+    };
+
+    try {
+        // Submit to HighLevel
+        if (HIGHLEVEL_WEBHOOK && !HIGHLEVEL_WEBHOOK.includes('YOUR_HIGHLEVEL')) {
+            const res = await fetch(HIGHLEVEL_WEBHOOK, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+            if (!res.ok) throw new Error('Webhook returned ' + res.status);
+        }
+
+        // Fire GA4 lead event (also visible in Google Ads via GA4 import)
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'generate_lead', {
+                currency: 'AUD',
+                value: 1.0,
+                form_name: 'Free Fuel Savings Check'
+            });
+            gtag('event', 'conversion', {
+                'send_to': 'AW-18471067077/T55fCNzejoMdEMW72OdE',
+                'currency': 'AUD',
+                'value': 1.0
+            });
+        }
+
+        // Fire Meta Pixel Lead event
+        if (typeof fbq !== 'undefined') {
+            fbq('track', 'Lead', {
+                content_name: 'Free Fuel Savings Check',
+                currency: 'AUD',
+                value: 1.0
+            });
+        }
+
+        // Show success
+        form.style.display = 'none';
+        formSuccess.style.display = 'block';
+        formSuccess.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    } catch (err) {
+        console.error('Webhook error:', err);
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send My Details — Get Free Estimate';
+        formError.style.display = 'block';
+        formError.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+});
+
+// ================================================================
+//  FAQ ACCORDION
+// ================================================================
+document.querySelectorAll('.faq-question').forEach(q => {
+    const toggle = () => {
+        const item = q.closest('.faq-item');
+        const open = item.classList.contains('open');
+        // Close all
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        document.querySelectorAll('.faq-question').forEach(x => x.setAttribute('aria-expanded', 'false'));
+        if (!open) {
+            item.classList.add('open');
+            q.setAttribute('aria-expanded', 'true');
+        }
+    };
+    q.addEventListener('click', toggle);
+    q.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); } });
+});
+</script>
+
+<!-- Sticky mobile call button -->
+<a href="tel:0491097706" class="sticky-call-btn" aria-label="Call LP Tuning">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true" width="20" height="20"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.69 12 19.79 19.79 0 011.63 3.47 2 2 0 013.6 1.27h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 8.91a16 16 0 006.08 6.08l.95-.95a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+    Call 0491 097 706
+</a>
+<style>
+.sticky-call-btn {
+    display: none;
+    position: fixed;
+    bottom: 1.25rem;
+    right: 1.25rem;
+    z-index: 999;
+    background: var(--green-primary);
+    color: #fff;
+    padding: 0.8rem 1.25rem;
+    border-radius: 50px;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-decoration: none;
+    box-shadow: 0 4px 20px rgba(76,175,80,0.4);
+    align-items: center;
+    gap: 0.5rem;
+    transition: background 0.2s, transform 0.2s;
+}
+.sticky-call-btn:hover { background: #43a047; transform: translateY(-2px); }
+@media (max-width: 768px) {
+    .sticky-call-btn { display: flex; }
+}
+</style>
+
+
+    <!-- Sticky Mobile CTA Bar HTML -->
+    <div class="lp-mobile-bar" aria-label="Quick contact bar">
+        <a href="tel:0491097706" class="mb-call">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 13.5 19.79 19.79 0 01.5 4.93 2 2 0 012.5 2.75h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L6.91 10.23a16 16 0 005.85 5.85l1.55-1.55a2 2 0 012.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0122 16.92z"/></svg>
+            Call Now
+        </a>
+        <a href="get-your-quote.html" class="mb-quote">
+            Get a Quote
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+    </div>
+</body>
+</html>
