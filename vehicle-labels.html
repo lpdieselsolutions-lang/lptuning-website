@@ -272,7 +272,7 @@
                             <p><strong style="color:var(--white)">ECU Label</strong> — Open the engine bonnet. The ECU is usually a rectangular black box mounted to the firewall, engine bay side panel, or under the cab floor. The label is printed on top of the ECU casing and shows a part number, serial number, and software ID.</p>
                             <ul class="label-locations">
                                 <li>John Deere: right-hand side of engine bay near the firewall</li>
-                                <li>Case IH / New Holland: under the cab floor panel or right-hand engine compartment</li>
+                                <li>Case IH / New Holland: under the cab floor panel or right-hand engine compartment — on New Holland, also check underneath the AdBlue cover</li>
                                 <li>Fendt: inside the engine bay, left-hand side near the battery</li>
                                 <li>Massey Ferguson: right-hand engine bay or behind the cab access panel</li>
                                 <li>Deutz-Fahr: usually visible in the engine bay when the bonnet is fully open</li>
@@ -458,7 +458,7 @@
 
                         <!-- Formsubmit config -->
                         <input type="hidden" name="_subject" value="Vehicle Label Submission - LP Tuning">
-                        <input type="hidden" name="_template" value="table">
+                        <input type="hidden" name="_template" value="basic">
                         <input type="hidden" name="_captcha" value="false">
                         <input type="hidden" name="_next" value="https://lptuning.com.au/vehicle-labels.html?sent=1">
 
@@ -693,6 +693,29 @@
             document.getElementById('successState').style.display = 'block';
         }
     })();
+
+    // Fire lead to HighLevel on submit (fire-and-forget — Formsubmit handles the files)
+    document.getElementById('labelForm').addEventListener('submit', function(){
+        try {
+            fetch('https://services.leadconnectorhq.com/hooks/iax5sdjvxbNJgybLlIKw/webhook-trigger/c21dda51-a0f2-4d3d-a9cf-05b2996961a5', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    source: 'vehicle-labels',
+                    firstName: document.getElementById('fname').value,
+                    lastName:  document.getElementById('lname').value,
+                    phone:     document.getElementById('phone').value,
+                    email:     document.getElementById('email').value,
+                    vehicleMake:  document.getElementById('make').value,
+                    vehicleModel: document.getElementById('model').value,
+                    vehicleYear:  document.getElementById('year').value,
+                    vehicleType:  document.getElementById('vtype').value,
+                    notes:        document.getElementById('notes').value
+                })
+            }).catch(()=>{});
+        } catch(e){}
+        // Form continues submitting to Formsubmit normally
+    });
 </script>
 
 </body>
