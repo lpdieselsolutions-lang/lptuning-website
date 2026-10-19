@@ -155,7 +155,8 @@
         .goal-item:hover{border-color:rgba(76,175,80,0.3)}
         .goal-item input[type="checkbox"]{width:16px;height:16px;flex-shrink:0;accent-color:var(--green);cursor:pointer;margin:0}
         .goal-item span{font-size:0.82rem;color:var(--gray-300);line-height:1.3}
-        .goal-item:has(input:checked){border-color:rgba(76,175,80,0.5);background:rgba(76,175,80,0.06)}
+        .goal-item:has(input:checked),.goal-item.is-checked{border-color:rgba(76,175,80,0.5);background:rgba(76,175,80,0.06)}
+        .goal-item.is-checked span{color:var(--white)}
 
         /* Submit */
         .submit-wrap{margin-top:2rem}
@@ -1071,19 +1072,28 @@
             });
         });
 
-        function updateMultiDiscount() {
-            var banner = document.getElementById('multiMachineDiscount');
-            if (!banner) return;
-            var count = document.querySelectorAll('.machine-block').length;
-            banner.style.display = count > 1 ? 'flex' : 'none';
+        // ---- Post-add tasks (runs every time a machine block is added) ----
+        function bindGoalCheckboxes(block) {
+            block.querySelectorAll('.goal-item input[type=checkbox]').forEach(function(cb) {
+                cb.addEventListener('change', function() {
+                    cb.closest('.goal-item').classList.toggle('is-checked', cb.checked);
+                });
+            });
         }
 
-        var _origAddMachine = addMachine;
-        addMachine = function() { _origAddMachine(); updateMultiDiscount(); };
+        function onMachineAdded() {
+            // Bind checkbox visual feedback on the newest block
+            var blocks = document.querySelectorAll('.machine-block');
+            if (blocks.length) bindGoalCheckboxes(blocks[blocks.length - 1]);
+            // Show multi-machine discount banner when >1 machine
+            var banner = document.getElementById('multiMachineDiscount');
+            if (banner) banner.style.display = blocks.length > 1 ? 'flex' : 'none';
+        }
 
-        // Initialise with 1 machine
+        // Initialise with 1 machine, then wire button via indirection so wrappers always resolve
         addMachine();
-        addBtn.addEventListener('click', addMachine);
+        onMachineAdded();
+        addBtn.addEventListener('click', function() { addMachine(); onMachineAdded(); });
 
         // ---- Photo upload zone ----
         (function() {
