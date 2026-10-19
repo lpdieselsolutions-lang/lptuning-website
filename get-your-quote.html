@@ -151,12 +151,12 @@
 
         /* Goal checkboxes */
         .goals-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.6rem;margin-top:0.2rem}
-        .goal-item{display:flex;align-items:center;gap:0.6rem;background:var(--gray-800);border:1px solid rgba(255,255,255,0.08);border-radius:6px;padding:0.65rem 0.9rem;cursor:pointer;transition:border-color 0.2s,background 0.2s;user-select:none}
-        .goal-item:hover{border-color:rgba(76,175,80,0.3)}
-        .goal-item input[type="checkbox"]{width:16px;height:16px;flex-shrink:0;accent-color:var(--green);cursor:pointer;margin:0}
-        .goal-item span{font-size:0.82rem;color:var(--gray-300);line-height:1.3}
-        .goal-item:has(input:checked),.goal-item.is-checked{border-color:rgba(76,175,80,0.5);background:rgba(76,175,80,0.06)}
-        .goal-item.is-checked span{color:var(--white)}
+        .goal-item{display:flex;align-items:center;gap:0.6rem;background:var(--gray-800);border:2px solid rgba(255,255,255,0.12);border-radius:6px;padding:0.65rem 0.9rem;cursor:pointer;transition:border-color 0.15s,background 0.15s,box-shadow 0.15s;user-select:none}
+        .goal-item:hover{border-color:rgba(76,175,80,0.45);background:rgba(76,175,80,0.04)}
+        .goal-item input[type="checkbox"]{width:16px;height:16px;flex-shrink:0;accent-color:var(--green);cursor:pointer;margin:0;pointer-events:none}
+        .goal-item span{font-size:0.82rem;color:var(--gray-300);line-height:1.3;transition:color 0.15s}
+        .goal-item:has(input:checked),.goal-item.is-checked{border-color:#4CAF50;background:rgba(76,175,80,0.14);box-shadow:0 0 0 1px rgba(76,175,80,0.3)}
+        .goal-item.is-checked span,.goal-item:has(input:checked) span{color:var(--white);font-weight:600}
 
         /* Submit */
         .submit-wrap{margin-top:2rem}
@@ -1074,9 +1074,18 @@
 
         // ---- Post-add tasks (runs every time a machine block is added) ----
         function bindGoalCheckboxes(block) {
-            block.querySelectorAll('.goal-item input[type=checkbox]').forEach(function(cb) {
-                cb.addEventListener('change', function() {
-                    cb.closest('.goal-item').classList.toggle('is-checked', cb.checked);
+            block.querySelectorAll('.goal-item').forEach(function(label) {
+                var cb = label.querySelector('input[type=checkbox]');
+                if (!cb) return;
+                function syncClass() {
+                    label.classList.toggle('is-checked', cb.checked);
+                }
+                cb.addEventListener('change', syncClass);
+                // Belt-and-braces: also catch click on the label itself
+                // (some mobile browsers don't fire change reliably via label click)
+                label.addEventListener('click', function() {
+                    // Let the browser toggle checked first, then sync
+                    setTimeout(syncClass, 0);
                 });
             });
         }
