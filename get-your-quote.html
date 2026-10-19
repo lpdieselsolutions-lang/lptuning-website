@@ -151,12 +151,16 @@
 
         /* Goal checkboxes */
         .goals-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.6rem;margin-top:0.2rem}
-        .goal-item{display:flex;align-items:center;gap:0.6rem;background:var(--gray-800);border:2px solid rgba(255,255,255,0.12);border-radius:6px;padding:0.65rem 0.9rem;cursor:pointer;transition:border-color 0.15s,background 0.15s,box-shadow 0.15s;user-select:none}
-        .goal-item:hover{border-color:rgba(76,175,80,0.45);background:rgba(76,175,80,0.04)}
-        .goal-item input[type="checkbox"]{width:16px;height:16px;flex-shrink:0;accent-color:var(--green);cursor:pointer;margin:0;pointer-events:none}
-        .goal-item span{font-size:0.82rem;color:var(--gray-300);line-height:1.3;transition:color 0.15s}
-        .goal-item:has(input:checked),.goal-item.is-checked{border-color:#4CAF50;background:rgba(76,175,80,0.14);box-shadow:0 0 0 1px rgba(76,175,80,0.3)}
-        .goal-item.is-checked span,.goal-item:has(input:checked) span{color:var(--white);font-weight:600}
+        .goal-item{display:flex;align-items:center;gap:0.75rem;background:var(--gray-800);border:1.5px solid rgba(255,255,255,0.1);border-radius:8px;padding:0.7rem 0.9rem;cursor:pointer;transition:border-color 0.15s,background 0.15s;user-select:none}
+        .goal-item:hover{border-color:rgba(76,175,80,0.4);background:rgba(76,175,80,0.04)}
+        .goal-item input[type="checkbox"]{display:none}
+        .goal-check{width:18px;height:18px;border:2px solid rgba(255,255,255,0.2);border-radius:4px;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:background 0.12s,border-color 0.12s;background:transparent}
+        .goal-check::after{content:'';display:block;width:5px;height:9px;border:2.5px solid white;border-top:none;border-left:none;transform:rotate(45deg) translate(-1px,-1px);opacity:0;transition:opacity 0.1s}
+        .goal-item.is-checked .goal-check{background:#4CAF50;border-color:#4CAF50}
+        .goal-item.is-checked .goal-check::after{opacity:1}
+        .goal-item span.goal-label{font-size:0.82rem;color:var(--gray-300);line-height:1.3;transition:color 0.15s}
+        .goal-item:has(input:checked),.goal-item.is-checked{border-color:#4CAF50;background:rgba(76,175,80,0.1)}
+        .goal-item.is-checked span.goal-label,.goal-item:has(input:checked) span.goal-label{color:var(--white);font-weight:500}
 
         /* Submit */
         .submit-wrap{margin-top:2rem}
@@ -326,12 +330,12 @@
             <div class="hero-badge">
                 <span>Step 2 of 2</span>
             </div>
-            <h1>You're Almost<br><span>There</span></h1>
-            <p>Thanks for getting in touch. Tell us about your machine or machines below and we'll come back with a personalised quote within 24 hours.</p>
+            <h1>Get Your<br><span>Personalised Quote</span></h1>
+            <p>Tell us about your machine below — make, model, engine size and what you're after. We'll come back to you with a personalised quote within 24 hours.</p>
             <div class="hero-actions">
                 <a href="#form" class="btn-hero-primary">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 12h6M9 16h4"/></svg>
-                    Assess My Machine
+                    Fill In My Details
                 </a>
                 <a href="#process" class="btn-hero-secondary">
                     See how it works
@@ -779,10 +783,10 @@
                 '</div>',
 
                 '<div style="margin-top:1rem">',
-                    '<label style="display:block;margin-bottom:0.5rem">What are you looking to achieve?</label>',
+                    '<label style="display:block;margin-bottom:0.4rem">What are you looking to achieve? <span style="font-size:0.72rem;font-weight:400;letter-spacing:0;text-transform:none;color:var(--gray-500)">(select all that apply)</span></label>',
                     '<div class="machine-goals-grid">',
                         ['Fuel savings','More power and torque','DPF / EGR / AdBlue issue','Derate or Fault Code','Throttle response','Not sure yet'].map(function(g) {
-                            return '<label class="goal-item"><input type="checkbox" name="m_goals_' + idx + '" value="' + g + '"><span>' + g + '</span></label>';
+                            return '<label class="goal-item"><input type="checkbox" name="m_goals_' + idx + '" value="' + g + '"><span class="goal-check"></span><span class="goal-label">' + g + '</span></label>';
                         }).join(''),
                     '</div>',
                 '</div>'
