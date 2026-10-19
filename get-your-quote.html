@@ -180,6 +180,19 @@
         .next-step-item:last-child{margin-bottom:0}
         .check{width:16px;height:16px;flex-shrink:0;margin-top:1px;color:var(--green)}
 
+        /* ---- PHOTO UPLOAD ---- */
+        .upload-zone{background:var(--gray-800);border:2px dashed rgba(255,255,255,0.12);border-radius:8px;padding:1.5rem;text-align:center;cursor:pointer;transition:border-color 0.2s,background 0.2s;position:relative}
+        .upload-zone:hover,.upload-zone.drag-over{border-color:rgba(76,175,80,0.5);background:rgba(76,175,80,0.04)}
+        .upload-zone input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+        .upload-icon{width:36px;height:36px;margin:0 auto 0.75rem;color:var(--gray-500)}
+        .upload-label{font-size:0.85rem;color:var(--gray-300);margin-bottom:0.3rem}
+        .upload-hint{font-size:0.75rem;color:var(--gray-500)}
+        .upload-files{margin-top:0.75rem;display:flex;flex-direction:column;gap:0.4rem;text-align:left}
+        .upload-file-item{display:flex;align-items:center;gap:0.5rem;background:rgba(76,175,80,0.08);border:1px solid rgba(76,175,80,0.2);border-radius:6px;padding:0.5rem 0.75rem;font-size:0.8rem;color:var(--gray-300)}
+        .upload-file-item svg{width:14px;height:14px;color:var(--green);flex-shrink:0}
+        .upload-file-remove{margin-left:auto;background:none;border:none;color:var(--gray-500);cursor:pointer;padding:0 0 0 0.5rem;font-size:1rem;line-height:1;flex-shrink:0}
+        .upload-file-remove:hover{color:var(--white)}
+
         /* ---- TRUST BAR ---- */
         .trust-bar{max-width:700px;margin:0 auto 4rem;padding:0 1.5rem}
         .trust-inner{display:flex;align-items:stretch;justify-content:center;gap:0;flex-wrap:wrap;border:1px solid rgba(255,255,255,0.07);border-radius:12px;overflow:hidden}
@@ -408,7 +421,7 @@
                 <!-- More info callout -->
                 <div style="background:rgba(76,175,80,0.08);border:1px solid rgba(76,175,80,0.25);border-radius:8px;padding:0.9rem 1.1rem;margin-bottom:1.2rem;display:flex;gap:0.7rem;align-items:flex-start">
                     <svg style="flex-shrink:0;margin-top:2px" viewBox="0 0 24 24" fill="none" stroke="#4CAF50" stroke-width="2" width="18" height="18"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-                    <p style="margin:0;font-size:0.82rem;color:var(--gray-300);line-height:1.6"><strong style="color:var(--white)">The more detail you provide, the more accurate your quote will be.</strong> Year, engine size and ECU label especially help us confirm the right tune file before we get back to you. Everything except Machine Type, Make and Model is optional.</p>
+                    <p style="margin:0;font-size:0.82rem;color:var(--gray-300);line-height:1.6"><strong style="color:var(--white)">The more detail you provide, the more accurate your quote will be.</strong> Year, engine size and ECU label especially help us confirm the right tune file before we get back to you. You can also attach photos — ECU label stickers and fault code screenshots are really useful. Everything except Machine Type, Make and Model is optional.</p>
                 </div>
 
                 <p style="font-size:0.8rem;color:var(--gray-500);margin-bottom:1rem;line-height:1.6">Have more than one machine? Click <strong style="color:var(--gray-300)">Add Another Machine</strong> below to include them all in one quote request.</p>
@@ -431,6 +444,18 @@
                         <textarea id="notes" name="notes" placeholder="Fault codes, current issues, previous tuning work, or anything else we should know..."></textarea>
                     </div>
                 </div>
+
+                <!-- PHOTO UPLOAD -->
+                <div class="form-divider">Photos <span style="font-weight:400;font-size:0.65rem;text-transform:none;letter-spacing:0;color:var(--gray-500)">(Optional)</span></div>
+
+                <div class="upload-zone" id="uploadZone">
+                    <input type="file" id="photoUpload" accept="image/*,.pdf" multiple>
+                    <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                    <p class="upload-label"><strong>Upload photos</strong> — ECU labels, fault codes, engine bay</p>
+                    <p class="upload-hint">Click to browse or drag files here &middot; JPG, PNG, HEIC, PDF &middot; Up to 5 files &middot; 10MB each</p>
+                    <div class="upload-files" id="uploadFileList"></div>
+                </div>
+                <p style="font-size:0.78rem;color:var(--gray-500);margin-top:0.6rem;margin-bottom:0;line-height:1.5">A photo of the ECU label sticker or a fault code screenshot helps us lock in the right tune file before we even arrive. Nothing is compulsory — attach whatever you have.</p>
 
                 <!-- SOCIAL PROOF -->
                 <div class="proof-strip">
@@ -910,6 +935,11 @@
             emailData.append('Notes',       notes || 'None');
             emailData.append('source',      'Quote Request Page');
 
+            // Attach photos if any
+            var uploadZone  = document.getElementById('uploadZone');
+            var photoFiles  = (uploadZone && uploadZone._getFiles) ? uploadZone._getFiles() : [];
+            photoFiles.forEach(function(f) { emailData.append('attachment', f); });
+
             fetch('https://api.web3forms.com/submit', {
                 method: 'POST',
                 body: emailData
@@ -955,6 +985,7 @@
                     + '<tr><td style="padding:4px 0;color:#888">Email</td><td style="padding:4px 0;color:#2d2d2d">' + email + '</td></tr>'
                     + (postcode ? '<tr><td style="padding:4px 0;color:#888">Postcode</td><td style="padding:4px 0;color:#2d2d2d">' + postcode + '</td></tr>' : '')
                     + (notes ? '<tr><td style="padding:4px 0;color:#888;vertical-align:top">Notes</td><td style="padding:4px 0;color:#2d2d2d">' + notes + '</td></tr>' : '')
+                    + (photoFiles.length > 0 ? '<tr><td style="padding:4px 0;color:#888;vertical-align:top">Photos</td><td style="padding:4px 0;color:#2d2d2d">' + photoFiles.length + ' photo' + (photoFiles.length > 1 ? 's' : '') + ' attached</td></tr>' : '')
                     + '</table></div>'
                     + '<div style="background:#f7f7f7;border-radius:6px;padding:20px 24px;margin-bottom:22px">'
                     + '<p style="margin:0 0 16px;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#4CAF50;font-weight:700">Your Machine' + (machines.length > 1 ? 's' : '') + '</p>'
@@ -987,9 +1018,14 @@
                         phone:                 phone,
                         location:              postcode,
                         totalMachines:         machines.length,
+                        machineTypes:          machines.map(function(m){ return m.type; }).filter(Boolean).join(', '),
                         machineSummary:        machineSummary,
                         machines:              JSON.stringify(machines),
                         notes:                 notes,
+                        hasPhotos:             photoFiles.length > 0,
+                        photoCount:            photoFiles.length,
+                        photoNames:            photoFiles.map(function(f){ return f.name; }).join(', '),
+                        submittedAt:           new Date().toISOString(),
                         source:                'Quote Request Page',
                         tags:                  allTags,
                         confirmationEmailHtml: confirmationEmailHtml
@@ -1033,6 +1069,49 @@
         // Initialise with 1 machine
         addMachine();
         addBtn.addEventListener('click', addMachine);
+
+        // ---- Photo upload zone ----
+        (function() {
+            var zone  = document.getElementById('uploadZone');
+            var input = document.getElementById('photoUpload');
+            var list  = document.getElementById('uploadFileList');
+            if (!zone || !input || !list) return;
+
+            var selectedFiles = [];
+
+            function renderList() {
+                list.innerHTML = selectedFiles.map(function(f, i) {
+                    return '<div class="upload-file-item">'
+                        + '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>'
+                        + f.name
+                        + '<button type="button" class="upload-file-remove" data-idx="' + i + '" title="Remove">&times;</button>'
+                        + '</div>';
+                }).join('');
+                list.querySelectorAll('.upload-file-remove').forEach(function(btn) {
+                    btn.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        selectedFiles.splice(parseInt(btn.getAttribute('data-idx')), 1);
+                        renderList();
+                    });
+                });
+            }
+
+            function addFiles(files) {
+                for (var i = 0; i < files.length; i++) {
+                    if (selectedFiles.length >= 5) { alert('Maximum 5 photos allowed.'); break; }
+                    if (files[i].size > 10 * 1024 * 1024) { alert(files[i].name + ' exceeds 10MB and has been skipped.'); continue; }
+                    selectedFiles.push(files[i]);
+                }
+                renderList();
+            }
+
+            input.addEventListener('change', function() { addFiles(this.files); this.value = ''; });
+            zone.addEventListener('dragover',  function(e) { e.preventDefault(); zone.classList.add('drag-over'); });
+            zone.addEventListener('dragleave', function()  { zone.classList.remove('drag-over'); });
+            zone.addEventListener('drop',      function(e) { e.preventDefault(); zone.classList.remove('drag-over'); addFiles(e.dataTransfer.files); });
+
+            zone._getFiles = function() { return selectedFiles; };
+        })();
 
     })();
 
