@@ -479,12 +479,22 @@ Fill in all [BRACKETED] placeholders and write the complete article body.
 Return ONLY the raw HTML. No markdown fences, no explanation, no preamble.
 """
 
-    message = client.messages.create(
-        model="claude-haiku-5-5",
-        max_tokens=8192,
-        system=SYSTEM_PROMPT,
-        messages=[{"role": "user", "content": user_prompt}],
-    )
+    message = None
+    last_err = None
+    for model_name in ("claude-sonnet-5-5", "claude-haiku-5-5", "claude-opus-5-5"):
+        try:
+            message = client.messages.create(
+                model=model_name,
+                max_tokens=8192,
+                system=SYSTEM_PROMPT,
+                messages=[{"role": "user", "content": user_prompt}],
+            )
+            break
+        except Exception as e:  # try the next model, but keep the reason in the Action log
+            last_err = e
+            print(f"Model {model_name} failed: {e}", file=sys.stderr)
+    if message is None:
+        raise RuntimeError(f"All models failed. Last error: {last_err}")
     for block in message.content:
         if hasattr(block, "text"):
             return finalize_html(block.text)

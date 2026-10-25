@@ -1,0 +1,47 @@
+<html>
+<head>
+<title>LP Tuning: Publish Website</title>
+<HTA:APPLICATION ID="pub" APPLICATIONNAME="LP Tuning Publish" BORDER="thin" CAPTION="yes" SCROLL="no" SINGLEINSTANCE="yes" MAXIMIZEBUTTON="no"/>
+<style>
+body{font-family:Segoe UI,Arial,sans-serif;background:#0f1115;color:#eee;margin:0;padding:28px}
+h1{margin:0 0 4px;font-size:22px} p{color:#9aa3b2;margin:0 0 18px}
+#go{background:#e8531f;color:#fff;border:0;border-radius:8px;font-size:18px;font-weight:bold;padding:16px 34px;cursor:pointer}
+#go:disabled{background:#555;cursor:default}
+#status{display:inline-block;margin-left:18px;font-size:16px;font-weight:bold}
+#log{margin-top:20px;background:#07080a;border:1px solid #2a2f3a;border-radius:8px;padding:12px;height:260px;overflow:auto;font-family:Consolas,monospace;font-size:12px;white-space:pre-wrap;color:#c9d1d9}
+.ok{color:#3fb950}.bad{color:#f85149}.run{color:#d29922}
+</style>
+</head>
+<body>
+<h1>LP Tuning: Publish Website</h1>
+<p>One click sends every change in this folder to GitHub. Netlify then updates lptuning.com.au within a minute or two.</p>
+<button id="go" onclick="start()">Publish website</button><span id="status"></span>
+<div id="log">Ready.</div>
+<script language="javascript">
+var sh = new ActiveXObject("WScript.Shell");
+var fso = new ActiveXObject("Scripting.FileSystemObject");
+var dir = unescape(location.pathname).replace(/^\//,"").replace(/\//g,"\\");
+dir = dir.substring(0, dir.lastIndexOf("\\"));
+var logFile = sh.ExpandEnvironmentStrings("%TEMP%") + "\\lp-publish.log";
+var timer = null;
+function setStatus(t,c){var s=document.getElementById("status");s.innerText=t;s.className=c;}
+function start(){
+  try{ if(fso.FileExists(logFile)) fso.DeleteFile(logFile,true);}catch(e){}
+  document.getElementById("go").disabled=true;
+  document.getElementById("log").innerText="Starting...\n";
+  setStatus("Publishing...","run");
+  sh.Run('cmd /c ""'+dir+'\\publish-run.bat" > "'+logFile+'" 2>&1"',0,false);
+  timer=setInterval(poll,700);
+}
+function poll(){
+  if(!fso.FileExists(logFile)) return;
+  var txt="";
+  try{var f=fso.OpenTextFile(logFile,1);if(!f.AtEndOfStream)txt=f.ReadAll();f.Close();}catch(e){return;}
+  var box=document.getElementById("log"); box.innerText=txt; box.scrollTop=box.scrollHeight;
+  if(txt.indexOf("DONE_OK")>=0){clearInterval(timer);setStatus("Published. Live in 1 to 2 minutes.","ok");document.getElementById("go").disabled=false;}
+  else if(txt.indexOf("DONE_FAIL")>=0){clearInterval(timer);setStatus("Failed. Send the log to Claude.","bad");document.getElementById("go").disabled=false;}
+}
+window.resizeTo(720,560);
+</script>
+</body>
+</html>
