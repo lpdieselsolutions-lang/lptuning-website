@@ -137,6 +137,12 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://lptuning.com.au/blog-earthmoving-tuning-results-cat-d6-komatsu-wa600.html</loc>
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 
   <url>
     <loc>https://lptuning.com.au/blog-fuel-savings-tractor-heavy-machinery-queensland.html</loc>

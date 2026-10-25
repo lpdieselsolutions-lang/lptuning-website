@@ -7,13 +7,13 @@ This puts Cloudflare's free CDN in front of your Netlify site. It takes about 15
 ## What this does
 
 - Your visitors hit Cloudflare's servers (fast, globally distributed) instead of Netlify directly
-- Images and static files are cached at the edge — served instantly from a server close to the visitor
+- Images and static files are cached at the edge, served instantly from a server close to the visitor
 - Free DDoS protection and SSL certificate
 - Google page speed typically improves by 1-2 seconds for Australian visitors
 
 ---
 
-## Step 1 — Create a Cloudflare account
+## Step 1, Create a Cloudflare account
 
 1. Go to [cloudflare.com](https://cloudflare.com) and sign up for a free account
 2. After signing in, click **Add a site**
@@ -22,7 +22,7 @@ This puts Cloudflare's free CDN in front of your Netlify site. It takes about 15
 
 ---
 
-## Step 2 — Cloudflare scans your DNS
+## Step 2, Cloudflare scans your DNS
 
 Cloudflare will automatically scan and import your existing DNS records. Wait for it to finish (30–60 seconds).
 
@@ -41,7 +41,7 @@ Click **Continue**.
 
 ---
 
-## Step 3 — Update your nameservers at your domain registrar
+## Step 3, Update your nameservers at your domain registrar
 
 Cloudflare will give you two nameservers, e.g.:
 ```
@@ -60,7 +60,7 @@ DNS propagation takes 5–60 minutes (sometimes up to 24 hours). Cloudflare will
 
 ---
 
-## Step 4 — Recommended Cloudflare settings (once active)
+## Step 4, Recommended Cloudflare settings (once active)
 
 Go to your Cloudflare dashboard for `lptuning.com.au` and apply these:
 
@@ -82,13 +82,13 @@ Go to your Cloudflare dashboard for `lptuning.com.au` and apply these:
 
 ---
 
-## Step 5 — Test it
+## Step 5, Test it
 
 Once Cloudflare confirms your site is active:
 
 1. Visit [pagespeed.web.dev](https://pagespeed.web.dev) and run a fresh test on `https://www.lptuning.com.au`
-2. You should see a significant improvement — typically from 69 to 85–95
-3. Also test on [gtmetrix.com](https://gtmetrix.com) — check "Fully Loaded Time"
+2. You should see a significant improvement, typically from 69 to 85–95
+3. Also test on [gtmetrix.com](https://gtmetrix.com), check "Fully Loaded Time"
 
 ---
 
@@ -96,10 +96,10 @@ Once Cloudflare confirms your site is active:
 
 **Site shows SSL error after switching:** Set SSL mode to **Full** (not Flexible) in Cloudflare. Flexible causes redirect loops with Netlify.
 
-**DNS not propagating:** Check [whatsmydns.net](https://whatsmydns.net) and enter your domain — once most locations show Cloudflare IPs you're good.
+**DNS not propagating:** Check [whatsmydns.net](https://whatsmydns.net) and enter your domain, once most locations show Cloudflare IPs you're good.
 
 **Want to clear Cloudflare's cache after a site update:** Cloudflare dashboard → Caching → Purge Cache → Purge Everything. Do this after each Netlify deploy until you set up automatic cache purging.
 
 ---
 
-*Prepared for LP Tuning — June 2026*
+*Prepared for LP Tuning | June 2026*

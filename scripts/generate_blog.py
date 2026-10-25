@@ -1,136 +1,140 @@
 #!/usr/bin/env python3
 """
-LP Tuning — Automated Blog Post Generator
+LP Tuning | Automated Blog Post Generator
 Runs via GitHub Actions every 3 days.
 Generates a new SEO-targeted blog post and updates blog.html + sitemap.xml.
 """
 
 import os
+import sys
 import re
 import json
 import datetime
 import anthropic
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from clean_dashes import clean_dashes  # house rule: no em dashes, ever
+
 # ---------------------------------------------------------------------------
-# Topic rotation — ordered list. Script picks the next unused topic.
+# Topic rotation, ordered list. Script picks the next unused topic.
 # Add new topics to the bottom to keep the queue going.
 # ---------------------------------------------------------------------------
 TOPICS = [
     {
         "slug": "diesel-tuning-brisbane",
-        "title": "Diesel Tuning Brisbane — What to Expect and How to Choose a Tuner",
+        "title": "Diesel Tuning Brisbane: What to Expect and How to Choose a Tuner",
         "category": "Diesel Tuning",
         "description": "What diesel tuning actually involves in Brisbane, how to choose a reputable mobile tuner, and what results are realistic for trucks, 4WDs, and heavy machinery.",
         "keywords": "diesel tuning Brisbane, ECU tuning Brisbane, diesel remap Brisbane",
     },
     {
         "slug": "diesel-tuning-toowoomba",
-        "title": "Diesel Tuning Toowoomba — Mobile ECU Remapping for Darling Downs Operators",
+        "title": "Diesel Tuning Toowoomba: Mobile ECU Remapping for Darling Downs Operators",
         "category": "Diesel Tuning",
         "description": "LP Tuning's mobile diesel tuning service covering Toowoomba, the Darling Downs, and surrounding regions. Tractors, trucks, excavators, and 4WDs.",
         "keywords": "diesel tuning Toowoomba, ECU tuning Darling Downs, diesel remap Toowoomba",
     },
     {
         "slug": "diesel-tuning-gold-coast",
-        "title": "Diesel Tuning Gold Coast — ECU Remapping for Trades, Towing, and Fleets",
+        "title": "Diesel Tuning Gold Coast: ECU Remapping for Trades, Towing, and Fleets",
         "category": "Diesel Tuning",
         "description": "Mobile diesel ECU tuning across the Gold Coast. More torque, better fuel economy, and 30-day free trial for utes, trucks, and heavy machinery.",
         "keywords": "diesel tuning Gold Coast, ECU remap Gold Coast, diesel tuning SEQ",
     },
     {
         "slug": "diesel-tuning-sunshine-coast",
-        "title": "Diesel Tuning Sunshine Coast — Mobile Remap Service for Vehicles and Machinery",
+        "title": "Diesel Tuning Sunshine Coast: Mobile Remap Service for Vehicles and Machinery",
         "category": "Diesel Tuning",
         "description": "LP Tuning covers the Sunshine Coast with mobile diesel tuning for utes, trucks, tractors, and earthmoving equipment. 30-day trial on every tune.",
         "keywords": "diesel tuning Sunshine Coast, ECU remap Sunshine Coast, mobile diesel tuning SEQ",
     },
     {
         "slug": "diesel-tuning-ipswich",
-        "title": "Diesel Tuning Ipswich — ECU Remapping for Trades, Farmers, and Fleets",
+        "title": "Diesel Tuning Ipswich: ECU Remapping for Trades, Farmers, and Fleets",
         "category": "Diesel Tuning",
         "description": "Mobile diesel tuning in Ipswich and the Lockyer Valley. Utes, trucks, tractors and heavy machinery tuned on-site. Free quote, 30-day trial.",
         "keywords": "diesel tuning Ipswich, ECU remap Lockyer Valley, diesel tuning South East Queensland",
     },
     {
         "slug": "diesel-tuning-how-it-works",
-        "title": "How Diesel Tuning Works — A Plain-English Explanation",
+        "title": "How Diesel Tuning Works: A Plain-English Explanation",
         "category": "Diesel Tuning",
         "description": "What actually happens during a diesel ECU remap, why factory maps are conservative, and what realistic gains look like for trucks and machinery in Queensland.",
         "keywords": "how diesel tuning works, diesel ECU remap explained, what is diesel tuning",
     },
     {
         "slug": "diesel-tuning-fuel-savings",
-        "title": "Diesel Tuning Fuel Savings — Real Numbers for Queensland Operators",
+        "title": "Diesel Tuning Fuel Savings: Real Numbers for Queensland Operators",
         "category": "Diesel Tuning",
         "description": "How much fuel can diesel tuning actually save? Real-world figures for trucks, tractors, excavators, and 4WDs operating in Queensland conditions.",
         "keywords": "diesel tuning fuel savings, ECU remap fuel economy, diesel tuning ROI Queensland",
     },
     {
         "slug": "diesel-tuning-fleet",
-        "title": "Diesel Tuning for Fleets — How Queensland Operators Cut Fuel Bills Across Multiple Vehicles",
+        "title": "Diesel Tuning for Fleets: How Queensland Operators Cut Fuel Bills Across Multiple Vehicles",
         "category": "Fleet Tuning",
         "description": "How fleet managers use ECU remapping to reduce fuel spend across truck, ute, and machinery fleets. Per-vehicle ROI, visit scheduling, and what to expect.",
         "keywords": "fleet diesel tuning Queensland, diesel tuning for fleets, ECU remap fleet Brisbane",
     },
     {
         "slug": "isuzu-npr-diesel-tuning-queensland",
-        "title": "Isuzu NPR Diesel Tuning Queensland — ECU Remap for the 4HK1 and 4JJ1 Engine",
+        "title": "Isuzu NPR Diesel Tuning Queensland: ECU Remap for the 4HK1 and 4JJ1 Engine",
         "category": "Truck Tuning",
         "description": "How ECU remapping improves the Isuzu NPR for Queensland delivery, trades, and tipper operations. More torque, less fuel, mobile service.",
         "keywords": "Isuzu NPR diesel tuning Queensland, Isuzu ECU remap, 4HK1 tuning Brisbane",
     },
     {
         "slug": "isuzu-fvz-diesel-tuning-queensland",
-        "title": "Isuzu FVZ Diesel Tuning Queensland — Remap Results for Heavy Haulage",
+        "title": "Isuzu FVZ Diesel Tuning Queensland (Remap Results for Heavy Haulage",
         "category": "Truck Tuning",
-        "description": "What an ECU remap delivers for the Isuzu FVZ — more pulling power, better fuel economy, and improved performance under load. Mobile service across QLD.",
+        "description": "What an ECU remap delivers for the Isuzu FVZ) more pulling power, better fuel economy, and improved performance under load. Mobile service across QLD.",
         "keywords": "Isuzu FVZ diesel tuning Queensland, Isuzu FVZ remap, heavy truck ECU tuning Queensland",
     },
     {
         "slug": "kenworth-diesel-tuning-queensland",
-        "title": "Kenworth Diesel Tuning Queensland — What a Remap Delivers for Your Kenworth",
+        "title": "Kenworth Diesel Tuning Queensland: What a Remap Delivers for Your Kenworth",
         "category": "Truck Tuning",
         "description": "ECU remapping for Kenworth prime movers and highway trucks in Queensland. Fuel savings, power gains, and mobile on-site service across QLD.",
         "keywords": "Kenworth diesel tuning Queensland, Kenworth ECU remap, prime mover tuning QLD",
     },
     {
         "slug": "ford-ranger-diesel-tuning-brisbane",
-        "title": "Ford Ranger Diesel Tuning Brisbane — ECU Remap for the 2.0 Bi-Turbo and 3.2 TDCi",
+        "title": "Ford Ranger Diesel Tuning Brisbane, ECU Remap for the 2.0 Bi-Turbo and 3.2 TDCi",
         "category": "4WD & Ute Tuning",
         "description": "What diesel tuning does for the Ford Ranger in Brisbane. More torque for towing, better fuel on long runs, and a 30-day free trial to prove it.",
         "keywords": "Ford Ranger diesel tuning Brisbane, Ranger ECU remap, PUMA 2.0 tuning SEQ",
     },
     {
         "slug": "mazda-bt50-diesel-tuning-queensland",
-        "title": "Mazda BT-50 Diesel Tuning Queensland — ECU Remap for the 3.0 and 3.2 TDCi",
+        "title": "Mazda BT-50 Diesel Tuning Queensland, ECU Remap for the 3.0 and 3.2 TDCi",
         "category": "4WD & Ute Tuning",
         "description": "How a diesel remap transforms the Mazda BT-50 for Queensland towing, work duties, and highway runs. Mobile service, 30-day trial.",
         "keywords": "Mazda BT-50 diesel tuning Queensland, BT-50 ECU remap, BT-50 tuning Brisbane",
     },
     {
         "slug": "mitsubishi-triton-diesel-tuning-brisbane",
-        "title": "Mitsubishi Triton Diesel Tuning Brisbane — ECU Remap Results for the MR and MQ",
+        "title": "Mitsubishi Triton Diesel Tuning Brisbane: ECU Remap Results for the MR and MQ",
         "category": "4WD & Ute Tuning",
         "description": "What a diesel remap delivers on the Mitsubishi Triton MR and MQ. More torque, better towing economy, mobile service across Brisbane and SEQ.",
         "keywords": "Mitsubishi Triton diesel tuning Brisbane, Triton ECU remap, MR Triton tuning SEQ",
     },
     {
         "slug": "cat-excavator-diesel-tuning-queensland",
-        "title": "Caterpillar Excavator Diesel Tuning Queensland — ECU Remap for CAT 320, 325, 330",
+        "title": "Caterpillar Excavator Diesel Tuning Queensland: ECU Remap for CAT 320, 325, 330",
         "category": "Mining & Construction",
         "description": "How ECU remapping improves productivity and fuel economy on Caterpillar excavators operating in Queensland. CAT 320, 325, 330 and larger.",
         "keywords": "CAT excavator diesel tuning Queensland, Caterpillar ECU remap, CAT 320 tuning",
     },
     {
         "slug": "komatsu-excavator-diesel-tuning-queensland",
-        "title": "Komatsu Excavator Diesel Tuning Queensland — What a Remap Delivers for PC200 to PC490",
+        "title": "Komatsu Excavator Diesel Tuning Queensland: What a Remap Delivers for PC200 to PC490",
         "category": "Mining & Construction",
         "description": "ECU remapping for Komatsu excavators in Queensland mining and construction. Better power under load, fuel savings, mobile on-site service.",
         "keywords": "Komatsu excavator diesel tuning Queensland, Komatsu ECU remap, PC200 tuning QLD",
     },
     {
         "slug": "diesel-tuning-vs-chip-tuning-difference",
-        "title": "Diesel Tuning vs Chip Tuning — What's the Actual Difference?",
+        "title": "Diesel Tuning vs Chip Tuning, What's the Actual Difference?",
         "category": "Diesel Tuning",
         "description": "ECU remapping vs chip tuning: what they are, how they differ, and why custom diesel tuning produces better results for Queensland operators.",
         "keywords": "diesel tuning vs chip tuning, ECU remap vs chip, what is chip tuning Queensland",
@@ -144,56 +148,56 @@ TOPICS = [
     },
     {
         "slug": "case-ih-tractor-diesel-tuning-queensland",
-        "title": "Case IH Tractor Diesel Tuning Queensland — ECU Remap for the Puma, Maxxum, and Optum",
+        "title": "Case IH Tractor Diesel Tuning Queensland: ECU Remap for the Puma, Maxxum, and Optum",
         "category": "Agricultural Tuning",
         "description": "What diesel tuning delivers for Case IH tractors in Queensland. Fuel savings across broadacre and mixed farming operations, mobile service.",
         "keywords": "Case IH diesel tuning Queensland, Case IH ECU remap, Puma tractor tuning QLD",
     },
     {
         "slug": "new-holland-tractor-diesel-tuning-queensland",
-        "title": "New Holland Tractor Diesel Tuning Queensland — ECU Remap for T6, T7, T8, and T9 Series",
+        "title": "New Holland Tractor Diesel Tuning Queensland: ECU Remap for T6, T7, T8, and T9 Series",
         "category": "Agricultural Tuning",
         "description": "How ECU remapping improves fuel economy and pulling power on New Holland tractors across Queensland farms. Mobile service, 30-day trial.",
         "keywords": "New Holland diesel tuning Queensland, New Holland ECU remap, T7 tractor tuning QLD",
     },
     {
         "slug": "diesel-tuning-before-after",
-        "title": "Diesel Tuning Before and After — What Changes and What to Expect",
+        "title": "Diesel Tuning Before and After: What Changes and What to Expect",
         "category": "Diesel Tuning",
         "description": "A realistic look at what diesel ECU tuning changes: power, torque, fuel consumption, throttle response, and driveability. Before and after explained.",
         "keywords": "diesel tuning before and after, ECU remap results, diesel tuning what to expect",
     },
     {
         "slug": "diesel-tuning-mining-queensland",
-        "title": "Diesel Tuning for Mining Equipment Queensland — Reducing Fuel Costs at the Pit",
+        "title": "Diesel Tuning for Mining Equipment Queensland: Reducing Fuel Costs at the Pit",
         "category": "Mining & Construction",
         "description": "How Queensland mining operations use diesel ECU tuning to cut fuel spend and eliminate emission system downtime on excavators, dozers, and haul trucks.",
         "keywords": "diesel tuning mining Queensland, mining equipment ECU remap, excavator diesel tuning QLD",
     },
     {
         "slug": "volvo-truck-diesel-tuning-queensland",
-        "title": "Volvo Truck Diesel Tuning Queensland — ECU Remap for FH, FM, and FMX Series",
+        "title": "Volvo Truck Diesel Tuning Queensland: ECU Remap for FH, FM, and FMX Series",
         "category": "Truck Tuning",
         "description": "What a diesel remap delivers for Volvo FH, FM, and FMX trucks operating in Queensland. Fuel savings, improved torque, mobile on-site service.",
         "keywords": "Volvo truck diesel tuning Queensland, Volvo ECU remap, FH diesel tuning QLD",
     },
     {
         "slug": "man-truck-diesel-tuning-queensland",
-        "title": "MAN Truck Diesel Tuning Queensland — ECU Remapping for TGX and TGS",
+        "title": "MAN Truck Diesel Tuning Queensland: ECU Remapping for TGX and TGS",
         "category": "Truck Tuning",
         "description": "ECU remapping for MAN TGX and TGS trucks in Queensland. Better fuel economy, more pulling power, mobile workshop service.",
         "keywords": "MAN truck diesel tuning Queensland, MAN ECU remap, TGX tuning QLD",
     },
     {
         "slug": "diesel-tuning-lockyer-valley",
-        "title": "Diesel Tuning Lockyer Valley — Mobile ECU Remapping for Farms and Fleets",
+        "title": "Diesel Tuning Lockyer Valley (Mobile ECU Remapping for Farms and Fleets",
         "category": "Diesel Tuning",
-        "description": "LP Tuning's mobile diesel tuning service covers the Lockyer Valley — tractors, trucks, 4WDs, and earthmoving equipment tuned on-site.",
+        "description": "LP Tuning's mobile diesel tuning service covers the Lockyer Valley) tractors, trucks, 4WDs, and earthmoving equipment tuned on-site.",
         "keywords": "diesel tuning Lockyer Valley, ECU remap Lockyer Valley, mobile diesel tuning QLD",
     },
     {
         "slug": "diesel-tuning-rockhampton",
-        "title": "Diesel Tuning Rockhampton — ECU Remapping for Central Queensland Operators",
+        "title": "Diesel Tuning Rockhampton: ECU Remapping for Central Queensland Operators",
         "category": "Diesel Tuning",
         "description": "Mobile diesel tuning for Rockhampton and Central Queensland. Cattle station equipment, mining machinery, trucks, and 4WDs tuned on-site.",
         "keywords": "diesel tuning Rockhampton, ECU remap Central Queensland, mobile diesel tuning CQ",
@@ -225,7 +229,7 @@ def pick_topic(used: list) -> dict:
     for t in TOPICS:
         if t["slug"] not in used:
             return t
-    # All used — reset and start again
+    # All used, reset and start again
     save_used([])
     return TOPICS[0]
 
@@ -241,28 +245,44 @@ def month_year() -> str:
 # ---------------------------------------------------------------------------
 # Blog post HTML generator (calls Claude API)
 # ---------------------------------------------------------------------------
-SYSTEM_PROMPT = """You are a content writer for LP Tuning, a mobile diesel ECU tuning business
+SYSTEM_PROMPT = """You are a content writer for LP Tuning, a mobile diesel ECU remapping business
 in Queensland, Australia (ABN 28 704 248 020). You write factual, no-nonsense blog articles
-for farmers, miners, tradies, and fleet operators.
+for farmers, miners, earthmoving contractors, tradies, and fleet operators.
 
-CRITICAL RULES — never break these:
-- Never mention EGR, DPF, or AdBlue DELETES for on-road/registered vehicles or cars — these
-  are only discussed for off-road machinery (mining, agriculture, earthmoving).
-- Never say "retune" — always "remap" or "tune".
-- Never name "AgroEcoPower" or "TruckEcoPower" — these are supplier names, not customer-facing.
-- Never include specific pricing unless it is exactly: light vehicles $1,450+GST, heavy machinery
-  contact for quote. If in doubt, omit pricing entirely.
-- Never mention a dyno or rolling road for heavy machinery — we are a mobile service only.
-- Do not write in lists for most content — use natural prose paragraphs. Lists are fine for
-  bullet-point specs or compatible models.
-- Do not use em dashes (—) anywhere in the article body text.
-- Australian English throughout (e.g. "colour", "tyre", "organisation", "licence").
-- The 30-day free trial is available now for SEQ (South East Queensland) customers.
-- LP Tuning's phone number: 0491 097 706.
-- LP Tuning's website: lptuning.com.au.
-- LP Tuning is a mobile service. We come to the customer — no workshop drop-off required.
-- LP Tuning has completed over 350,000 tunes globally via its parent network.
-- Always end with a CTA to get-your-quote.html or call 0491 097 706.
+CRITICAL RULES, never break these:
+- NEVER use an em dash or an en dash as punctuation anywhere (title, headings, meta text, body).
+  Use commas, colons, full stops or brackets instead. Write numeric ranges with the word "to"
+  (for example "6% to 10%"), never with a dash.
+- DPF, EGR and AdBlue removal (we call it the "Reliability Solution") may ONLY be mentioned for
+  off-road machinery such as earthmoving equipment, tractors and mining machines. Never mention
+  it for cars, utes, 4WDs, trucks or any road-registered vehicle.
+- Never say "retune" (say "remap" or "tune"). Never say "chip" or "chipping" (say "remap").
+  Never say "platform" (say "machine").
+- Never name "AgroEcoPower", "AEP" or "TruckEcoPower". Never name any tuning tool or file provider.
+  Say LP Tuning works with a very experienced software engineer and delivers a tailored,
+  customised software solution.
+- Never mention a dyno or rolling road for heavy machinery. We are a mobile service.
+- Never quote prices. Offer a free quote instead.
+- Fuel savings: the headline claim is "up to 15%" and power is "up to 30% more". Real results we have
+  measured range from about 6% to 11%. For worked dollar examples always use this method and show the
+  working: litres saved = litres per hour x 2,000 working hours x 8%, then multiply by diesel at
+  $2.80 per litre. Always call these examples or estimates, never promises. Add "results vary by
+  make, model and condition" wherever a percentage appears.
+- Real results that may be used as proof points: Kenworth T909 +60 HP, 9% fuel saving. Isuzu NPR
+  148 to 168 HP, 7% fuel saving, about $6,000 a year calculated by the customer. John Deere 6115M
+  115 to 130 HP, 11% fuel saving. New Holland T7 125 to 160 HP, 8% fuel saving. CAT D6 254 to 314 HP,
+  6% fuel saving. Komatsu WA600-8 538 to 619 HP, 10% fuel saving. Label horsepower figures indicative.
+- The trial is a 30-day money-back trial: if results do not show up we remove the tune and restore
+  the original settings at no cost. Every tune includes aftercare and a software warranty.
+- On the day we only need a key and a couple of hours. Power nearby is handy. The machine does not
+  need to be warm and no bay or flat spot is needed.
+- Voice is "we" and "LP Tuning". Never name individual staff. LP Tuning is Queensland owned and operated.
+- 20+ years of ECU engineering and 350,000+ tunes worldwide sit behind our software.
+- Use Australian English (colour, tyre, organisation, licence) and AUD. Metric units only.
+- Do not write in lists for most content: use natural prose paragraphs. Lists are fine for specs
+  or compatible models. No emojis.
+- LP Tuning's phone number: 0491 097 706. Website: lptuning.com.au.
+- Always end with a CTA to get-your-quote.html or a call to 0491 097 706.
 
 TONE: Confident, practical, honest. Like a knowledgeable tradie talking to another tradie.
 No fluff, no hype. State the facts and let them speak.
@@ -411,7 +431,7 @@ Produce the full HTML document from <!DOCTYPE html> to </html>.
     <header class="article-hero">
         <div class="container">
             <p class="article-label">[CATEGORY] &bull; {month}</p>
-            <h1>[H1 TITLE — write a compelling, keyword-rich H1]</h1>
+            <h1>[H1 TITLE: write a compelling, keyword-rich H1]</h1>
             <p class="article-meta">By LP Tuning &nbsp;&bull;&nbsp; {date} &nbsp;&bull;&nbsp; Queensland, Australia</p>
         </div>
     </header>
@@ -419,7 +439,7 @@ Produce the full HTML document from <!DOCTYPE html> to </html>.
     <article class="article-body">
         <div class="container">
 
-            [ARTICLE BODY — write 700 to 900 words of practical, factual content.
+            [ARTICLE BODY, write 700 to 900 words of practical, factual content.
              Use h2 subheadings to break it up (4 to 6 sections).
              Include one stats-grid with 3 stat-boxes showing realistic results.
              Include one callout about the 30-day free trial.
@@ -432,7 +452,7 @@ Produce the full HTML document from <!DOCTYPE html> to </html>.
 
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2026 LP Tuning &mdash; ABN 28 704 248 020. Mobile diesel tuning Brisbane &amp; Queensland. <a href="index.html">Home</a> &nbsp;|&nbsp; <a href="blog.html">Blog</a> &nbsp;|&nbsp; <a href="privacy-policy.html">Privacy Policy</a></p>
+            <p>&copy; 2026 LP Tuning | ABN 28 704 248 020. Mobile diesel tuning Brisbane &amp; Queensland. <a href="index.html">Home</a> &nbsp;|&nbsp; <a href="blog.html">Blog</a> &nbsp;|&nbsp; <a href="privacy-policy.html">Privacy Policy</a></p>
         </div>
     </footer>
 
@@ -461,14 +481,24 @@ Return ONLY the raw HTML. No markdown fences, no explanation, no preamble.
 
     message = client.messages.create(
         model="claude-haiku-5-5",
-        max_tokens=4096,
+        max_tokens=8192,
         system=SYSTEM_PROMPT,
         messages=[{"role": "user", "content": user_prompt}],
     )
     for block in message.content:
         if hasattr(block, "text"):
-            return block.text.strip()
+            return finalize_html(block.text)
     raise ValueError("No text block found in API response")
+
+
+
+def finalize_html(html: str) -> str:
+    """Strip code fences and enforce the no-dash rule before anything is saved."""
+    html = html.strip()
+    html = re.sub(r"^```(?:html)?\s*|\s*```$", "", html)
+    html = clean_dashes(html)
+    assert "\u2014" not in html and "&mdash;" not in html, "em dash survived cleaning"
+    return html
 
 
 # ---------------------------------------------------------------------------
