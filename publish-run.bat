@@ -7,8 +7,12 @@ echo Checking for changes...
 git add -A
 git diff --cached --quiet || git commit -m "Website update %DATE% %TIME%"
 echo Getting the latest from GitHub...
-git pull --rebase --autostash origin main
-if errorlevel 1 goto fail
+git pull --no-rebase --no-edit origin main
+if errorlevel 1 (
+  echo Merge problem, undoing the merge so nothing is lost.
+  git merge --abort
+  goto fail
+)
 echo Publishing...
 git push origin main
 if errorlevel 1 goto fail
