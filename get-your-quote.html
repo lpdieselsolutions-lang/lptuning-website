@@ -462,7 +462,7 @@
                     <input type="file" id="photoUpload" accept="image/*,.pdf" multiple>
                     <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
                     <p class="upload-label"><strong>Upload photos</strong>: ECU labels, fault codes, engine bay</p>
-                    <p class="upload-hint">Click to browse or drag files here &middot; JPG, PNG, HEIC, PDF &middot; Up to 5 files &middot; 10MB each</p>
+                    <p class="upload-hint">Optional &middot; Tap to take or choose photos &middot; JPG, PNG, HEIC, PDF &middot; Up to 5 files</p>
                     <div class="upload-files" id="uploadFileList"></div>
                 </div>
                 <p style="font-size:0.78rem;color:var(--gray-500);margin-top:0.6rem;margin-bottom:0;line-height:1.5">A photo of the ECU label sticker or a fault code screenshot helps us lock in the right tune file before we even arrive. Nothing is compulsory, attach whatever you have.</p>
@@ -497,6 +497,12 @@
                 </div>
                 <h2>Quote Request Received</h2>
                 <p>Thanks for sending through your details. We'll review your machine information and have a personalised quote back to you within 24 hours.</p>
+                <div id="photoFollowUp" style="display:none;background:rgba(76,175,80,0.08);border:1px solid rgba(76,175,80,0.35);border-radius:10px;padding:1.1rem 1.25rem;margin:0 0 1.5rem;text-align:left">
+                    <p style="margin:0 0 0.4rem;color:var(--white);font-weight:700">One last step: send us your <span id="photoCountText">photos</span></p>
+                    <p style="margin:0 0 0.9rem;font-size:0.85rem;color:var(--gray-300);line-height:1.6">Your details came through, but your photos didn't upload (usually a weak signal). Please send them straight to us on WhatsApp, it only takes a few seconds.</p>
+                    <a id="photoWhatsAppBtn" href="https://wa.me/61491097706" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:0.5rem;background:#25D366;color:#0a0a0a;font-weight:700;padding:0.75rem 1.1rem;border-radius:8px;text-decoration:none;font-size:0.9rem">Send photos on WhatsApp</a>
+                    <p style="margin:0.7rem 0 0;font-size:0.78rem;color:var(--gray-500)">No WhatsApp? Text them to 0491 097 706.</p>
+                </div>
                 <div class="next-steps">
                     <div class="next-steps-label">Machines submitted</div>
                     <div id="successMachineList">
@@ -901,6 +907,58 @@
             return valid;
         }
 
+        /* ---- Photo helpers ---- */
+        function shrinkImage(file) {
+            // Resize phone photos to max 1600px JPEG so uploads are quick on rural signal.
+            // Anything we can't decode (PDF, some HEIC) is sent as-is.
+            return new Promise(function(resolve) {
+                if (!/^image\//.test(file.type) || file.size < 400 * 1024) { resolve(file); return; }
+                var url = URL.createObjectURL(file);
+                var img = new Image();
+                var done = false;
+                var timer = setTimeout(function(){ if (!done) { done = true; URL.revokeObjectURL(url); resolve(file); } }, 8000);
+                img.onload = function() {
+                    if (done) return;
+                    try {
+                        var max = 1600, w = img.naturalWidth, h = img.naturalHeight;
+                        var scale = Math.min(1, max / Math.max(w, h));
+                        var c = document.createElement('canvas');
+                        c.width = Math.round(w * scale); c.height = Math.round(h * scale);
+                        c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+                        c.toBlob(function(blob) {
+                            done = true; clearTimeout(timer); URL.revokeObjectURL(url);
+                            if (!blob || blob.size >= file.size) { resolve(file); return; }
+                            var base = (file.name || 'photo').replace(/\.[^.]+$/, '');
+                            try { resolve(new File([blob], base + '.jpg', {type: 'image/jpeg'})); }
+                            catch (e) { blob.name = base + '.jpg'; resolve(blob); }
+                        }, 'image/jpeg', 0.82);
+                    } catch (e) { done = true; clearTimeout(timer); URL.revokeObjectURL(url); resolve(file); }
+                };
+                img.onerror = function() { if (!done) { done = true; clearTimeout(timer); URL.revokeObjectURL(url); resolve(file); } };
+                img.src = url;
+            });
+        }
+
+        function sendPhotos(files, info) {
+            return Promise.all(files.map(shrinkImage)).then(function(small) {
+                var fd = new FormData();
+                fd.append('_subject',  'Photos for quote: ' + info.name + ' (' + info.phone + ')');
+                fd.append('_captcha',  'false');
+                fd.append('_template', 'table');
+                fd.append('Name',      info.name);
+                fd.append('Phone',     info.phone);
+                fd.append('Email',     info.email);
+                fd.append('Location',  info.location);
+                fd.append('Machines',  info.machines);
+                small.forEach(function(f, i) { fd.append('attachment' + (i + 1), f, f.name || ('photo' + (i + 1) + '.jpg')); });
+                // FormSubmit only keeps attachments on its standard endpoint, which doesn't return a readable
+                // response to the browser, so a completed request counts as sent.
+                return fetch('https://formsubmit.co/info@lptuning.com.au', { method: 'POST', body: fd, mode: 'no-cors' })
+                    .then(function(){ return true; })
+                    .catch(function(){ return false; });
+            }).catch(function(){ return false; });
+        }
+
         /* ---- Submit ---- */
         form.addEventListener('submit', function(e) {
             e.preventDefault();
@@ -932,36 +990,14 @@
                 ].filter(Boolean).join(' ');
             }).join('\n');
 
-            // 1. Web3Forms, single email with all machines
-            var emailData = new FormData();
-            emailData.append('access_key',  'b887e3c4-d2b3-40f7-ade0-efaf43555ce7');
-            emailData.append('subject',     'LP Tuning | New Quote Request (' + machines.length + ' machine' + (machines.length > 1 ? 's' : '') + ')');
-            emailData.append('from_name',   'LP Tuning Quote Form');
-            emailData.append('name',        name);
-            emailData.append('email',       email);
-            emailData.append('Phone',       phone);
-            emailData.append('Location',    postcode);
-            emailData.append('Machines',    machineSummary);
-            emailData.append('Notes',       notes || 'None');
-            emailData.append('source',      'Quote Request Page');
-
-            // Attach photos if any
+            // Photos the customer picked (sent separately, see success screen)
             var uploadZone  = document.getElementById('uploadZone');
             var photoFiles  = (uploadZone && uploadZone._getFiles) ? uploadZone._getFiles() : [];
-            photoFiles.forEach(function(f) { emailData.append('attachment', f); });
+            var photoNote   = photoFiles.length ? (photoFiles.length + ' photo' + (photoFiles.length > 1 ? 's' : '') + ', sent in a separate email (subject "Photos for quote: ' + name + '")') : 'None';
 
-            fetch('https://api.web3forms.com/submit', {
-                method: 'POST',
-                body: emailData
-            })
-            .then(function(r){ return r.json(); })
-            .then(function(json) {
-                if (!json.success) throw new Error('Email failed');
-
-                // 2. HighLevel, single webhook per submission
-                var firstName = name.split(' ')[0];
-                var lastName  = name.split(' ').slice(1).join(' ');
-                var allTags   = ['Quote Request'].concat(machines.map(function(m){ return m.type; }));
+            var firstName = name.split(' ')[0];
+            var lastName  = name.split(' ').slice(1).join(' ');
+            var allTags   = ['Quote Request'].concat(machines.map(function(m){ return m.type; }));
 
                 // Build confirmation email HTML (sent inside the payload for HL to fire)
                 var machineRowsHtml = machines.map(function(m) {
@@ -995,7 +1031,7 @@
                     + '<tr><td style="padding:4px 0;color:#888">Email</td><td style="padding:4px 0;color:#2d2d2d">' + email + '</td></tr>'
                     + (postcode ? '<tr><td style="padding:4px 0;color:#888">Postcode</td><td style="padding:4px 0;color:#2d2d2d">' + postcode + '</td></tr>' : '')
                     + (notes ? '<tr><td style="padding:4px 0;color:#888;vertical-align:top">Notes</td><td style="padding:4px 0;color:#2d2d2d">' + notes + '</td></tr>' : '')
-                    + (photoFiles.length > 0 ? '<tr><td style="padding:4px 0;color:#888;vertical-align:top">Photos</td><td style="padding:4px 0;color:#2d2d2d">' + photoFiles.length + ' photo' + (photoFiles.length > 1 ? 's' : '') + ' attached</td></tr>' : '')
+                    + (photoFiles.length > 0 ? '<tr><td style="padding:4px 0;color:#888;vertical-align:top">Photos</td><td style="padding:4px 0;color:#2d2d2d">' + photoFiles.length + ' photo' + (photoFiles.length > 1 ? 's' : '') + ' received</td></tr>' : '')
                     + '</table></div>'
                     + '<div style="background:#f7f7f7;border-radius:6px;padding:20px 24px;margin-bottom:22px">'
                     + '<p style="margin:0 0 16px;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#4CAF50;font-weight:700">Your Machine' + (machines.length > 1 ? 's' : '') + '</p>'
@@ -1017,30 +1053,62 @@
                     + '</td></tr>'
                     + '</body></html>';
 
-                fetch(HL_WEBHOOK, {
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({
-                        firstName:             firstName,
-                        lastName:              lastName,
-                        name:                  name,
-                        email:                 email,
-                        phone:                 phone,
-                        location:              postcode,
-                        totalMachines:         machines.length,
-                        machineTypes:          machines.map(function(m){ return m.type; }).filter(Boolean).join(', '),
-                        machineSummary:        machineSummary,
-                        machines:              JSON.stringify(machines),
-                        notes:                 notes,
-                        hasPhotos:             photoFiles.length > 0,
-                        photoCount:            photoFiles.length,
-                        photoNames:            photoFiles.map(function(f){ return f.name; }).join(', '),
-                        submittedAt:           new Date().toISOString(),
-                        source:                'Quote Request Page',
-                        tags:                  allTags,
-                        confirmationEmailHtml: confirmationEmailHtml
-                    })
-                }).catch(function(){});
+
+            // 1. HighLevel (the lead itself). Sent first so a lead is never lost.
+            var hlPromise = fetch(HL_WEBHOOK, {
+                method: 'POST',
+
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    firstName:             firstName,
+                    lastName:              lastName,
+                    name:                  name,
+                    email:                 email,
+                    phone:                 phone,
+                    location:              postcode,
+                    totalMachines:         machines.length,
+                    machineTypes:          machines.map(function(m){ return m.type; }).filter(Boolean).join(', '),
+                    machineSummary:        machineSummary,
+                    machines:              JSON.stringify(machines),
+                    notes:                 notes,
+                    hasPhotos:             photoFiles.length > 0,
+                    photoCount:            photoFiles.length,
+                    photoNames:            photoFiles.map(function(f){ return f.name; }).join(', '),
+                    submittedAt:           new Date().toISOString(),
+                    source:                'Quote Request Page',
+                    tags:                  allTags,
+                    confirmationEmailHtml: confirmationEmailHtml
+                })
+            }).then(function(r){ return r.ok; }).catch(function(){ return false; });
+
+            // 2. Web3Forms notification email to LP Tuning (text only, no attachments on the free plan)
+            var emailData = new FormData();
+            emailData.append('access_key',  'b887e3c4-d2b3-40f7-ade0-efaf43555ce7');
+            emailData.append('subject',     'LP Tuning | New Quote Request (' + machines.length + ' machine' + (machines.length > 1 ? 's' : '') + ')');
+            emailData.append('from_name',   'LP Tuning Quote Form');
+            emailData.append('name',        name);
+            emailData.append('email',       email);
+            emailData.append('Phone',       phone);
+            emailData.append('Location',    postcode);
+            emailData.append('Machines',    machineSummary);
+            emailData.append('Notes',       notes || 'None');
+            emailData.append('Photos',      photoNote);
+            emailData.append('source',      'Quote Request Page');
+            var emailPromise = fetch('https://api.web3forms.com/submit', { method: 'POST', body: emailData })
+                .then(function(r){ return r.json(); })
+                .then(function(json){ return !!(json && json.success); })
+                .catch(function(){ return false; });
+
+            // 3. Photos: shrunk on the device, then emailed to LP Tuning as attachments via FormSubmit.
+            //    Web3Forms (free plan) rejects attachments, which is what used to break the whole form.
+            var photosPromise = photoFiles.length ? sendPhotos(photoFiles, {
+                name: name, phone: phone, email: email, location: postcode, machines: machineSummary
+            }) : Promise.resolve(true);
+            if (photoFiles.length) submitBtn.textContent = 'Sending photos...';
+
+            Promise.all([hlPromise, emailPromise, photosPromise]).then(function(results) {
+                if (!results[0] && !results[1]) throw new Error('Both HighLevel and email failed');
+                var photosSent = results[2];
 
                 // Conversions
                 if (typeof gtag !== 'undefined') {
@@ -1065,6 +1133,14 @@
                     successMachineList.innerHTML = machines.map(function(m) {
                         return '<div class="next-step-item"><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>' + m.make + ' ' + m.model + (m.year ? ' (' + m.year + ')' : '') + '</div>';
                     }).join('');
+                }
+                if (photoFiles.length && !photosSent) {
+                    var pf = document.getElementById('photoFollowUp');
+                    var pc = document.getElementById('photoCountText');
+                    var pw = document.getElementById('photoWhatsAppBtn');
+                    if (pc) pc.textContent = photoFiles.length + ' photo' + (photoFiles.length > 1 ? 's' : '');
+                    if (pw) pw.href = 'https://wa.me/61491097706?text=' + encodeURIComponent('Hi LP Tuning, here are the photos for my quote request (' + name + ', ' + machines.map(function(m){ return (m.make + ' ' + m.model).trim(); }).join(' + ') + ').');
+                    if (pf) pf.style.display = 'block';
                 }
                 successScreen.style.display = 'block';
                 successScreen.scrollIntoView({behavior: 'smooth', block: 'center'});
