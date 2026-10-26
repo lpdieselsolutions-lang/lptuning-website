@@ -263,7 +263,7 @@ CRITICAL RULES, never break these:
   customised software solution.
 - Never mention a dyno or rolling road for heavy machinery. We are a mobile service.
 - Never quote prices. Offer a free quote instead.
-- Fuel savings: the headline claim is "up to 15%" and power is "up to 30% more". Real results we have
+- Fuel savings: the headline claim is "up to 18%" and power is "up to 30% more". Real results we have
   measured range from about 6% to 11%. For worked dollar examples always use this method and show the
   working: litres saved = litres per hour x 2,000 working hours x 8%, then multiply by diesel at
   $2.80 per litre. Always call these examples or estimates, never promises. Add "results vary by
@@ -485,7 +485,7 @@ Return ONLY the raw HTML. No markdown fences, no explanation, no preamble.
         try:
             message = client.messages.create(
                 model=model_name,
-                max_tokens=8192,
+                max_tokens=16000,
                 system=SYSTEM_PROMPT,
                 messages=[{"role": "user", "content": user_prompt}],
             )
@@ -508,6 +508,11 @@ def finalize_html(html: str) -> str:
     html = re.sub(r"^```(?:html)?\s*|\s*```$", "", html)
     html = clean_dashes(html)
     assert "\u2014" not in html and "&mdash;" not in html, "em dash survived cleaning"
+    # Refuse to publish a cut-off post (happened Oct 2026: four posts went live half written)
+    lower = html.lower()
+    assert "</article>" in lower and "</html>" in lower and "get-your-quote.html" in lower, "post looks truncated, not publishing"
+    body = html[lower.find("<article"):lower.find("</article>")]
+    assert len(re.sub(r"<[^>]+>", " ", body).split()) >= 500, "post body too short, not publishing"
     return html
 
 
