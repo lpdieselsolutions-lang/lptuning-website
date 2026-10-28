@@ -56,6 +56,41 @@ TOPICS = [
         "keywords": "diesel tuning Ipswich, ECU remap Lockyer Valley, diesel tuning South East Queensland",
     },
     {
+        "slug": "diesel-tuning-northern-rivers-nsw",
+        "title": "Diesel Tuning Northern Rivers NSW: ECU Remapping for Byron, Lismore and Casino Farms",
+        "category": "Diesel Tuning",
+        "description": "Mobile diesel tuning across the Northern Rivers: Byron Bay, Lismore, Ballina, Casino and Kyogle. Tractors, harvesters, trucks and earthmoving gear.",
+        "keywords": "diesel tuning Northern Rivers, ECU remap Lismore, tractor tuning Casino NSW, diesel tuning Byron Bay",
+    },
+    {
+        "slug": "diesel-tuning-moree-narrabri-nsw",
+        "title": "Diesel Tuning Moree and Narrabri: ECU Remapping for North West NSW Broadacre and Cotton",
+        "category": "Diesel Tuning",
+        "description": "ECU remapping for tractors, headers, cotton pickers and trucks around Moree, Narrabri, Gunnedah and the North West NSW grain belt.",
+        "keywords": "diesel tuning Moree, tractor ECU remap Narrabri, header tuning North West NSW",
+    },
+    {
+        "slug": "diesel-tuning-tamworth-new-england",
+        "title": "Diesel Tuning Tamworth and New England: Mobile ECU Remapping for Farms and Fleets",
+        "category": "Diesel Tuning",
+        "description": "Mobile diesel tuning around Tamworth, Armidale, Inverell, Glen Innes and Tenterfield for tractors, trucks and earthmoving machinery.",
+        "keywords": "diesel tuning Tamworth, ECU remap New England NSW, tractor tuning Inverell",
+    },
+    {
+        "slug": "diesel-tuning-south-australia",
+        "title": "Diesel Tuning South Australia: ECU Remapping for Grain, Vineyard and Earthmoving Machinery",
+        "category": "Diesel Tuning",
+        "description": "LP Tuning travels to South Australia for tractor, header, truck and earthmoving ECU remaps, from the Mid North and Eyre Peninsula to the Riverland.",
+        "keywords": "diesel tuning South Australia, tractor ECU remap SA, header tuning Eyre Peninsula",
+    },
+    {
+        "slug": "diesel-tuning-western-australia",
+        "title": "Diesel Tuning Western Australia: ECU Remapping for Wheatbelt Farms and Mining Fleets",
+        "category": "Diesel Tuning",
+        "description": "ECU remapping for Wheatbelt tractors and headers, road trains and mining and earthmoving fleets across Western Australia.",
+        "keywords": "diesel tuning Western Australia, tractor ECU remap Wheatbelt, mining fleet tuning WA",
+    },
+    {
         "slug": "diesel-tuning-how-it-works",
         "title": "How Diesel Tuning Works: A Plain-English Explanation",
         "category": "Diesel Tuning",
@@ -277,6 +312,9 @@ CRITICAL RULES, never break these:
 - On the day we only need a key and a couple of hours. Power nearby is handy. The machine does not
   need to be warm and no bay or flat spot is needed.
 - Voice is "we" and "LP Tuning". Never name individual staff. LP Tuning is Queensland owned and operated.
+- Service area: LP Tuning is based in Brisbane and travels Australia-wide (QLD, NSW, SA, WA, NT). Travel is free
+  within 200 km of Brisbane; further out, travel is included in the quote. Never say "Queensland only".
+- Social proof: 5.0 stars from 30+ Google reviews. Never invent review quotes.
 - 20+ years of ECU engineering and 350,000+ tunes worldwide sit behind our software.
 - Use Australian English (colour, tyre, organisation, licence) and AUD. Metric units only.
 - Do not write in lists for most content: use natural prose paragraphs. Lists are fine for specs
@@ -452,7 +490,8 @@ Produce the full HTML document from <!DOCTYPE html> to </html>.
 
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2026 LP Tuning | ABN 28 704 248 020. Mobile diesel tuning Brisbane &amp; Queensland. <a href="index.html">Home</a> &nbsp;|&nbsp; <a href="blog.html">Blog</a> &nbsp;|&nbsp; <a href="privacy-policy.html">Privacy Policy</a></p>
+            <p>&copy; 2026 LP Tuning | ABN 28 704 248 020. Mobile diesel tuning, Brisbane based, Australia-wide. <a href="index.html">Home</a> &nbsp;|&nbsp; <a href="blog.html">Blog</a> &nbsp;|&nbsp; <a href="privacy-policy.html">Privacy Policy</a></p>
+            <p style="margin-top:0.6rem;font-size:0.85rem"><a href="https://www.google.com/maps/place/LP+Tuning/@-27.4695224,153.0060275,17z/data=!4m6!3m5!1s0x8494dee06ec24a97:0x6101f76271f3e2b0!8m2!3d-27.4695224!4d153.0060275!16s%2Fg%2F11z645xz62" target="_blank" rel="noopener" style="color:#4CAF50;text-decoration:none">&#9733;&#9733;&#9733;&#9733;&#9733; 5.0 from 30+ Google reviews, read them on Google &#8599;</a></p>
         </div>
     </footer>
 
