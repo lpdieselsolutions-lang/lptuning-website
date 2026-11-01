@@ -137,7 +137,7 @@
         .nav-dropdown-btn:hover,.nav-dropdown:hover .nav-dropdown-btn{color:var(--green-primary)}
         .nav-dropdown-btn svg{transition:transform 0.2s ease}
         .nav-dropdown:hover .nav-dropdown-btn svg{transform:rotate(180deg)}
-        .nav-dropdown-menu{position:absolute;top:calc(100% + 1rem);right:0;background:rgba(20,20,20,0.98);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:1.5rem;min-width:420px;display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;opacity:0;visibility:hidden;transform:translateY(-8px);transition:all 0.2s ease;box-shadow:0 8px 40px rgba(0,0,0,0.6)}
+        .nav-dropdown-menu{position:absolute;top:calc(100% + 1rem);right:0;background:rgba(20,20,20,0.98);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:1.5rem;min-width:600px;display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;opacity:0;visibility:hidden;transform:translateY(-8px);transition:all 0.2s ease;box-shadow:0 8px 40px rgba(0,0,0,0.6)}
         .nav-dropdown:hover .nav-dropdown-menu{opacity:1;visibility:visible;transform:translateY(0)}
         .nav-dropdown-section-label{font-family:var(--font-heading);font-size:0.68rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gray-500);margin-bottom:0.6rem}
         .nav-dropdown-menu a{display:block;font-size:0.82rem;color:var(--gray-300);padding:0.35rem 0;transition:color 0.15s ease;border-bottom:none}
@@ -234,6 +234,70 @@
         .lp-mobile-bar svg{flex-shrink:0}
         @media(max-width:767px){.lp-mobile-bar{display:flex}body{padding-bottom:62px}a[href*="wa.me"][style*="position:fixed"]{bottom:calc(62px + 1rem) !important}}
     </style>
+    <script type="application/ld+json" id="faq-schema">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Will a remap void my manufacturer warranty?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "ECU remapping technically sits outside standard manufacturer warranty terms, so we recommend confirming with your dealer before proceeding. We operate within the engine's physical tolerances and do not alter hardware. Most manufacturers do not proactively inspect ECU maps unless investigating a related mechanical claim. We also provide our own 30-day trial and software warranty independent of the manufacturer."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does a light vehicle remap take?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Light vehicle remaps are typically completed in 1 to 2 hours. We connect via the OBD port in most cases, read the current map, apply the optimised tune, and verify operation before leaving."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you come to me, or do I need to go somewhere?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We are a fully mobile service. We come to your home, workplace, or property anywhere in Australia. No workshop visit required."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can you tune a diesel dual-cab ute I also use on the road?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The ECU remap is available for road-registered vehicles and does not involve any emission system modifications. Your DPF, EGR, and AdBlue systems remain fully intact. Emission system deletes are not legal for road-registered vehicles and we do not offer them for vehicles used on public roads."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will a remap help my ute or 4WD tow better?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. More torque low in the rev range means the engine pulls a caravan or trailer up hills without hunting for gears, and it works less hard doing it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is a remap safe with an automatic gearbox?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The tune is matched to the drivetrain and keeps torque within safe limits for the transmission."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you remove DPF or EGR on utes and 4WDs?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. We only offer DPF, EGR and AdBlue work for off-road machinery. Utes, 4WDs and other road vehicles get a remap with all emissions equipment working as designed."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -264,6 +328,15 @@
                                 <a href="truck-tuning.html">Trucks &amp; Fleet</a>
                                 <a href="4wd-tuning.html">4WD &amp; Cars</a>
                             </div>
+                            <div class="nav-dropdown-section">
+                                <div class="nav-dropdown-section-label">By Brand</div>
+                                <a href="john-deere-tuning.html">John Deere</a>
+                                <a href="case-ih-tuning.html">Case IH</a>
+                                <a href="new-holland-tuning.html">New Holland</a>
+                                <a href="fendt-tuning.html">Fendt</a>
+                                <a href="caterpillar-tuning.html">Caterpillar</a>
+                                <a href="komatsu-tuning.html">Komatsu</a>
+                            </div>
                         </div>
                     </div>
                     <a href="blog.html" class="nav-back-link" style="color:var(--green-primary)">Blog</a>
@@ -289,7 +362,7 @@
         <div class="container-narrow">
             <div class="section-label">Why Light Vehicles?</div>
             <h2>4WD &amp; Diesel Car Tuning:<br><span style="color:var(--green-primary)">More Than You'd Expect</span></h2>
-            <p>Light diesel vehicles including LandCruisers, Rangers, Patrols, and Hiluxes are subject to the same manufacturer derating logic as large agricultural and mining equipment. The same platform often underpins multiple variants at different price points. The same conservative global compliance maps limit performance. And the same ECU remapping process recovers that capability.</p>
+            <p>Light diesel vehicles including LandCruisers, Rangers, Patrols, and Hiluxes are subject to the same manufacturer derating logic as large agricultural and mining equipment. The same engine often underpins multiple variants at different price points. The same conservative global compliance maps limit performance. And the same ECU remapping process recovers that capability.</p>
             <p>For Queensland owners who use their vehicles for genuine work, towing, or remote travel, the difference between factory performance and a properly remapped diesel is immediately felt. More torque in the towing range, better response under load, and measurable fuel savings on long-distance regional driving.</p>
 
             <div class="info-grid">
@@ -397,6 +470,18 @@
                 <div class="faq-item">
                     <h4>Can you tune a diesel dual-cab ute I also use on the road?</h4>
                     <p>Yes. The ECU remap is available for road-registered vehicles and does not involve any emission system modifications. Your DPF, EGR, and AdBlue systems remain fully intact. Emission system deletes are not legal for road-registered vehicles and we do not offer them for vehicles used on public roads.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Will a remap help my ute or 4WD tow better?</h4>
+                    <p>Yes. More torque low in the rev range means the engine pulls a caravan or trailer up hills without hunting for gears, and it works less hard doing it.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Is a remap safe with an automatic gearbox?</h4>
+                    <p>Yes. The tune is matched to the drivetrain and keeps torque within safe limits for the transmission.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Do you remove DPF or EGR on utes and 4WDs?</h4>
+                    <p>No. We only offer DPF, EGR and AdBlue work for off-road machinery. Utes, 4WDs and other road vehicles get a remap with all emissions equipment working as designed.</p>
                 </div>
             </div>
         </div>

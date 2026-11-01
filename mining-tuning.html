@@ -137,7 +137,7 @@
         .nav-dropdown-btn:hover,.nav-dropdown:hover .nav-dropdown-btn{color:var(--green-primary)}
         .nav-dropdown-btn svg{transition:transform 0.2s ease}
         .nav-dropdown:hover .nav-dropdown-btn svg{transform:rotate(180deg)}
-        .nav-dropdown-menu{position:absolute;top:calc(100% + 1rem);right:0;background:rgba(20,20,20,0.98);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:1.5rem;min-width:420px;display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;opacity:0;visibility:hidden;transform:translateY(-8px);transition:all 0.2s ease;box-shadow:0 8px 40px rgba(0,0,0,0.6)}
+        .nav-dropdown-menu{position:absolute;top:calc(100% + 1rem);right:0;background:rgba(20,20,20,0.98);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:1.5rem;min-width:600px;display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;opacity:0;visibility:hidden;transform:translateY(-8px);transition:all 0.2s ease;box-shadow:0 8px 40px rgba(0,0,0,0.6)}
         .nav-dropdown:hover .nav-dropdown-menu{opacity:1;visibility:visible;transform:translateY(0)}
         .nav-dropdown-section-label{font-family:var(--font-heading);font-size:0.68rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gray-500);margin-bottom:0.6rem}
         .nav-dropdown-menu a{display:block;font-size:0.82rem;color:var(--gray-300);padding:0.35rem 0;transition:color 0.15s ease;border-bottom:none}
@@ -335,6 +335,32 @@
   ]
 }
 </script>
+
+    <style id="lp-extra">
+        .lp-pkg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-top:2rem}
+        .lp-pkg-grid.two{grid-template-columns:repeat(2,1fr)}
+        .lp-pkg{background:#1a1a1a;border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:1.75rem;display:flex;flex-direction:column}
+        .lp-pkg.featured{border-color:rgba(76,175,80,0.55);box-shadow:0 0 30px rgba(76,175,80,0.12)}
+        .lp-pkg-tag{font-family:'Oswald',sans-serif;font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:#4CAF50;margin-bottom:0.5rem}
+        .lp-pkg h3{font-size:1.35rem;margin:0 0 0.6rem;color:#f5f5f5}
+        .lp-pkg p{font-size:0.9rem;color:#999;line-height:1.7;margin:0 0 1rem}
+        .lp-pkg ul{list-style:none;padding:0;margin:0 0 1.25rem;flex:1}
+        .lp-pkg li{font-size:0.88rem;color:#bbb;padding:0.35rem 0 0.35rem 1.4rem;position:relative;line-height:1.5}
+        .lp-pkg li:before{content:"";position:absolute;left:0;top:0.75rem;width:8px;height:8px;border-radius:50%;background:#4CAF50}
+        .lp-pkg .lp-best{font-size:0.8rem;color:#808080;border-top:1px solid rgba(255,255,255,0.06);padding-top:0.85rem;margin:0}
+        .lp-pkg-note{font-size:0.82rem;color:#808080;margin-top:1.25rem;line-height:1.6}
+        .lp-offroad{background:rgba(229,57,53,0.08);border:2px solid #E53935;border-radius:14px;padding:1.5rem 1.75rem;margin:2rem auto;max-width:820px}
+        .lp-offroad .lp-offroad-label{font-family:'Oswald',sans-serif;font-size:0.8rem;letter-spacing:0.22em;text-transform:uppercase;color:#EF5350;margin-bottom:0.5rem;font-weight:600}
+        .lp-offroad p{color:#ddd;font-size:0.92rem;line-height:1.7;margin:0 0 0.5rem}
+        .lp-offroad p:last-child{margin-bottom:0}
+        .lp-faq-block{margin-top:3rem}
+        .lp-faq-block h3{font-size:1.05rem;margin:1.5rem 0 0.5rem;text-transform:none;letter-spacing:0}
+        .lp-spec{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:0.9rem}
+        .lp-spec th,.lp-spec td{border:1px solid rgba(255,255,255,0.08);padding:0.65rem 0.85rem;text-align:left;vertical-align:top}
+        .lp-spec th{background:rgba(76,175,80,0.08);color:#ddd;font-weight:600;width:38%}
+        .lp-spec td{color:#bbb}
+        @media(max-width:860px){.lp-pkg-grid,.lp-pkg-grid.two{grid-template-columns:1fr}}
+    </style>
 </head>
 <body>
 
@@ -364,6 +390,15 @@
                                 <a href="mining-tuning.html">Mining &amp; Construction</a>
                                 <a href="truck-tuning.html">Trucks &amp; Fleet</a>
                                 <a href="4wd-tuning.html">4WD &amp; Cars</a>
+                            </div>
+                            <div class="nav-dropdown-section">
+                                <div class="nav-dropdown-section-label">By Brand</div>
+                                <a href="john-deere-tuning.html">John Deere</a>
+                                <a href="case-ih-tuning.html">Case IH</a>
+                                <a href="new-holland-tuning.html">New Holland</a>
+                                <a href="fendt-tuning.html">Fendt</a>
+                                <a href="caterpillar-tuning.html">Caterpillar</a>
+                                <a href="komatsu-tuning.html">Komatsu</a>
                             </div>
                         </div>
                     </div>
@@ -483,13 +518,57 @@
             <h2>Caterpillar and Komatsu Machines We Remap</h2>
             <p>Caterpillar and Komatsu make up most of the earthmoving fleets we see in Queensland, and both respond well to a tailored remap.</p>
             <ul style="color:var(--gray-400);line-height:1.9;padding-left:1.25rem;margin:1.25rem 0">
-                <li><strong>Caterpillar:</strong> D4 to D8 dozers, 320 to 349 excavators, 950 to 980 wheel loaders, 12M and 140M graders, 740 dump trucks and more. Our CAT D6 went from 254 to 314 HP (indicative) with a 6% fuel saving.</li>
-                <li><strong>Komatsu:</strong> PC200 to PC490 excavators, WA380 to WA600 loaders, D61 to D85 dozers, GD graders and HM dump trucks. Our Komatsu WA600-8 went from 538 to 619 HP (indicative) with a 10% fuel saving.</li>
+                <li><strong><a href="caterpillar-tuning.html" style="color:var(--green-primary);text-decoration:underline;">Caterpillar</a>:</strong> D4 to D8 dozers, 320 to 349 excavators, 950 to 980 wheel loaders, 12M and 140M graders, 740 dump trucks and more. Our CAT D6 went from 254 to 314 HP (indicative) with a 6% fuel saving.</li>
+                <li><strong><a href="komatsu-tuning.html" style="color:var(--green-primary);text-decoration:underline;">Komatsu</a>:</strong> PC200 to PC490 excavators, WA380 to WA600 loaders, D61 to D85 dozers, GD graders and HM dump trucks. Our Komatsu WA600-8 went from 538 to 619 HP (indicative) with a 10% fuel saving.</li>
                 <li><strong>Also:</strong> Hitachi, Volvo CE, Kobelco, Doosan, Hyundai, Liebherr, JCB and John Deere construction equipment.</li>
             </ul>
             <h2 style="margin-top:2.5rem">The Numbers on One Excavator</h2>
             <p>As an estimate: an excavator using 22 L/hr over 2,000 hours burns 44,000 litres a year. An 8% saving is 3,520 litres, which at $2.80/L is about $9,856 a year, per machine. That is an estimate, not a promise, and results vary by make, model and condition. Fleets save more, and multi-machine jobs are discounted.</p>
             <p style="margin-top:1rem">See the real results: <a href="blog-earthmoving-tuning-results-cat-d6-komatsu-wa600.html" style="color:var(--green-primary);text-decoration:underline;">CAT D6 and Komatsu WA600 tuning results</a> and <a href="blog-komatsu-cat-excavator-tuning-queensland.html" style="color:var(--green-primary);text-decoration:underline;">Komatsu and Cat excavator tuning</a>.</p>
+        </div>
+    </section>
+
+    <section class="content-section" id="packages">
+        <div class="container-narrow" style="max-width:1100px">
+            <div class="section-label">Tuning Packages</div>
+            <h2>Earthmoving and Mining Tuning Packages</h2>
+            <p>Every tune is tailored to your exact machine by a very experienced software engineer. Pick the package that suits how the machine works, and we will confirm what is realistic before you commit.</p>
+            <div class="lp-pkg-grid">
+            <div class="lp-pkg">
+                <div class="lp-pkg-tag">Package 1</div>
+                <h3>Fuel Saver</h3>
+                <p>For machines that do long hours. Tuned for strong torque low in the rev range and efficient fuelling, so the same work uses fewer litres.</p>
+                <ul>
+                    <li>Up to 18% less fuel*</li>
+                    <li>More torque at lower rpm</li>
+                    <li>Less lugging and lower working temperatures</li>
+                </ul>
+                <p class="lp-best">Best for: long tillage and spraying days, excavators on production work, haulage and fleets.</p>
+            </div>
+            <div class="lp-pkg featured">
+                <div class="lp-pkg-tag">Package 2</div>
+                <h3>Power</h3>
+                <p>For machines that work at their limit. More power and torque inside safe limits for temperature, boost and fuelling.</p>
+                <ul>
+                    <li>Up to 30% more power*</li>
+                    <li>Holds speed and gear under heavy load</li>
+                    <li>Better fuel use still comes with it</li>
+                </ul>
+                <p class="lp-best">Best for: big implements, heavy ground, dozers pushing, loaders in rock, towing heavy loads.</p>
+            </div>
+            <div class="lp-pkg">
+                <div class="lp-pkg-tag">Package 3</div>
+                <h3>Combo</h3>
+                <p>A Fuel Saver or Power tune plus our Reliability Solution for DPF, EGR and AdBlue faults, done in one visit. Off-road machines only.</p>
+                <ul>
+                    <li>Stops emissions derates and forced regens</li>
+                    <li>Fuel Saver or Power tune included</li>
+                    <li>One visit, one quote</li>
+                </ul>
+                <p class="lp-best">Best for: off-road machines with recurring DPF, EGR or AdBlue faults.</p>
+            </div>
+            </div>
+            <p class="lp-pkg-note">* Results vary by make, model and condition. Every package includes a 30-day money-back trial, aftercare and a software warranty, and is quoted individually. The Combo package is for off-road machinery only. <a href="get-your-quote.html" style="color:var(--green-primary);text-decoration:underline;">Get a free quote</a>.</p>
         </div>
     </section>
 

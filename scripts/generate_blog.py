@@ -479,6 +479,7 @@ Produce the full HTML document from <!DOCTYPE html> to </html>.
         .article-meta{{font-size:0.82rem;color:var(--gray-500);margin-bottom:0}}
         .article-body{{padding:4rem 0 6rem}}
         .article-body h2{{font-size:clamp(1.3rem,2.5vw,1.75rem);margin:2.5rem 0 1rem}}
+        .faq-block{{margin-top:3rem}}.faq-block h3{{font-size:1.05rem;margin:1.5rem 0 0.5rem;text-transform:none;letter-spacing:0}}
         .article-body ul{{margin:0 0 1.4rem 1.5rem;list-style:disc}}
         .article-body ul li{{color:var(--gray-300);margin-bottom:0.5rem;line-height:1.75}}
         .callout{{background:rgba(76,175,80,0.08);border-left:3px solid var(--green-primary);border-radius:0 8px 8px 0;padding:1.25rem 1.5rem;margin:2rem 0}}
@@ -539,6 +540,10 @@ Produce the full HTML document from <!DOCTYPE html> to </html>.
              Include one callout about the 30-day free trial.
              Include one article-cta block near the end.
              End with a paragraph about coverage area and mobile service.
+             After that, finish with an FAQ section in exactly this form:
+             <div class="faq-block"><h2>Common Questions</h2> followed by exactly 7 pairs of
+             <h3>question</h3><p>answer</p>, then </div>. Questions must be ones operators actually
+             search for about this topic and location. Answers are 1 to 3 plain sentences, no links.
              Use natural prose paragraphs, not bullet lists (lists OK for compatible models/specs only).]
 
         </div>
@@ -608,7 +613,26 @@ def finalize_html(html: str) -> str:
     assert "</article>" in lower and "</html>" in lower and "get-your-quote.html" in lower, "post looks truncated, not publishing"
     body = html[lower.find("<article"):lower.find("</article>")]
     assert len(re.sub(r"<[^>]+>", " ", body).split()) >= 500, "post body too short, not publishing"
+    html = add_faq_schema(html)
     return html
+
+
+def add_faq_schema(html: str) -> str:
+    """Build FAQPage JSON-LD from the faq-block so Google can show the questions in search."""
+    import html as _h
+    m = re.search(r'<div class="faq-block">(.*?)</div>', html, re.S)
+    if not m:
+        raise AssertionError("post has no FAQ section, not publishing")
+    pairs = re.findall(r"<h3>(.*?)</h3>\s*<p>(.*?)</p>", m.group(1), re.S)
+    strip = lambda t: _h.unescape(re.sub(r"<[^>]+>", "", t)).strip()
+    pairs = [(strip(q), strip(a)) for q, a in pairs]
+    assert len(pairs) >= 5, "FAQ section too short, not publishing"
+    if '"FAQPage"' in html:
+        return html
+    data = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+        {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in pairs]}
+    tag = '<script type="application/ld+json" id="faq-schema">\n' + json.dumps(data, indent=2, ensure_ascii=False) + "\n</script>\n"
+    return html.replace("</head>", tag + "</head>", 1)
 
 
 # ---------------------------------------------------------------------------

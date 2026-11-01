@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>John Deere PowerTech 6.8L (6068) Engine Guide | Specs &amp; Tuning | LP Tuning</title>
+    <meta name="description" content="John Deere PowerTech 6.8L (6068) engine guide: specs, which 6R and 6M tractors use it, emissions systems, common issues and what a remap does.">
+    <link rel="canonical" href="https://lptuning.com.au/blog-john-deere-powertech-6-8l-engine-guide">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://lptuning.com.au/blog-john-deere-powertech-6-8l-engine-guide">
+    <meta property="og:title" content="John Deere PowerTech 6.8L (6068) Engine Guide | Specs &amp; Tuning | LP Tuning">
+    <meta property="og:description" content="John Deere PowerTech 6.8L (6068) engine guide: specs, which 6R and 6M tractors use it, emissions systems, common issues and what a remap does.">
+    <meta property="og:image" content="https://lptuning.com.au/john-deere.webp">
+    <meta property="og:locale" content="en_AU">
+    <meta property="og:site_name" content="LP Tuning">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://lptuning.com.au/john-deere.webp">
+    <link rel="icon" href="favicon.ico?v=2" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png?v=2">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=2">
+    <link rel="manifest" href="site.webmanifest?v=2">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Oswald:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "John Deere PowerTech 6.8L Engine Guide: Specs, Machines and Tuning",
+  "description": "John Deere PowerTech 6.8L (6068) engine guide: specs, which 6R and 6M tractors use it, emissions systems, common issues and what a remap does.",
+  "author": {
+    "@type": "Organization",
+    "name": "LP Tuning"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "LP Tuning",
+    "url": "https://lptuning.com.au"
+  },
+  "datePublished": "2026-11-01",
+  "dateModified": "2026-11-01",
+  "url": "https://lptuning.com.au/blog-john-deere-powertech-6-8l-engine-guide",
+  "image": "https://lptuning.com.au/john-deere.webp",
+  "keywords": "John Deere 6.8L engine, PowerTech 6068, 6R engine specs, John Deere 6068 tuning"
+}
+</script>
+    <style>
+        :root {
+            --black: #0a0a0a; --gray-900: #1a1a1a; --gray-800: #222222;
+            --gray-500: #808080; --gray-400: #909090; --gray-300: #999999; --gray-200: #bbbbbb;
+            --white: #f5f5f5; --green-primary: #4CAF50; --green-light: #66BB6A;
+            --font-heading: 'Oswald', sans-serif; --font-body: 'Inter', sans-serif;
+            --transition-fast: 0.2s ease;
+        }
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+        html{scroll-behavior:smooth;font-size:16px;-webkit-font-smoothing:antialiased}
+        body{font-family:var(--font-body);background-color:var(--black);color:var(--gray-200);line-height:1.7;overflow-x:hidden}
+        a{text-decoration:none;color:inherit;transition:color var(--transition-fast)}
+        h1,h2,h3,h4{font-family:var(--font-heading);font-weight:700;line-height:1.2;color:var(--white);text-transform:uppercase;letter-spacing:0.02em}
+        p{margin-bottom:1.4rem;color:var(--gray-300);line-height:1.9}
+        .container{width:100%;max-width:760px;margin:0 auto;padding:0 2rem}
+        .nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(10,10,10,0.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.05);height:80px;display:flex;align-items:center}
+        .nav-inner{display:flex;align-items:center;justify-content:space-between;width:100%;max-width:1100px;margin:0 auto;padding:0 2rem}
+        .nav-logo img{height:52px;width:auto}
+        .nav-links{display:flex;align-items:center;gap:1.5rem}
+        .nav-link{font-size:0.82rem;font-weight:500;letter-spacing:0.06em;color:var(--gray-300);transition:color var(--transition-fast)}
+        .nav-link:hover{color:var(--green-primary)}
+        .nav-cta{font-family:var(--font-heading);font-size:0.8rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;padding:0.6rem 1.4rem;background:var(--green-primary);color:#0a0a0a;border-radius:4px}
+        .nav-cta:hover{background:var(--green-light)}
+        .article-hero{padding:140px 0 60px;border-bottom:1px solid rgba(255,255,255,0.06)}
+        .article-label{font-family:var(--font-heading);font-size:0.75rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--green-primary);margin-bottom:1rem}
+        .article-hero h1{font-size:clamp(1.8rem,4vw,2.8rem);margin-bottom:1.25rem;line-height:1.15}
+        .article-meta{font-size:0.82rem;color:var(--gray-500);margin-bottom:0}
+        .article-body{padding:4rem 0 6rem}
+        .article-body h2{font-size:clamp(1.3rem,2.5vw,1.75rem);margin:2.5rem 0 1rem}
+        .article-body ul{margin:0 0 1.4rem 1.5rem;list-style:disc}
+        .article-body ul li{color:var(--gray-300);margin-bottom:0.5rem;line-height:1.75}
+        .callout{background:rgba(76,175,80,0.08);border-left:3px solid var(--green-primary);border-radius:0 8px 8px 0;padding:1.25rem 1.5rem;margin:2rem 0}
+        .callout p{margin:0;color:var(--gray-200);font-weight:500}
+        .stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:2rem 0}
+        .stat-box{background:var(--gray-900);border:1px solid rgba(76,175,80,0.15);border-radius:10px;padding:1.5rem;text-align:center}
+        .stat-number{font-family:var(--font-heading);font-size:2rem;font-weight:700;color:var(--green-primary);display:block;margin-bottom:0.25rem}
+        .stat-label{font-size:0.8rem;color:var(--gray-500)}
+        .brands-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0.75rem;margin:2rem 0}
+        .brand-card{background:var(--gray-900);border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:1.25rem 1.5rem}
+        .brand-card strong{font-family:var(--font-heading);font-size:0.95rem;color:var(--white);letter-spacing:0.05em;display:block;margin-bottom:0.3rem}
+        .brand-card span{font-size:0.82rem;color:var(--gray-500)}
+        .article-cta{background:var(--gray-900);border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:2.5rem;text-align:center;margin:3rem 0}
+        .article-cta h3{margin-bottom:0.75rem;font-size:1.4rem}
+        .article-cta p{margin-bottom:1.5rem;font-size:0.95rem}
+        .btn{display:inline-flex;align-items:center;gap:0.6rem;font-family:var(--font-heading);font-size:0.9rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;padding:0.9rem 2rem;border-radius:4px}
+        .btn-primary{background:var(--green-primary);color:#0a0a0a}
+        .btn-primary:hover{background:var(--green-light)}
+        .footer{background:var(--gray-900);border-top:1px solid rgba(255,255,255,0.05);padding:2rem 0;text-align:center}
+        .footer p{font-size:0.8rem;color:var(--gray-500);margin:0}
+        .footer a{color:var(--green-primary)}
+        @media(max-width:640px){.container{padding:0 1.25rem}.stats-grid{grid-template-columns:repeat(2,1fr)}.brands-grid{grid-template-columns:1fr}}
+            .faq-block{margin-top:3rem}.faq-block h3{font-size:1.05rem;margin:1.5rem 0 0.5rem;text-transform:none;letter-spacing:0}
+    </style>
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1671277017538329');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1671277017538329&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+    <!-- Google Analytics 4 + Google Ads -->
+    <!-- SETUP: Replace G-0SJDKXG8H3 with your GA4 Measurement ID from analytics.google.com -->
+    <!-- SETUP: Replace AW-18471067077 with your Google Ads ID from ads.google.com -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0SJDKXG8H3"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-0SJDKXG8H3');   // GA4 - tracks all page views & site behaviour
+      gtag('config', 'AW-18471067077');  // Google Ads - required for conversion tracking
+    </script>
+    <!-- Microsoft Clarity -->
+    <script type="text/javascript">
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "yuevotbnii");
+    </script>
+
+    <!-- Sticky Mobile CTA Bar -->
+    <style>
+        .lp-mobile-bar{display:none;position:fixed;bottom:0;left:0;right:0;z-index:300;padding:0.65rem 0.85rem calc(0.65rem + env(safe-area-inset-bottom));background:rgba(10,10,10,0.97);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid rgba(76,175,80,0.22);gap:0.6rem;align-items:center}
+        .lp-mobile-bar a{flex:1;display:flex;align-items:center;justify-content:center;gap:0.4rem;font-size:0.8rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:0.75rem 0.5rem;border-radius:5px;text-decoration:none;white-space:nowrap}
+        .lp-mobile-bar .mb-call{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.14);color:#f5f5f5;font-family:'Oswald','Inter',sans-serif}
+        .lp-mobile-bar .mb-quote{background:#4CAF50;border:1px solid #4CAF50;color:#0a0a0a;font-family:'Oswald','Inter',sans-serif}
+        .lp-mobile-bar svg{flex-shrink:0}
+        @media(max-width:767px){.lp-mobile-bar{display:flex}body{padding-bottom:62px}a[href*="wa.me"][style*="position:fixed"]{bottom:calc(62px + 1rem) !important}}
+    </style>
+    <script type="application/ld+json" id="faq-schema">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the John Deere 6068 engine?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The 6068 is John Deere's PowerTech 6.8 litre inline six cylinder diesel. It powers many 6R and 6M tractors and a wide range of Deere industrial equipment."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between PowerTech PVS and PSS?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "PVS uses a single variable geometry turbocharger. PSS uses two turbochargers in series for higher power and better response. Both are 6.8 litre engines."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does the 6.8L have a DPF and AdBlue?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Final Tier 4 and Stage V versions use cooled EGR, a DOC, a DPF and SCR with AdBlue. Older versions have less after-treatment."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can the PowerTech 6.8L be remapped?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. It responds very well to a tailored remap because the same engine is built in several ratings. Our John Deere 6115M went from 115 to 130 HP (indicative) with an 11% fuel saving."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much fuel can a remap save on a 6.8L tractor?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "On our own jobs we have measured 6% to 11%, with the best machines reaching up to 18%. Results vary by make, model and condition."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can you fix DPF or AdBlue faults on a John Deere 6.8L?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For off-road machines, yes. Our Combo package adds the Reliability Solution for DPF, EGR and AdBlue faults to a remap, in one visit."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you come out to the farm?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. LP Tuning is mobile and Brisbane based, with free travel within 200 km and Australia-wide service when the job makes sense."
+      }
+    }
+  ]
+}
+</script>
+
+    <style id="lp-extra">
+        .lp-pkg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-top:2rem}
+        .lp-pkg-grid.two{grid-template-columns:repeat(2,1fr)}
+        .lp-pkg{background:#1a1a1a;border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:1.75rem;display:flex;flex-direction:column}
+        .lp-pkg.featured{border-color:rgba(76,175,80,0.55);box-shadow:0 0 30px rgba(76,175,80,0.12)}
+        .lp-pkg-tag{font-family:'Oswald',sans-serif;font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:#4CAF50;margin-bottom:0.5rem}
+        .lp-pkg h3{font-size:1.35rem;margin:0 0 0.6rem;color:#f5f5f5}
+        .lp-pkg p{font-size:0.9rem;color:#999;line-height:1.7;margin:0 0 1rem}
+        .lp-pkg ul{list-style:none;padding:0;margin:0 0 1.25rem;flex:1}
+        .lp-pkg li{font-size:0.88rem;color:#bbb;padding:0.35rem 0 0.35rem 1.4rem;position:relative;line-height:1.5}
+        .lp-pkg li:before{content:"";position:absolute;left:0;top:0.75rem;width:8px;height:8px;border-radius:50%;background:#4CAF50}
+        .lp-pkg .lp-best{font-size:0.8rem;color:#808080;border-top:1px solid rgba(255,255,255,0.06);padding-top:0.85rem;margin:0}
+        .lp-pkg-note{font-size:0.82rem;color:#808080;margin-top:1.25rem;line-height:1.6}
+        .lp-offroad{background:rgba(229,57,53,0.08);border:2px solid #E53935;border-radius:14px;padding:1.5rem 1.75rem;margin:2rem auto;max-width:820px}
+        .lp-offroad .lp-offroad-label{font-family:'Oswald',sans-serif;font-size:0.8rem;letter-spacing:0.22em;text-transform:uppercase;color:#EF5350;margin-bottom:0.5rem;font-weight:600}
+        .lp-offroad p{color:#ddd;font-size:0.92rem;line-height:1.7;margin:0 0 0.5rem}
+        .lp-offroad p:last-child{margin-bottom:0}
+        .lp-faq-block{margin-top:3rem}
+        .lp-faq-block h3{font-size:1.05rem;margin:1.5rem 0 0.5rem;text-transform:none;letter-spacing:0}
+        .lp-spec{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:0.9rem}
+        .lp-spec th,.lp-spec td{border:1px solid rgba(255,255,255,0.08);padding:0.65rem 0.85rem;text-align:left;vertical-align:top}
+        .lp-spec th{background:rgba(76,175,80,0.08);color:#ddd;font-weight:600;width:38%}
+        .lp-spec td{color:#bbb}
+        @media(max-width:860px){.lp-pkg-grid,.lp-pkg-grid.two{grid-template-columns:1fr}}
+    </style>
+</head>
+<body>
+
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo">
+                <img src="logo-nav-transparent.webp" alt="LP Tuning Logo">
+            </a>
+            <div class="nav-links">
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="mining-tuning.html" class="nav-link">Mining & Construction</a>
+                <a href="get-your-quote.html" class="nav-cta">Get a Quote</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="article-hero">
+        <div class="container">
+            <div class="article-label">Engine Guide &nbsp;|&nbsp; November 2026 &nbsp;|&nbsp; Australia</div>
+            <h1>John Deere PowerTech 6.8L Engine Guide: Specs, Machines and Tuning</h1>
+            <p class="article-meta">By LP Tuning &nbsp;&bull;&nbsp; 6 min read &nbsp;&bull;&nbsp; Queensland, Australia</p>
+        </div>
+    </section>
+
+    <article class="article-body">
+        <div class="container">
+
+            <img src="john-deere.webp" alt="John Deere PowerTech 6.8L Engine Guide: Specs, Machines and Tuning" loading="lazy" style="width:100%;border-radius:12px;margin:0 0 2rem;border:1px solid rgba(255,255,255,0.06)">
+            <p>The John Deere PowerTech 6.8 litre, known by its model code 6068, is one of the most common engines on Australian farms. It powers many 6R and 6M series tractors and a long list of older Deere machines and industrial equipment. This guide covers what the engine is, where you will find it, the issues we see in the field and what an ECU remap does on it.</p>
+            <h2>PowerTech 6.8L at a Glance</h2>
+            <table class="lp-spec">
+                <tr><th>Engine code</th><td>6068 (PowerTech 6.8L)</td></tr>
+                <tr><th>Layout</th><td>Inline six cylinder, turbocharged and aftercooled</td></tr>
+                <tr><th>Displacement</th><td>6.8 litres</td></tr>
+                <tr><th>Fuel system</th><td>High-pressure common rail on modern versions</td></tr>
+                <tr><th>Versions</th><td>PowerTech E and Plus (older), PVS (variable geometry turbo) and PSS (series turbochargers)</td></tr>
+                <tr><th>Power</th><td>From about 140 hp up to about 300 hp in industrial ratings, depending on version and rating</td></tr>
+                <tr><th>Emissions hardware</th><td>Final Tier 4 and Stage V versions use cooled EGR, a DOC, a DPF and SCR with AdBlue (DEF)</td></tr>
+            </table>
+            <p style="font-size:0.85rem;color:var(--gray-500)">Figures are general and vary by version, rating and year. Check your engine plate for the exact model.</p>
+            <h2>Which Machines Use It?</h2>
+            <p>You will find the 6.8L in many mid and upper <a href="john-deere-tuning.html" style="color:var(--green-primary);text-decoration:underline;">John Deere 6R and 6M tractors</a>, earlier 6030 and 7030 series tractors, and a range of Deere industrial and construction equipment. The same engine is built in several horsepower ratings, and much of the difference between ratings is in the software. That is why the 6.8L responds so well to a tailored remap.</p>
+            <h2>Common Issues We See</h2>
+            <p>These are the problems we most often see on working machines with this engine. None of them are unique to it, but knowing them helps you plan maintenance and spot trouble early.</p>
+            <ul>
+                <li><strong>DPF loading on light work.</strong> Long idle periods, loader work and light PTO jobs keep exhaust temperatures low, so the DPF struggles to regenerate.</li>
+                <li><strong>EGR valve and cooler soot.</strong> Soot build up can cause rough running, power loss and EGR fault codes.</li>
+                <li><strong>AdBlue system faults.</strong> NOx sensors, dosing units and crystallised injectors are the usual suspects when an AdBlue warning appears.</li>
+                <li><strong>Injector wear.</strong> Poor fuel quality and water in fuel shorten injector life. Good filtration matters.</li>
+            </ul>
+            <h2>What a Remap Does on the 6.8L</h2>
+            <p>A tailored remap adjusts fuelling, boost and timing within safe limits so the engine makes more torque lower in the rev range. On the farm that means the tractor holds a gear under load, lugs less and uses less fuel for the same work. Our John Deere 6115M went from 115 to 130 HP (indicative) with an 11% fuel saving.</p>
+            <p>We offer three packages on this engine. <strong>Fuel Saver</strong> is tuned for torque low in the rev range and the lowest litres per hour, <strong>Power</strong> adds up to 30% more power for machines that work at their limit, and <strong>Combo</strong> adds our Reliability Solution for DPF, EGR and AdBlue faults on off-road machines only. See the <a href="john-deere-tuning.html#packages" style="color:var(--green-primary);text-decoration:underline;">John Deere tuning packages</a>.</p>
+            <h2>What Could You Save?</h2>
+            <p>As an estimate: a 6R tractor using 25 L/hr over 2,000 hours burns 50,000 litres a year. An 8% saving is 4,000 litres, which at $2.80/L is about $11,200 a year. That is an estimate, not a promise, and results vary by make, model and condition.</p>
+
+            <div class="article-cta">
+                <h3>Get a Free Quote for Your Machine</h3>
+                <p>Send us the model, year and engine plate photo. We will confirm what is realistic for your machine before you commit to anything.</p>
+                <a href="get-your-quote.html" class="btn btn-primary">Request a Free Quote</a>
+            </div>
+
+            <div class="lp-faq-block">
+                <h2>Common Questions</h2>
+                <h3>What is the John Deere 6068 engine?</h3>
+                <p>The 6068 is John Deere's PowerTech 6.8 litre inline six cylinder diesel. It powers many 6R and 6M tractors and a wide range of Deere industrial equipment.</p>
+                <h3>What is the difference between PowerTech PVS and PSS?</h3>
+                <p>PVS uses a single variable geometry turbocharger. PSS uses two turbochargers in series for higher power and better response. Both are 6.8 litre engines.</p>
+                <h3>Does the 6.8L have a DPF and AdBlue?</h3>
+                <p>Final Tier 4 and Stage V versions use cooled EGR, a DOC, a DPF and SCR with AdBlue. Older versions have less after-treatment.</p>
+                <h3>Can the PowerTech 6.8L be remapped?</h3>
+                <p>Yes. It responds very well to a tailored remap because the same engine is built in several ratings. Our John Deere 6115M went from 115 to 130 HP (indicative) with an 11% fuel saving.</p>
+                <h3>How much fuel can a remap save on a 6.8L tractor?</h3>
+                <p>On our own jobs we have measured 6% to 11%, with the best machines reaching up to 18%. Results vary by make, model and condition.</p>
+                <h3>Can you fix DPF or AdBlue faults on a John Deere 6.8L?</h3>
+                <p>For off-road machines, yes. Our Combo package adds the Reliability Solution for DPF, EGR and AdBlue faults to a remap, in one visit.</p>
+                <h3>Do you come out to the farm?</h3>
+                <p>Yes. LP Tuning is mobile and Brisbane based, with free travel within 200 km and Australia-wide service when the job makes sense.</p>
+            </div>
+
+        </div>
+    </article>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/61491097706?text=Hi%20LP%20Tuning%2C%20I%27d%20like%20a%20quote%20for%20earthmoving%20equipment%20ECU%20tuning." target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp" style="position:fixed;bottom:2rem;left:2rem;width:52px;height:52px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,0.4);z-index:900;transition:transform 0.2s ease,box-shadow 0.2s ease" onmouseover="this.style.transform='scale(1.12)';this.style.boxShadow='0 6px 28px rgba(37,211,102,0.6)'" onmouseout="this.style.transform='';this.style.boxShadow='0 4px 20px rgba(37,211,102,0.4)'">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </a>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 LP Tuning. Brisbane based, servicing Australia-wide. &nbsp;&bull;&nbsp; <a href="index.html">Home</a> &nbsp;&bull;&nbsp; <a href="blog.html">Blog</a> &nbsp;&bull;&nbsp; <a href="index.html#contact">Contact</a></p>
+            <p style="margin-top:0.6rem;font-size:0.85rem"><a href="https://www.google.com/maps/place/LP+Tuning/@-27.4695224,153.0060275,17z/data=!4m6!3m5!1s0x8494dee06ec24a97:0x6101f76271f3e2b0!8m2!3d-27.4695224!4d153.0060275!16s%2Fg%2F11z645xz62" target="_blank" rel="noopener" style="color:#4CAF50;text-decoration:none">&#9733;&#9733;&#9733;&#9733;&#9733; 5.0 from 30+ Google reviews, read them on Google &#8599;</a></p>
+        </div>
+    </footer>
+
+
+    <!-- Sticky Mobile CTA Bar HTML -->
+    <div class="lp-mobile-bar" aria-label="Quick contact bar">
+        <a href="tel:0491097706" class="mb-call">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 13.5 19.79 19.79 0 01.5 4.93 2 2 0 012.5 2.75h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L6.91 10.23a16 16 0 005.85 5.85l1.55-1.55a2 2 0 012.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0122 16.92z"/></svg>
+            Call Now
+        </a>
+        <a href="get-your-quote.html" class="mb-quote">
+            Get a Quote
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+    </div>
+<!-- LP Tuning chat widget (HighLevel Conversation AI) -->
+<script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="6adef187912bacec15fc2230"></script>
+</body>
+</html>
