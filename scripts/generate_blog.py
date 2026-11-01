@@ -63,6 +63,62 @@ TOPICS = [
         "keywords": "diesel tuning Northern Rivers, ECU remap Lismore, tractor tuning Casino NSW, diesel tuning Byron Bay",
     },
     {
+        "slug": "heavy-machinery-ecu-tuning-brisbane",
+        "title": "Heavy Machinery ECU Tuning Brisbane: Excavators, Loaders and Dozers Tuned On Site",
+        "category": "Earthmoving",
+        "description": "Mobile ECU remapping for excavators, wheel loaders, dozers and graders across Brisbane and Moreton Bay. Tuned on site, no downtime at a workshop.",
+        "keywords": "heavy machinery ECU tuning Brisbane, excavator remap Brisbane, earthmoving equipment tuning Brisbane",
+    },
+    {
+        "slug": "tractor-ecu-tuning-western-downs",
+        "title": "Tractor and Header ECU Tuning Western Downs: Dalby, Chinchilla and Miles",
+        "category": "Agricultural",
+        "description": "On farm ECU remapping for tractors, headers and sprayers across the Western Downs, from Dalby and Jandowae to Chinchilla, Miles and Tara.",
+        "keywords": "tractor ECU tuning Dalby, header remap Western Downs, farm machinery tuning Chinchilla",
+    },
+    {
+        "slug": "how-to-tell-if-your-machine-can-be-remapped",
+        "title": "How to Tell if Your Tractor or Machine Can Be Remapped: An Operator Checklist",
+        "category": "How-To Guide",
+        "description": "A practical checklist to work out whether your tractor, excavator or truck is a good candidate for an ECU remap, and what details to have ready for a quote.",
+        "keywords": "can my tractor be remapped, excavator ECU remap check, how to know if ECU tuning is possible",
+    },
+    {
+        "slug": "earthmoving-equipment-ecu-tuning-ipswich",
+        "title": "Earthmoving Equipment ECU Tuning Ipswich: Excavators, Loaders and Tippers",
+        "category": "Earthmoving",
+        "description": "Mobile remapping for earthmoving contractors in Ipswich, Springfield, Rosewood and the Scenic Rim. More pulling power and lower fuel burn on site.",
+        "keywords": "earthmoving tuning Ipswich, excavator remap Ipswich, loader ECU tuning Scenic Rim",
+    },
+    {
+        "slug": "how-to-measure-fuel-use-before-and-after-a-remap",
+        "title": "How to Measure Your Machine's Fuel Use Before and After a Remap",
+        "category": "How-To Guide",
+        "description": "A simple method for operators to log litres per hour or litres per 100 km before and after an ECU remap, so the fuel saving is measured, not guessed.",
+        "keywords": "measure tractor fuel use, litres per hour excavator, fuel saving after remap",
+    },
+    {
+        "slug": "farm-machinery-ecu-tuning-scenic-rim-somerset",
+        "title": "Farm Machinery ECU Tuning Scenic Rim and Somerset: Boonah, Beaudesert, Esk and Kilcoy",
+        "category": "Agricultural",
+        "description": "On farm ECU remapping for tractors, balers and harvest gear around Boonah, Beaudesert, Esk, Kilcoy and the Brisbane Valley.",
+        "keywords": "tractor tuning Scenic Rim, farm machinery remap Somerset, tractor ECU tuning Boonah",
+    },
+    {
+        "slug": "earthmoving-ecu-tuning-surat-basin",
+        "title": "Earthmoving and Civil Equipment ECU Tuning Surat Basin: Roma, Chinchilla and Miles",
+        "category": "Earthmoving",
+        "description": "ECU remapping for excavators, graders, loaders and water trucks working civil, pipeline and gas field projects across the Surat Basin.",
+        "keywords": "earthmoving tuning Roma, excavator remap Chinchilla, civil equipment ECU tuning Surat Basin",
+    },
+    {
+        "slug": "how-to-prepare-your-machine-for-an-ecu-remap",
+        "title": "How to Prepare Your Tractor, Truck or Excavator for an ECU Remap",
+        "category": "How-To Guide",
+        "description": "What to check before the tuner arrives: fault codes, filters, fuel, battery and service history. A short prep list that makes the remap faster and safer.",
+        "keywords": "prepare for ECU remap, before tuning tractor checklist, excavator remap preparation",
+    },
+    {
         "slug": "diesel-tuning-moree-narrabri-nsw",
         "title": "Diesel Tuning Moree and Narrabri: ECU Remapping for North West NSW Broadacre and Cotton",
         "category": "Diesel Tuning",
@@ -360,9 +416,9 @@ Produce the full HTML document from <!DOCTYPE html> to </html>.
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>[PAGE TITLE] | LP Tuning</title>
     <meta name="description" content="[META DESCRIPTION]">
-    <link rel="canonical" href="https://lptuning.com.au/blog-{slug}.html">
+    <link rel="canonical" href="https://lptuning.com.au/blog-{slug}">
     <meta property="og:type" content="article">
-    <meta property="og:url" content="https://lptuning.com.au/blog-{slug}.html">
+    <meta property="og:url" content="https://lptuning.com.au/blog-{slug}">
     <meta property="og:title" content="[OG TITLE]">
     <meta property="og:description" content="[OG DESC]">
     <meta property="og:image" content="https://lptuning.com.au/hero.webp">
@@ -370,9 +426,9 @@ Produce the full HTML document from <!DOCTYPE html> to </html>.
     <meta property="og:site_name" content="LP Tuning">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://lptuning.com.au/hero.webp">
-    <link rel="icon" href="favicon.ico" sizes="any">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" href="favicon.ico?v=2" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png?v=2">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=2">
     <link rel="manifest" href="site.webmanifest">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -388,7 +444,7 @@ Produce the full HTML document from <!DOCTYPE html> to </html>.
         "publisher": {{"@type": "Organization", "name": "LP Tuning", "url": "https://www.lptuning.com.au"}},
         "datePublished": "{date}",
         "dateModified": "{date}",
-        "url": "https://lptuning.com.au/blog-{slug}.html",
+        "url": "https://lptuning.com.au/blog-{slug}",
         "image": "https://lptuning.com.au/hero.webp",
         "keywords": "{keywords}"
     }}
@@ -624,7 +680,7 @@ def update_sitemap(topic: dict):
 
     new_entry = (
         f"\n  <url>\n"
-        f"    <loc>https://lptuning.com.au/blog-{topic['slug']}.html</loc>\n"
+        f"    <loc>https://lptuning.com.au/blog-{topic['slug']}</loc>\n"
         f"    <lastmod>{today_str()}</lastmod>\n"
         f"    <changefreq>monthly</changefreq>\n"
         f"    <priority>0.7</priority>\n"

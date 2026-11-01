@@ -1,11 +1,20 @@
 name: Auto-publish Blog Post
 
+# Posts go out at random, every 3 to 6 days, at a random time of day.
+# This workflow checks in four times a day; scripts/blog_schedule.py decides
+# whether a post is due and picks the next random publish time after each post.
 on:
   schedule:
-    # Runs Monday and Thursday at 8pm AEST (10am UTC)
-    - cron: '0 10 * * 1,4'
+    - cron: '17 21 * * *'   # about 7am AEST
+    - cron: '43 1 * * *'    # about 11am AEST
+    - cron: '8 5 * * *'     # about 3pm AEST
+    - cron: '36 9 * * *'    # about 7pm AEST
   workflow_dispatch:
-    # Allows manual trigger from GitHub Actions tab
+    inputs:
+      force:
+        description: 'Publish a post now, ignoring the random schedule'
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -29,15 +38,29 @@ jobs:
         with:
           python-version: '3.11'
 
+      - name: Is a post due?
+        id: due
+        run: |
+          if [ "${{ github.event.inputs.force }}" = "true" ]; then
+            echo "publish=true" >> "$GITHUB_OUTPUT"
+          else
+            python scripts/blog_schedule.py check
+          fi
+
       - name: Install dependencies
+        if: steps.due.outputs.publish == 'true'
         run: pip install anthropic
 
       - name: Generate blog post
+        if: steps.due.outputs.publish == 'true'
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: python scripts/generate_blog.py
+        run: |
+          python scripts/generate_blog.py
+          python scripts/blog_schedule.py advance
 
       - name: Commit and push
+        if: steps.due.outputs.publish == 'true'
         run: |
           git config user.name "LP Tuning Bot"
           git config user.email "luukpietje@gmail.com"

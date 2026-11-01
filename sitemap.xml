@@ -11,49 +11,49 @@
 
   <!-- Core service pages -->
   <url>
-    <loc>https://lptuning.com.au/ecu-remapping.html</loc>
+    <loc>https://lptuning.com.au/ecu-remapping</loc>
     <lastmod>2026-09-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://lptuning.com.au/agricultural-tuning.html</loc>
+    <loc>https://lptuning.com.au/agricultural-tuning</loc>
     <lastmod>2026-09-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://lptuning.com.au/4wd-tuning.html</loc>
+    <loc>https://lptuning.com.au/4wd-tuning</loc>
     <lastmod>2026-08-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://lptuning.com.au/truck-tuning.html</loc>
+    <loc>https://lptuning.com.au/truck-tuning</loc>
     <lastmod>2026-08-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://lptuning.com.au/mining-tuning.html</loc>
+    <loc>https://lptuning.com.au/mining-tuning</loc>
     <lastmod>2026-09-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://lptuning.com.au/dpf-delete.html</loc>
+    <loc>https://lptuning.com.au/dpf-delete</loc>
     <lastmod>2026-08-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://lptuning.com.au/egr-delete.html</loc>
+    <loc>https://lptuning.com.au/egr-delete</loc>
     <lastmod>2026-08-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://lptuning.com.au/adblue-delete.html</loc>
+    <loc>https://lptuning.com.au/adblue-delete</loc>
     <lastmod>2026-08-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -61,7 +61,7 @@
 
   <!-- Comparison pages -->
   <url>
-    <loc>https://lptuning.com.au/ecu-remapping-vs-chip-tuning.html</loc>
+    <loc>https://lptuning.com.au/ecu-remapping-vs-chip-tuning</loc>
     <lastmod>2026-09-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
@@ -69,7 +69,7 @@
 
   <!-- Blog index -->
   <url>
-    <loc>https://lptuning.com.au/blog.html</loc>
+    <loc>https://lptuning.com.au/blog</loc>
     <lastmod>2026-09-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -77,87 +77,87 @@
 
   <!-- Blog posts -->
   <url>
-    <loc>https://lptuning.com.au/blog-hilux-diesel-tuning-brisbane.html</loc>
+    <loc>https://lptuning.com.au/blog-hilux-diesel-tuning-brisbane</loc>
     <lastmod>2026-08-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://lptuning.com.au/blog-landcruiser-ecu-tuning-queensland.html</loc>
+    <loc>https://lptuning.com.au/blog-landcruiser-ecu-tuning-queensland</loc>
     <lastmod>2026-08-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://lptuning.com.au/blog-ecu-remapping-tractors-queensland.html</loc>
+    <loc>https://lptuning.com.au/blog-ecu-remapping-tractors-queensland</loc>
     <lastmod>2026-06-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://lptuning.com.au/blog-fuel-savings-mining-equipment.html</loc>
+    <loc>https://lptuning.com.au/blog-fuel-savings-mining-equipment</loc>
     <lastmod>2026-06-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://lptuning.com.au/blog-dpf-problems-farm-machinery.html</loc>
+    <loc>https://lptuning.com.au/blog-dpf-problems-farm-machinery</loc>
     <lastmod>2026-06-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://lptuning.com.au/blog-john-deere-ecu-tuning-queensland.html</loc>
+    <loc>https://lptuning.com.au/blog-john-deere-ecu-tuning-queensland</loc>
     <lastmod>2026-08-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://lptuning.com.au/blog-komatsu-cat-excavator-tuning-queensland.html</loc>
+    <loc>https://lptuning.com.au/blog-komatsu-cat-excavator-tuning-queensland</loc>
     <lastmod>2026-08-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://lptuning.com.au/blog-tractor-ecu-tuning-queensland.html</loc>
+    <loc>https://lptuning.com.au/blog-tractor-ecu-tuning-queensland</loc>
     <lastmod>2026-08-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://lptuning.com.au/blog-combine-harvester-tuning-queensland.html</loc>
+    <loc>https://lptuning.com.au/blog-combine-harvester-tuning-queensland</loc>
     <lastmod>2026-08-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://lptuning.com.au/blog-earthmoving-equipment-tuning-queensland.html</loc>
+    <loc>https://lptuning.com.au/blog-earthmoving-equipment-tuning-queensland</loc>
     <lastmod>2026-08-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://lptuning.com.au/blog-earthmoving-tuning-results-cat-d6-komatsu-wa600.html</loc>
+    <loc>https://lptuning.com.au/blog-earthmoving-tuning-results-cat-d6-komatsu-wa600</loc>
     <lastmod>2026-10-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://lptuning.com.au/blog-fuel-savings-tractor-heavy-machinery-queensland.html</loc>
+    <loc>https://lptuning.com.au/blog-fuel-savings-tractor-heavy-machinery-queensland</loc>
     <lastmod>2026-09-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://lptuning.com.au/blog-adblue-delete-tractors-heavy-machinery-queensland.html</loc>
+    <loc>https://lptuning.com.au/blog-adblue-delete-tractors-heavy-machinery-queensland</loc>
     <lastmod>2026-09-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://lptuning.com.au/blog-egr-delete-farm-machinery-queensland.html</loc>
+    <loc>https://lptuning.com.au/blog-egr-delete-farm-machinery-queensland</loc>
     <lastmod>2026-09-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -165,7 +165,7 @@
 
   <!-- Supporting pages -->
   <url>
-    <loc>https://lptuning.com.au/privacy-policy.html</loc>
+    <loc>https://lptuning.com.au/privacy-policy</loc>
     <lastmod>2026-06-29</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
@@ -173,35 +173,35 @@
 
 
   <url>
-    <loc>https://lptuning.com.au/blog-diesel-tuning-brisbane.html</loc>
+    <loc>https://lptuning.com.au/blog-diesel-tuning-brisbane</loc>
     <lastmod>2026-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://lptuning.com.au/blog-diesel-tuning-toowoomba.html</loc>
+    <loc>https://lptuning.com.au/blog-diesel-tuning-toowoomba</loc>
     <lastmod>2026-10-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://lptuning.com.au/blog-diesel-tuning-gold-coast.html</loc>
+    <loc>https://lptuning.com.au/blog-diesel-tuning-gold-coast</loc>
     <lastmod>2026-10-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://lptuning.com.au/blog-diesel-tuning-sunshine-coast.html</loc>
+    <loc>https://lptuning.com.au/blog-diesel-tuning-sunshine-coast</loc>
     <lastmod>2026-10-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://lptuning.com.au/blog-diesel-tuning-ipswich.html</loc>
+    <loc>https://lptuning.com.au/blog-diesel-tuning-ipswich</loc>
     <lastmod>2026-10-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
