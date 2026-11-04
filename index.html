@@ -2093,6 +2093,12 @@
                                 machineType: data.get('machineType'),
                                 enquiryType: data.get('enquiryType'),
                                 message: data.get('message'),
+                                firstName: (data.get('name') || '').trim().split(/\s+/)[0] || '',
+                                lastName: (data.get('name') || '').trim().split(/\s+/).slice(1).join(' '),
+                                machineTypes: data.get('machineType'),
+                                machineSummary: data.get('machineType'),
+                                notes: 'Enquiry type: ' + (data.get('enquiryType') || '') + '. Message: ' + (data.get('message') || ''),
+                                submittedAt: new Date().toISOString(),
                                 source: 'Homepage Contact Form'
                             })
                         }).catch(function(){});
