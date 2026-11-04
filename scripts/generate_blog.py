@@ -337,7 +337,7 @@ def month_year() -> str:
 # Blog post HTML generator (calls Claude API)
 # ---------------------------------------------------------------------------
 SYSTEM_PROMPT = """You are a content writer for LP Tuning, a mobile diesel ECU remapping business
-in Queensland, Australia (ABN 28 704 248 020). You write factual, no-nonsense blog articles
+in Queensland, Australia (operated by LP Diesel Tuning Pty Ltd, ABN 77 703 830 102). You write factual, no-nonsense blog articles
 for farmers, miners, earthmoving contractors, tradies, and fleet operators.
 
 CRITICAL RULES, never break these:
@@ -551,7 +551,7 @@ Produce the full HTML document from <!DOCTYPE html> to </html>.
 
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2026 LP Tuning | ABN 28 704 248 020. Mobile diesel tuning, Brisbane based, Australia-wide. <a href="index.html">Home</a> &nbsp;|&nbsp; <a href="blog.html">Blog</a> &nbsp;|&nbsp; <a href="privacy-policy.html">Privacy Policy</a></p>
+            <p>&copy; 2026 LP Tuning, operated by LP Diesel Tuning Pty Ltd | ABN 77 703 830 102. Mobile diesel tuning, Brisbane based, Australia-wide. <a href="index.html">Home</a> &nbsp;|&nbsp; <a href="blog.html">Blog</a> &nbsp;|&nbsp; <a href="privacy-policy.html">Privacy Policy</a></p>
             <p style="margin-top:0.6rem;font-size:0.85rem"><a href="https://www.google.com/maps/place/LP+Tuning/@-27.4695224,153.0060275,17z/data=!4m6!3m5!1s0x8494dee06ec24a97:0x6101f76271f3e2b0!8m2!3d-27.4695224!4d153.0060275!16s%2Fg%2F11z645xz62" target="_blank" rel="noopener" style="color:#4CAF50;text-decoration:none">&#9733;&#9733;&#9733;&#9733;&#9733; 5.0 from 30+ Google reviews, read them on Google &#8599;</a></p>
         </div>
     </footer>

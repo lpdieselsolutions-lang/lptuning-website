@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Details and Machine Declaration | LP Tuning</title>
+    <meta name="description" content="Confirm your invoice details and machine condition declaration before your LP Tuning job.">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" href="favicon.ico?v=2" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png?v=2">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root{--black:#0a0a0a;--gray-900:#1a1a1a;--gray-800:#222;--gray-700:#2d2d2d;--gray-500:#606060;--gray-400:#909090;--gray-300:#aaa;--gray-200:#ccc;--white:#f5f5f5;--green:#4CAF50;--green-light:#66BB6A;--red:#e57373;--font-h:'Oswald',sans-serif;--font-b:'Inter',sans-serif}
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+        body{font-family:var(--font-b);background:var(--black);color:var(--gray-200);line-height:1.6;-webkit-font-smoothing:antialiased}
+        .nav{background:var(--gray-900);border-bottom:1px solid var(--gray-700);padding:0.75rem 1.25rem}
+        .nav-inner{max-width:760px;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
+        .nav-phone{color:var(--green);font-family:var(--font-h);text-decoration:none;letter-spacing:0.08em}
+        .wrap{max-width:760px;margin:0 auto;padding:2rem 1.25rem 4rem}
+        h1{font-family:var(--font-h);color:var(--white);font-size:2rem;letter-spacing:0.04em;text-transform:uppercase;margin-bottom:0.5rem}
+        h2{font-family:var(--font-h);color:var(--white);font-size:1.15rem;letter-spacing:0.08em;text-transform:uppercase;margin:2rem 0 1rem;padding-bottom:0.5rem;border-bottom:1px solid var(--gray-700)}
+        .lead{color:var(--gray-300);margin-bottom:1rem}
+        .summary{background:var(--gray-900);border:1px solid var(--gray-700);border-left:3px solid var(--green);border-radius:6px;padding:0.9rem 1.1rem;margin:1rem 0;font-size:0.92rem}
+        .grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+        .field{display:flex;flex-direction:column;gap:0.35rem;margin-bottom:1rem}
+        .full{grid-column:1/-1}
+        label{font-size:0.8rem;font-weight:600;color:var(--gray-200);letter-spacing:0.03em}
+        label .req{color:var(--green)}
+        input[type=text],input[type=email],input[type=tel],select,textarea{width:100%;background:var(--gray-800);border:1px solid var(--gray-700);border-radius:6px;color:var(--white);font-family:var(--font-b);font-size:1rem;padding:0.75rem 0.9rem}
+        textarea{min-height:90px;resize:vertical}
+        input:focus,select:focus,textarea:focus{outline:none;border-color:var(--green)}
+        .hint{font-size:0.75rem;color:var(--gray-400)}
+        .decl{background:var(--gray-900);border:1px solid var(--gray-700);border-radius:6px;padding:1.1rem 1.25rem;font-size:0.9rem;max-height:340px;overflow-y:auto}
+        .decl ol{padding-left:1.2rem}
+        .decl li{margin-bottom:0.6rem}
+        .check{display:flex;gap:0.7rem;align-items:flex-start;margin:1rem 0;font-size:0.92rem;color:var(--white)}
+        .check input{width:20px;height:20px;margin-top:0.2rem;accent-color:var(--green);flex-shrink:0}
+        .btn{width:100%;background:var(--green);color:#0a0a0a;font-family:var(--font-h);font-size:1rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;padding:1.1rem 2rem;border:none;border-radius:6px;cursor:pointer;margin-top:1.5rem}
+        .btn:hover{background:var(--green-light)}
+        .btn:disabled{opacity:0.5;cursor:not-allowed}
+        .err{color:var(--red);font-size:0.88rem;margin-top:0.75rem;display:none}
+        .done{display:none;text-align:center;padding:3rem 0}
+        .done h1{color:var(--green)}
+        .foot{margin-top:3rem;font-size:0.72rem;color:var(--gray-500);text-align:center}
+        @media(max-width:600px){.grid{grid-template-columns:1fr}}
+    </style>
+</head>
+<body>
+<nav class="nav"><div class="nav-inner">
+    <a href="index.html"><img src="logo-nav-transparent.webp" alt="LP Tuning" style="height:46px"></a>
+    <a href="tel:+61491097706" class="nav-phone">0491 097 706</a>
+</div></nav>
+
+<main class="wrap">
+  <div id="formView">
+    <h1>Job details and declaration</h1>
+    <p class="lead">Two minutes, and it means we can send you a correct tax invoice and start your job without delays. Please complete this before your booking.</p>
+    <div class="summary" id="jobSummary">Your booking: <strong id="sumMachine">your machine</strong><span id="sumDate"></span></div>
+
+    <form id="jobForm" novalidate>
+      <h2>1. Who the invoice is for</h2>
+      <div class="grid">
+        <div class="field"><label for="firstName">First name <span class="req">*</span></label><input type="text" id="firstName" autocomplete="given-name" required></div>
+        <div class="field"><label for="lastName">Last name <span class="req">*</span></label><input type="text" id="lastName" autocomplete="family-name" required></div>
+        <div class="field full"><label for="company">Business or trading name (if a business is paying)</label><input type="text" id="company" autocomplete="organization"></div>
+        <div class="field"><label for="abn">ABN (businesses)</label><input type="text" id="abn" inputmode="numeric" placeholder="11 digits"><span class="hint">Needed on tax invoices of $1,000 or more.</span></div>
+        <div class="field"><label for="poNumber">PO or reference number (optional)</label><input type="text" id="poNumber"></div>
+        <div class="field"><label for="email">Accounts email (invoice goes here) <span class="req">*</span></label><input type="email" id="email" autocomplete="email" required></div>
+        <div class="field"><label for="phone">Mobile on the day <span class="req">*</span></label><input type="tel" id="phone" autocomplete="tel" required></div>
+      </div>
+
+      <h2>2. Billing address</h2>
+      <div class="grid">
+        <div class="field full"><label for="billStreet">Street address <span class="req">*</span></label><input type="text" id="billStreet" autocomplete="address-line1" required></div>
+        <div class="field"><label for="billSuburb">Suburb or town <span class="req">*</span></label><input type="text" id="billSuburb" autocomplete="address-level2" required></div>
+        <div class="field"><label for="billState">State <span class="req">*</span></label>
+          <select id="billState" required><option value="">Select</option><option>QLD</option><option>NSW</option><option>VIC</option><option>SA</option><option>WA</option><option>TAS</option><option>NT</option><option>ACT</option></select></div>
+        <div class="field"><label for="billPostcode">Postcode <span class="req">*</span></label><input type="text" id="billPostcode" inputmode="numeric" autocomplete="postal-code" required></div>
+      </div>
+
+      <h2>3. The job</h2>
+      <div class="grid">
+        <div class="field full"><label for="jobAddress">Where is the machine on the day? (leave blank if same as billing)</label><input type="text" id="jobAddress"></div>
+        <div class="field full"><label for="accessNotes">Access notes</label><textarea id="accessNotes" placeholder="Gate code, parking, where the machine will be, who meets us"></textarea></div>
+        <div class="field"><label for="regVin">Registration, VIN or serial number <span class="req">*</span></label><input type="text" id="regVin" required></div>
+        <div class="field"><label for="paymentMethod">How will you pay? <span class="req">*</span></label>
+          <select id="paymentMethod" required><option value="">Select</option><option>Bank transfer</option><option>Card</option><option>Cash on the day</option></select></div>
+      </div>
+
+      <h2>4. Machine condition declaration</h2>
+      <div class="field"><label for="knownFaults">Known faults, repairs or previous modifications <span class="req">*</span></label>
+        <textarea id="knownFaults" required placeholder="List any fault, warning light, fault code, overheating, loss of power, smoke, oil or coolant loss, past repair or previous tune. Write NONE if there is nothing."></textarea></div>
+
+      <div class="decl" id="declText">
+        <p style="margin-bottom:0.75rem"><strong>Machine Condition Declaration and Tuning Consent</strong></p>
+        <p style="margin-bottom:0.75rem">By submitting this form I declare that:</p>
+        <ol>
+          <li>I own the machine or I am authorised by the owner to agree to this work.</li>
+          <li>I have told LP Tuning about every fault, defect and repair I know of that affects the machine's engine, turbo, injectors, fuel system, cooling, exhaust and emissions systems (including DPF, EGR and AdBlue), driveline, clutch and transmission, and about any warning light, fault code, overheating, loss of power, smoke, oil or coolant loss, or previous tune or modification.</li>
+          <li>I am not hiding or leaving out any fault or previous repair that I know of. If I become aware of one before the job, I will tell LP Tuning before work starts.</li>
+          <li>I understand that a remap changes how the engine runs and can increase the load on the engine and driveline. I understand that LP Tuning is not responsible for failure of a part that was already worn, faulty or damaged before the work, or for a fault that existed but was not disclosed to us.</li>
+          <li>I agree that LP Tuning may read and write the machine's ECU, that the original file is stored, and that the original file can be restored on request. I understand a remap may affect a manufacturer or dealer warranty.</li>
+          <li>I am responsible for making sure my use of the machine follows the law, including road and emissions rules that apply to it.</li>
+          <li>The information I have given LP Tuning is true and complete. If it is not, LP Tuning may decline to carry out or finish the work.</li>
+        </ol>
+        <p style="margin-top:0.75rem">Nothing in this declaration limits any right I have under the Australian Consumer Law.</p>
+      </div>
+
+      <label class="check"><input type="checkbox" id="agree"><span>I have read and I agree to the Machine Condition Declaration and Tuning Consent above. <span class="req">*</span></span></label>
+      <div class="field"><label for="signName">Type your full name as your signature <span class="req">*</span></label><input type="text" id="signName" autocomplete="name" required>
+        <span class="hint">Typing your name and submitting this form is your electronic signature. The date and time are recorded automatically.</span></div>
+
+      <button type="submit" class="btn" id="submitBtn">Submit details and declaration</button>
+      <p class="err" id="errMsg"></p>
+    </form>
+  </div>
+
+  <div class="done" id="doneView">
+    <h1>Thanks, all done</h1>
+    <p class="lead">We have your details and declaration. A copy is on its way to your email. See you on the day.</p>
+    <p class="lead">Questions? Call <a href="tel:+61491097706" style="color:var(--green)">0491 097 706</a>.</p>
+  </div>
+
+  <p class="foot">LP Tuning, operated by LP Diesel Tuning Pty Ltd | ABN 77 703 830 102 | Queensland, Australia</p>
+</main>
+
+<script>
+(function(){
+  var JOB_WEBHOOK = 'https://services.leadconnectorhq.com/hooks/iax5sdjvxbNJgybLlIKw/webhook-trigger/0906229b-8b55-4c13-83e5-494be9bedeb6';
+  var DECL_VERSION = 'v1 4 Nov 2026';
+  var q = new URLSearchParams(location.search);
+  function $(id){ return document.getElementById(id); }
+  function param(k){ return (q.get(k) || '').trim(); }
+
+  // Prefill from the link in the booking email (email '+' can arrive as a space)
+  var email = param('e').replace(/ /g,'+');
+  if(email) $('email').value = email;
+  if(param('f')) $('firstName').value = param('f');
+  if(param('l')) $('lastName').value = param('l');
+  if(param('p')) $('phone').value = param('p');
+  var machine = [param('m'), param('y')].filter(Boolean).join(' ');
+  if(machine) $('sumMachine').textContent = machine;
+  if(param('d')) $('sumDate').textContent = ' on ' + param('d');
+  if(!machine && !param('d')) $('jobSummary').style.display = 'none';
+
+  function showErr(msg){ var e=$('errMsg'); e.textContent=msg; e.style.display='block'; e.scrollIntoView({behavior:'smooth',block:'center'}); }
+
+  $('jobForm').addEventListener('submit', function(ev){
+    ev.preventDefault();
+    $('errMsg').style.display = 'none';
+    var req = ['firstName','lastName','email','phone','billStreet','billSuburb','billState','billPostcode','regVin','paymentMethod','knownFaults','signName'];
+    for(var i=0;i<req.length;i++){ if(!$(req[i]).value.trim()){ $(req[i]).focus(); return showErr('Please complete all fields marked with *.'); } }
+    if(!/^\S+@\S+\.\S+$/.test($('email').value.trim())) return showErr('Please enter a valid email address.');
+    var abn = $('abn').value.replace(/\s/g,'');
+    if(abn && !/^\d{11}$/.test(abn)) return showErr('An ABN has 11 digits. Leave it blank if you do not have one.');
+    if(!$('agree').checked) return showErr('Please tick the box to agree to the declaration.');
+    var typed = $('signName').value.trim().toLowerCase();
+    var first = $('firstName').value.trim().toLowerCase();
+    if(typed.indexOf(first) === -1) return showErr('Please type your full name as it appears above so we can match your signature.');
+
+    var btn = $('submitBtn'); btn.disabled = true; btn.textContent = 'Sending...';
+    var billing = [$('billStreet').value.trim(), $('billSuburb').value.trim(), $('billState').value, $('billPostcode').value.trim()].join(', ');
+    var jobAddr = $('jobAddress').value.trim() || billing;
+    var now = new Date();
+    var declaration = $('declText').innerText.replace(/\s+\n/g,'\n').trim();
+    var record = 'MACHINE CONDITION DECLARATION ' + DECL_VERSION + '\n'
+      + 'Signed electronically by: ' + $('signName').value.trim() + '\n'
+      + 'Date and time: ' + now.toLocaleString('en-AU',{timeZone:'Australia/Brisbane'}) + ' (Brisbane)\n'
+      + 'Machine: ' + (machine || 'see booking') + ' | Reg/VIN/serial: ' + $('regVin').value.trim() + '\n'
+      + 'Known faults or previous work disclosed: ' + $('knownFaults').value.trim() + '\n\n' + declaration;
+
+    var payload = {
+      firstName: $('firstName').value.trim(),
+      lastName: $('lastName').value.trim(),
+      name: $('firstName').value.trim() + ' ' + $('lastName').value.trim(),
+      email: $('email').value.trim(),
+      phone: $('phone').value.trim(),
+      company: $('company').value.trim(),
+      abn: abn,
+      poNumber: $('poNumber').value.trim(),
+      billStreet: $('billStreet').value.trim(),
+      billSuburb: $('billSuburb').value.trim(),
+      billState: $('billState').value,
+      billPostcode: $('billPostcode').value.trim(),
+      billingAddress: billing,
+      jobAddress: jobAddr,
+      accessNotes: $('accessNotes').value.trim(),
+      regVin: $('regVin').value.trim(),
+      paymentMethod: $('paymentMethod').value,
+      knownFaults: $('knownFaults').value.trim(),
+      signedName: $('signName').value.trim(),
+      declarationAgreed: 'Yes',
+      declarationVersion: DECL_VERSION,
+      declarationRecord: record,
+      machine: machine,
+      submittedAt: now.toISOString(),
+      source: 'Job Details Form'
+    };
+
+    fetch(JOB_WEBHOOK, {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload)})
+      .then(function(r){ if(!r.ok) throw new Error('bad'); $('formView').style.display='none'; $('doneView').style.display='block'; window.scrollTo(0,0); })
+      .catch(function(){ btn.disabled=false; btn.textContent='Submit details and declaration'; showErr('Sorry, that did not send. Please try again, or call us on 0491 097 706.'); });
+  });
+})();
+</script>
+</body>
+</html>
