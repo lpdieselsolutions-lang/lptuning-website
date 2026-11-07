@@ -67,11 +67,13 @@
         <div class="field full"><label for="company">Business or trading name (if a business is paying)</label><input type="text" id="company" autocomplete="organization"></div>
         <div class="field"><label for="abn">ABN (businesses)</label><input type="text" id="abn" inputmode="numeric" placeholder="11 digits"><span class="hint">Needed on tax invoices of $1,000 or more.</span></div>
         <div class="field"><label for="poNumber">PO or reference number (optional)</label><input type="text" id="poNumber"></div>
-        <div class="field"><label for="email">Accounts email (invoice goes here) <span class="req">*</span></label><input type="email" id="email" autocomplete="email" required></div>
+        <div class="field"><label for="email">Your email <span class="req">*</span></label><input type="email" id="email" autocomplete="email" required></div>
         <div class="field"><label for="phone">Mobile on the day <span class="req">*</span></label><input type="tel" id="phone" autocomplete="tel" required></div>
+        <div class="field full"><label for="accountsEmail">Accounts email (only if the invoice should go to someone else)</label><input type="email" id="accountsEmail" autocomplete="off" placeholder="accounts@yourbusiness.com.au"></div>
       </div>
 
-      <h2>2. Billing address</h2>
+      <h2>2. Home or business address (for the invoice)</h2>
+      <p class="hint" style="margin:-0.25rem 0 0.75rem">Your home address, or the business address if a business is paying. This is where the invoice is addressed, not where the job is.</p>
       <div class="grid">
         <div class="field full"><label for="billStreet">Street address <span class="req">*</span></label><input type="text" id="billStreet" autocomplete="address-line1" required></div>
         <div class="field"><label for="billSuburb">Suburb or town <span class="req">*</span></label><input type="text" id="billSuburb" autocomplete="address-level2" required></div>
@@ -128,7 +130,7 @@
 
 <script>
 (function(){
-  var JOB_WEBHOOK = 'https://services.leadconnectorhq.com/hooks/iax5sdjvxbNJgybLlIKw/webhook-trigger/0906229b-8b55-4c13-83e5-494be9bedeb6';
+  var JOB_WEBHOOK = 'https://services.leadconnectorhq.com/hooks/iax5sdjvxbNJgybLlIKw/webhook-trigger/b0143d16-05a9-4d8b-99c8-00b00a0970e7';
   var DECL_VERSION = 'v1 4 Nov 2026';
   var q = new URLSearchParams(location.search);
   function $(id){ return document.getElementById(id); }
@@ -139,7 +141,8 @@
   if(email) $('email').value = email;
   if(param('f')) $('firstName').value = param('f');
   if(param('l')) $('lastName').value = param('l');
-  if(param('p')) $('phone').value = param('p');
+  if(param('p')) $('phone').value = param('p').replace(/^ /,'+');
+  var contactId = param('cid');
   var machine = [param('m'), param('y')].filter(Boolean).join(' ');
   if(machine) $('sumMachine').textContent = machine;
   if(param('d')) $('sumDate').textContent = ' on ' + param('d');
@@ -153,6 +156,8 @@
     var req = ['firstName','lastName','email','phone','billStreet','billSuburb','billState','billPostcode','regVin','paymentMethod','knownFaults','signName'];
     for(var i=0;i<req.length;i++){ if(!$(req[i]).value.trim()){ $(req[i]).focus(); return showErr('Please complete all fields marked with *.'); } }
     if(!/^\S+@\S+\.\S+$/.test($('email').value.trim())) return showErr('Please enter a valid email address.');
+    var acc = $('accountsEmail').value.trim();
+    if(acc && !/^\S+@\S+\.\S+$/.test(acc)) return showErr('Please check the accounts email address.');
     var abn = $('abn').value.replace(/\s/g,'');
     if(abn && !/^\d{11}$/.test(abn)) return showErr('An ABN has 11 digits. Leave it blank if you do not have one.');
     if(!$('agree').checked) return showErr('Please tick the box to agree to the declaration.');
@@ -177,6 +182,8 @@
       name: $('firstName').value.trim() + ' ' + $('lastName').value.trim(),
       email: $('email').value.trim(),
       phone: $('phone').value.trim(),
+      contactId: contactId,
+      accountsEmail: $('accountsEmail').value.trim(),
       company: $('company').value.trim(),
       abn: abn,
       poNumber: $('poNumber').value.trim(),
